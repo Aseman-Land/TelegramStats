@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/">
+        <file>files/theme</file>
+    </qresource>
+</RCC>

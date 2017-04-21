@@ -1,0 +1,9 @@
+[submodule "asemantools"]
+	path = asemantools
+	url = https://github.com/Aseman-Land/aseman-qt-tools.git
+[submodule "telegram/libqtelegram"]
+	path = telegram/libqtelegram
+	url = https://github.com/Aseman-Land/libqtelegram-aseman-edition.git
+[submodule "telegram/telegramqml"]
+	path = telegram/telegramqml
+	url = https://github.com/Aseman-Land/TelegramQML.git

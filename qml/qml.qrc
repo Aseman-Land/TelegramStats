@@ -1,0 +1,37 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>account/AccountEngine.qml</file>
+        <file>globals/qmldir</file>
+        <file>globals/TgChartsGlobals.qml</file>
+        <file>account/qmldir</file>
+        <file>qtquickcontrols2.conf</file>
+        <file>account/AccountPage.qml</file>
+        <file>authenticating/SignInPhonePage.qml</file>
+        <file>authenticating/qmldir</file>
+        <file>app/AppMain.qml</file>
+        <file>app/qmldir</file>
+        <file>authenticating/SignInPage.qml</file>
+        <file>authenticating/SignInCodePage.qml</file>
+        <file>authenticating/LoggingInSplash.qml</file>
+        <file>list/DialogList.qml</file>
+        <file>list/qmldir</file>
+        <file>list/ChartList.qml</file>
+        <file>charts/MonthChart.qml</file>
+        <file>charts/qmldir</file>
+        <file>charts/SendSumChart.qml</file>
+        <file>charts/TimeChart.qml</file>
+        <file>charts/FileChart.qml</file>
+        <file>emojis/qmldir</file>
+        <file>emojis/Twemoji.qml</file>
+        <file>thirdparty/emojicategories.js</file>
+        <file>thirdparty/linkify.js</file>
+        <file>thirdparty/qmldir</file>
+        <file>thirdparty/twemoji.js</file>
+        <file>globals/CutegramEmojis.qml</file>
+        <file>charts/EmojiChart.qml</file>
+        <file>toolkit/ProfileImage.qml</file>
+        <file>toolkit/qmldir</file>
+        <file>charts/DayChart.qml</file>
+    </qresource>
+</RCC>
