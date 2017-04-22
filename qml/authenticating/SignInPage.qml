@@ -5,6 +5,7 @@ import QtQuick.Controls 2.0
 
 Page {
     id: signInPage
+    visible: step != 3
 
     property alias engine: auth.engine
     property variant waitDialog

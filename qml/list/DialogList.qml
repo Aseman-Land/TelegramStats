@@ -10,6 +10,7 @@ import "../toolkit" as Toolkit
 QtControls.Page {
 
     property alias engine: dmodel.engine
+    property ChartList currentList
 
     Telegram.DialogListModel {
         id: dmodel
@@ -66,7 +67,9 @@ QtControls.Page {
                 QtControls.ItemDelegate {
                     anchors.fill: parent
                     onClicked: {
-                        pageManager.append(chart_component, {"title": model.title, "peer": model.peer})
+                        if(currentList)
+                            return
+                        currentList = pageManager.append(chart_component, {"title": model.title, "peer": model.peer})
                     }
                 }
             }

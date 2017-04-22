@@ -83,6 +83,6 @@ Page {
     Auth.SignInPage {
         id: signInPage
         anchors.fill: parent
-        visible: engine.state != Telegram.Engine.AuthLoggedIn
+//        visible: engine.state != Telegram.Engine.AuthLoggedIn
     }
 }

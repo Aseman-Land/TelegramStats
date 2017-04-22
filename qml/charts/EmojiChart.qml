@@ -14,7 +14,6 @@ Item {
 
     TgChart.EmojisDiary {
         id: senderRatio
-        engine: page.engine
         onPointRequest: {
             var emoji = value.emoji
             var count = value.count
@@ -51,6 +50,19 @@ Item {
                     }
                 }
             }
+        }
+    }
+
+    Component.onCompleted: {
+        ctimer.restart()
+    }
+
+    Timer {
+        id: ctimer
+        interval: 400
+        repeat: false
+        onTriggered: {
+            senderRatio.engine = page.engine
         }
     }
 }

@@ -258,6 +258,33 @@ void TgChartEngine::refresh()
     getAndWriteLastMessages(p->peer->core(), offsetId, p->offset, p->limit);
 }
 
+void TgChartEngine::clear()
+{
+    if(!p->telegram || !p->telegram->isLoggedIn())
+        return;
+    if(!p->peer || p->dataDirectory.isEmpty())
+        return;
+    if(p->refreshing)
+        return;
+
+    initDatabase();
+
+    QSqlQuery query(p->db);
+    query.prepare("DELETE FROM messages WHERE peerId=:peerId");
+    query.bindValue(":peerId", p->peer->userId());
+    query.exec();
+
+    query.prepare("DELETE FROM emojis WHERE peerId=:peerId");
+    query.bindValue(":peerId", p->peer->userId());
+    query.exec();
+
+    query.prepare("DELETE FROM words WHERE peerId=:peerId");
+    query.bindValue(":peerId", p->peer->userId());
+    query.exec();
+
+    Q_EMIT inserted();
+}
+
 void TgChartEngine::failed()
 {
     p->failedFlag = true;
@@ -278,9 +305,16 @@ bool TgChartEngine::initDatabase()
     if(p->dataDirectory.isEmpty())
         return false;
 
+    const bool existed = QFileInfo::exists(p->dataDirectory);
     p->db.setDatabaseName(p->dataDirectory);
     if(!p->db.open())
         return false;
+
+    if(existed)
+    {
+        updateDatabase();
+        return true;
+    }
 
     QStringList queries = QStringList()
             << "BEGIN"
@@ -294,6 +328,9 @@ bool TgChartEngine::initDatabase()
             << "CREATE INDEX words_word_idx ON Words (word ASC);"
             << "CREATE TABLE Emojis (msgId INT, peerId INT, fromId INT NOT NULL, offset INT NOT NULL, emoji STRING NOT NULL, PRIMARY KEY (\"msgId\", \"peerId\", \"offset\"));"
             << "CREATE INDEX emojis_emoji_idx ON Emojis (emoji ASC);"
+            << "CREATE TABLE General (key TEXT NOT NULL, value TEXT, PRIMARY KEY (\"key\"));"
+            << "CREATE INDEX general_value_idx ON General (value ASC);"
+            << "INSERT INTO General (key, value) VALUES (\"version\", \"1\");"
             << "COMMIT";
 
     foreach(const QString &query_str, queries)
@@ -304,6 +341,60 @@ bool TgChartEngine::initDatabase()
     }
 
     return true;
+}
+
+void TgChartEngine::updateDatabase()
+{
+    QStringList queries;
+    int version = dbValue("version", "0").toInt();
+    int newVersion = version;
+    switch(version)
+    {
+    case 0:
+        queries << "BEGIN"
+                << "CREATE TABLE General (key TEXT NOT NULL, value TEXT, PRIMARY KEY (\"key\"));"
+                << "CREATE INDEX general_value_idx ON General (value ASC);"
+                << "COMMIT";
+        newVersion = 1;
+        qDebug() << "Update db to version 1";
+        break;
+    }
+
+    foreach(const QString &query_str, queries)
+    {
+        QSqlQuery query(p->db);
+        query.prepare(query_str);
+        query.exec();
+    }
+
+    if(version != newVersion)
+        setDbValue("version", QString::number(newVersion));
+}
+
+QString TgChartEngine::dbValue(const QString &key, const QString &defaultValue)
+{
+    initDatabase();
+
+    QSqlQuery query(p->db);
+    query.prepare("SELECT value FROM General WHERE key=:key");
+    query.bindValue(":key", key);
+    query.exec();
+
+    if(!query.next())
+        return defaultValue;
+
+    return query.record().value("value").toString();
+}
+
+void TgChartEngine::setDbValue(const QString &key, const QString &value)
+{
+    initDatabase();
+
+    QSqlQuery query(p->db);
+    query.prepare("INSERT OR REPLACE INTO General (key, value) VALUES (:key, :value)");
+    query.bindValue(":key", key);
+    query.bindValue(":value", value);
+    query.exec();
 }
 
 void TgChartEngine::getAndWriteLastMessages(InputPeer peer, int offsetId, int offset, int limit, bool reverse)
@@ -528,6 +619,14 @@ void TgChartEngine::Core::_writeToSqlite(const QString &path, const MessagesMess
                 return;
             }
 
+            int msgLength = messageText.length();
+            for(const DocumentAttribute &attr: msg.media().document().attributes())
+                if(attr.classType() == DocumentAttribute::typeDocumentAttributeAudio && attr.voice())
+                {
+                    msgLength = attr.duration();
+                    break;
+                }
+
             QSqlQuery query(db);
             query.prepare("INSERT INTO Messages (msgId, peerId, fromId, out, date, type, message, messageLength, mediaSize) "
                           "VALUES (:msgId, :peerId, :fromId, :out, :date, :type, :message, :messageLength, :mediaSize)");
@@ -538,7 +637,7 @@ void TgChartEngine::Core::_writeToSqlite(const QString &path, const MessagesMess
             query.bindValue(":date", dateTime);
             query.bindValue(":type", TgChartEngine::messageType(msg));
             query.bindValue(":message", messageText);
-            query.bindValue(":messageLength", messageText.length() );
+            query.bindValue(":messageLength", msgLength );
             query.bindValue(":mediaSize", msg.media().document().size());
             if(!query.exec())
             {

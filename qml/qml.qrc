@@ -33,5 +33,7 @@
         <file>toolkit/ProfileImage.qml</file>
         <file>toolkit/qmldir</file>
         <file>charts/DayChart.qml</file>
+        <file>charts/MessageDetailsChart.qml</file>
+        <file>charts/TimePolarChart.qml</file>
     </qresource>
 </RCC>

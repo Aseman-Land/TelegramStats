@@ -29,10 +29,11 @@ public:
                 dateStr = "%m-%Y";
 
             QSqlQuery query(db);
-            query.prepare("SELECT count(*) as cnt, date, sum(out) as outSum FROM messages WHERE peerId=:peerId GROUP BY strftime(\"" + dateStr + "\", date) ORDER BY date");
+            query.prepare("SELECT count(*) as cnt, date, sum(out) as outSum FROM messages WHERE peerId=:peerId GROUP BY strftime(\"" + dateStr + "\", date) ORDER BY date DESC");
             query.bindValue(":peerId", peerId);
             query.exec();
 
+            QDate lastDate;
             while(query.next())
             {
                 QSqlRecord record = query.record();
@@ -40,12 +41,46 @@ public:
                 qint32 cnt = record.value("cnt").toInt();
                 qint32 outSum = record.value("outSum").toInt();
 
+                QDate date = dt.date();
+                if(lastDate.isNull())
+                    lastDate = date;
+
+                if(_day)
+                {
+                    int diffDays = date.daysTo(lastDate);
+                    for(int i=1; i<diffDays; i++)
+                    {
+                        QDate newDate = lastDate.addDays(-i);
+                        QDateTime fakeDt(newDate, QTime(23,59));
+
+                        QVariantMap map;
+                        map["outSum"] = 0;
+                        map["x"] = fakeDt.toMSecsSinceEpoch();
+                        map["y"] = 0;
+
+                        Q_EMIT pointRequest(map);
+                    }
+                }
+                else
+                {
+                    int diffMonth = (lastDate.year()-date.year())*12 + (lastDate.month()-date.month());
+                    for(int i=1; i<diffMonth; i++)
+                    {
+                        QDate newDate = lastDate.addMonths(-i);
+                        QDateTime fakeDt(newDate, QTime(23,59));
+
+                        QVariantMap map;
+                        map["outSum"] = 0;
+                        map["x"] = fakeDt.toMSecsSinceEpoch();
+                        map["y"] = 0;
+
+                        Q_EMIT pointRequest(map);
+                    }
+                }
+
                 dt.setTime( QTime(23,59) );
                 if(!_day)
-                {
-                    QDate date = dt.date();
                     dt.setDate( QDate(date.year(), date.month(), 28) );
-                }
 
                 QVariantMap map;
                 map["outSum"] = outSum;
@@ -53,6 +88,7 @@ public:
                 map["y"] = cnt;
 
                 Q_EMIT pointRequest(map);
+                lastDate = date;
             }
         }
         QSqlDatabase::removeDatabase(connection);

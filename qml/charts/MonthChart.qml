@@ -46,9 +46,9 @@ Item {
             if(seriesOut) chart.removeSeries(seriesOut)
             if(seriesIn) chart.removeSeries(seriesIn)
 
-            seriesSum = chart.createSeries(ChartView.SeriesTypeLine, qsTr("Sum"), xAxis, yAxis);
-            seriesOut = chart.createSeries(ChartView.SeriesTypeLine, qsTr("You"), xAxis, yAxis);
-            seriesIn  = chart.createSeries(ChartView.SeriesTypeLine, peerName, xAxis, yAxis);
+            seriesSum = chart.createSeries(ChartView.SeriesTypeSpline, qsTr("Sum"), xAxis, yAxis);
+            seriesOut = chart.createSeries(ChartView.SeriesTypeSpline, qsTr("You"), xAxis, yAxis);
+            seriesIn  = chart.createSeries(ChartView.SeriesTypeSpline, peerName, xAxis, yAxis);
         }
 
         property variant seriesSum

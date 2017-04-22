@@ -74,12 +74,17 @@ Q_SIGNALS:
 
 public Q_SLOTS:
     void refresh();
+    void clear();
 
 private Q_SLOTS:
     void failed();
 
 protected:
     bool initDatabase();
+    void updateDatabase();
+
+    QString dbValue(const QString &key, const QString &defaultValue = QString());
+    void setDbValue(const QString &key, const QString &value);
 
     void setRefreshing(bool refreshing);
     void setCount(int count);

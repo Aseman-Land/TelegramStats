@@ -1,7 +1,7 @@
 import AsemanTools 1.1
 import AsemanTools.Awesome 1.0
 import TelegramQml 2.0
-import QtQuick 2.0
+import QtQuick 2.7
 import TgChart 1.0 as TgChart
 import QtQuick.Controls 2.0 as QtControls
 import QtQuick.Controls.Material 2.0
@@ -46,24 +46,38 @@ QtControls.Page {
         anchors.bottom: parent.bottom
         anchors.topMargin: -pictureRow.height - pictureRow.y
         contentWidth: flick.width
-        contentHeight: column.height
+        contentHeight: grid.height
 
         Rectangle {
             id: chartBack
-            width: column.width
-            height: column.height
+            width: grid.width
+            height: grid.height
             color: TgChartsGlobals.backgroundColor
 
-            Column {
-                id: column
+            Grid {
+                id: grid
                 width: flick.width
                 spacing: 8*Devices.density
+                horizontalItemAlignment: Grid.AlignHCenter
+                verticalItemAlignment: Grid.AlignVCenter
+                leftPadding: columnSpacing
+                rightPadding: leftPadding
+                topPadding: leftPadding
+                bottomPadding: leftPadding
+                rowSpacing: columnSpacing
+                columnSpacing: 10*Devices.density
+                flow: Grid.LeftToRight
+                columns: {
+                    var res = Math.floor(width/(300*Devices.density))
+                    if(res < 1)
+                        res = 1
+                    return res
+                }
 
-                Item { width: 1; height: 8*Devices.density }
+                property real cellWidth: width/columns - columnSpacing*2
 
                 Row {
                     id: pictureRow
-                    anchors.horizontalCenter: parent.horizontalCenter
                     spacing: 8*Devices.density
                     layoutDirection: View.layoutDirection
 
@@ -92,13 +106,11 @@ QtControls.Page {
                 }
 
                 QtControls.Label {
-                    anchors.horizontalCenter: parent.horizontalCenter
                     text: qsTr("All send and recieved messages")
                     font.pixelSize: 12*Devices.fontDensity
                 }
 
                 Row {
-                    anchors.horizontalCenter: parent.horizontalCenter
                     spacing: 8*Devices.density
 
                     QtControls.Label {
@@ -117,8 +129,7 @@ QtControls.Page {
                 }
 
                 MaterialFrame {
-                    width: parent.width - 20*Devices.density
-                    anchors.horizontalCenter: parent.horizontalCenter
+                    width: grid.cellWidth
                     height: width*9/16
 
                     Charts.DayChart {
@@ -128,16 +139,20 @@ QtControls.Page {
                     }
                 }
 
-                Charts.EmojiChart {
-                    width: parent.width - 20*Devices.density
-                    anchors.horizontalCenter: parent.horizontalCenter
-                    engine: chartEngine
-                    peerName: page.title
+                MaterialFrame {
+                    width: grid.cellWidth
+                    height: emojiChart.height
+
+                    Charts.EmojiChart {
+                        id: emojiChart
+                        width: grid.cellWidth
+                        engine: chartEngine
+                        peerName: page.title
+                    }
                 }
 
                 MaterialFrame {
-                    width: parent.width - 20*Devices.density
-                    anchors.horizontalCenter: parent.horizontalCenter
+                    width: grid.cellWidth
                     height: width*9/16
 
                     Charts.MonthChart {
@@ -148,9 +163,8 @@ QtControls.Page {
                 }
 
                 MaterialFrame {
-                    width: parent.width - 20*Devices.density
-                    anchors.horizontalCenter: parent.horizontalCenter
-                    height: width*16/16
+                    width: grid.cellWidth
+                    height: width*14/16
 
                     Charts.FileChart {
                         anchors.fill: parent
@@ -160,30 +174,29 @@ QtControls.Page {
                 }
 
                 MaterialFrame {
-                    width: parent.width - 20*Devices.density
-                    anchors.horizontalCenter: parent.horizontalCenter
-                    height: width*9/16
+                    width: grid.cellWidth
+                    height: detailsChart.height
 
-                    Charts.TimeChart {
-                        anchors.fill: parent
+                    Charts.MessageDetailsChart {
+                        id: detailsChart
+                        width: grid.cellWidth
                         engine: chartEngine
                         peerName: page.title
+                        telegramEngine: page.engine
+                        telegramPeer: page.peer
                     }
                 }
 
                 MaterialFrame {
-                    width: parent.width - 20*Devices.density
-                    anchors.horizontalCenter: parent.horizontalCenter
-                    height: width*9/16
+                    width: grid.cellWidth
+                    height: width*16/16
 
-                    Charts.SendSumChart {
+                    Charts.TimePolarChart {
                         anchors.fill: parent
                         engine: chartEngine
                         peerName: page.title
                     }
                 }
-
-                Item { width: 1; height: 8*Devices.density }
             }
         }
     }
@@ -223,15 +236,40 @@ QtControls.Page {
                 anchors.right: parent.right
                 font.family: Awesome.family
                 font.pixelSize: 12*Devices.fontDensity
-                text: Awesome.fa_share
+                text: Awesome.fa_ellipsis_v
                 visible: !indicator.running
                 flat: true
                 Material.theme: Material.Dark
-                onClicked: {
-                    if(grabber.waitObj)
-                        return
-                    grabber.waitObj = showGlobalWait( qsTr("Please Wait"), true )
-                    grabber.save("/sdcard/Download/TelegramCharts", Qt.size(chartBack.width*2, chartBack.height*2))
+                onClicked: optionsMenu.open()
+
+                QtControls.Menu {
+                    id: optionsMenu
+                    x: View.defaultLayout? parent.width - width : 0
+                    transformOrigin: View.defaultLayout? QtControls.Menu.TopRight : QtControls.Menu.TopLeft
+                    modal: true
+
+                    onVisibleChanged: {
+                        if(visible)
+                            BackHandler.pushHandler(optionsMenu, function(){visible = false})
+                        else
+                            BackHandler.removeHandler(optionsMenu)
+                    }
+
+                    QtControls.MenuItem {
+                        text: qsTr("Share")
+                        font.family: AsemanApp.globalFont.family
+                        font.pixelSize: 9*Devices.fontDensity
+                        onTriggered: share()
+                    }
+                    QtControls.MenuItem {
+                        text: qsTr("Clear Cache")
+                        font.family: AsemanApp.globalFont.family
+                        font.pixelSize: 9*Devices.fontDensity
+                        onTriggered: {
+                            chartEngine.clear()
+                            chartEngine.refresh()
+                        }
+                    }
                 }
             }
         }
@@ -294,5 +332,13 @@ QtControls.Page {
             value: chartEngine.loadedCount
             from: 0; to: chartEngine.count
         }
+    }
+
+    function share() {
+        if(grabber.waitObj)
+            return
+
+        grabber.waitObj = showGlobalWait( qsTr("Please Wait"), true )
+        grabber.save(Devices.picturesLocation + "/TelegramCharts", Qt.size(chartBack.width*2, chartBack.height*2))
     }
 }
