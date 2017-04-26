@@ -33,6 +33,10 @@ public:
             query.bindValue(":peerId", peerId);
             query.exec();
 
+            QDate minimumDate;
+            QDate maximumDate;
+            qint32 messagesCount = 0;
+
             QDate lastDate;
             while(query.next())
             {
@@ -40,6 +44,17 @@ public:
                 QDateTime dt = record.value("date").toDateTime();
                 qint32 cnt = record.value("cnt").toInt();
                 qint32 outSum = record.value("outSum").toInt();
+
+                messagesCount += cnt;
+                if(minimumDate.isNull())
+                {
+                    minimumDate = dt.date();
+                    maximumDate = dt.date();
+                }
+                if(dt.date() < minimumDate)
+                    minimumDate = dt.date();
+                if(dt.date() > maximumDate)
+                    maximumDate = dt.date();
 
                 QDate date = dt.date();
                 if(lastDate.isNull())
@@ -90,6 +105,11 @@ public:
                 Q_EMIT pointRequest(map);
                 lastDate = date;
             }
+
+            qreal days = minimumDate.daysTo(maximumDate);
+            QVariantMap map;
+            map["average"] = (messagesCount/days)*(_day? 1 : 30);
+            Q_EMIT pointRequest(map);
         }
         QSqlDatabase::removeDatabase(connection);
     }
@@ -103,6 +123,7 @@ public:
     TgTimeDiaryChart::Core *core;
     QThread *thread;
     bool day;
+    qreal average;
 };
 
 TgTimeDiaryChart::TgTimeDiaryChart(QObject *parent) :
@@ -110,6 +131,7 @@ TgTimeDiaryChart::TgTimeDiaryChart(QObject *parent) :
 {
     p = new Private;
     p->day = true;
+    p->average = 0;
 
     p->thread = new QThread();
     p->thread->start();
@@ -118,7 +140,12 @@ TgTimeDiaryChart::TgTimeDiaryChart(QObject *parent) :
     p->core->moveToThread(p->thread);
 
     connect(p->core, &TgTimeDiaryChart::Core::clearRequest, this, &TgTimeDiaryChart::clearRequest, Qt::QueuedConnection);
-    connect(p->core, &TgTimeDiaryChart::Core::pointRequest, this, &TgTimeDiaryChart::pointRequest, Qt::QueuedConnection);
+    connect(p->core, &TgTimeDiaryChart::Core::pointRequest, this, [this](const QVariantMap &value){
+        if(value.contains("average"))
+            setAverage( value.value("average").toDouble() );
+        else
+            Q_EMIT pointRequest(value);
+    }, Qt::QueuedConnection);
 }
 
 void TgTimeDiaryChart::refresh()
@@ -144,6 +171,20 @@ void TgTimeDiaryChart::setDay(bool day)
 bool TgTimeDiaryChart::day()
 {
     return p->day;
+}
+
+qreal TgTimeDiaryChart::average() const
+{
+    return p->average;
+}
+
+void TgTimeDiaryChart::setAverage(qreal average)
+{
+    if(p->average == average)
+        return;
+
+    p->average = average;
+    Q_EMIT averageChanged();
 }
 
 TgTimeDiaryChart::~TgTimeDiaryChart()

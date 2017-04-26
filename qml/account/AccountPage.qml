@@ -12,6 +12,7 @@ Page {
     property alias engine: signInPage.engine
     property alias pageManager: spManager
     property alias sidebar: _sidebar
+    readonly property bool search: spManager.currentItem? spManager.currentItem.searchVisible : false
 
     Rectangle {
         anchors.fill: parent
@@ -43,6 +44,8 @@ Page {
 
     HeaderMenuButton {
         buttonColor: {
+            if(accPage.search)
+                return TgChartsGlobals.foregroundColor
             var c1 = TgChartsGlobals.headerTextsColor
             var c2 = _sidebar.showed? TgChartsGlobals.foregroundColor : TgChartsGlobals.headerTextsColor
             return Qt.rgba(c2.r*ratio + c1.r*(1-ratio),
@@ -50,7 +53,7 @@ Page {
                            c2.b*ratio + c1.b*(1-ratio), 1)
         }
         onClicked: {
-            if(spManager.count)
+            if(spManager.count || accPage.search)
                 BackHandler.back()
             else
             if(sidebar.showed)
@@ -60,7 +63,7 @@ Page {
         }
 
         ratio: {
-            if(spManager.count)
+            if(spManager.count || accPage.search)
                 return fakeRatio
             else
             if(sidebar.percent == 0)
@@ -69,6 +72,8 @@ Page {
         }
 
         property real fakeRatio: {
+            if(accPage.search)
+                return 1
             if(spManager.count)
                 return 1
             else

@@ -133,6 +133,7 @@ QtControls.Page {
                     height: width*9/16
 
                     Charts.DayChart {
+                        id: dayChart
                         anchors.fill: parent
                         engine: chartEngine
                         peerName: page.title
@@ -156,6 +157,7 @@ QtControls.Page {
                     height: width*9/16
 
                     Charts.MonthChart {
+                        id: monthChart
                         anchors.fill: parent
                         engine: chartEngine
                         peerName: page.title

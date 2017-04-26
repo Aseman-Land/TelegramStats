@@ -1,6 +1,7 @@
 import QtQuick 2.0
 import AsemanTools 1.1
 import TgChart 1.0 as TgChart
+import QtQuick.Controls 2.1 as QtControls
 import QtCharts 2.1
 import "../globals"
 
@@ -10,6 +11,7 @@ Item {
     property ChartView chart
     property variant engine
     property string peerName
+    property alias average: timeDiary.average
 
     TgChart.TimeDiaryChart {
         id: timeDiary
@@ -94,6 +96,18 @@ Item {
         max: 10
     }
 
+    QtControls.Label {
+        id: avgLabel
+        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.bottom: parent.bottom
+        anchors.bottomMargin: 4*Devices.density
+        font.pixelSize: 8*Devices.fontDensity
+        color: TgChartsGlobals.foregroundColor
+        opacity: 0.8
+        text: qsTr("%1 messages per day").arg(Math.floor(average))
+        z: 100
+    }
+
     Component {
         id: chart_component
         ChartView {
@@ -101,7 +115,7 @@ Item {
             anchors.fill: parent
             margins.left: 0
             margins.right: 0
-            margins.bottom: 0
+            margins.bottom: avgLabel.height + avgLabel.anchors.bottomMargin
             margins.top: 0
             antialiasing: true
             title: qsTr("Your interaction based on the day")
