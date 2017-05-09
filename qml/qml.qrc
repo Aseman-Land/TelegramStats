@@ -35,5 +35,8 @@
         <file>charts/DayChart.qml</file>
         <file>charts/MessageDetailsChart.qml</file>
         <file>charts/TimePolarChart.qml</file>
+        <file>charts/AbstractChart.qml</file>
+        <file>charts/page/DayChartPage.qml</file>
+        <file>charts/page/AbstractChartPage.qml</file>
     </qresource>
 </RCC>

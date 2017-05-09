@@ -12,7 +12,7 @@ Page {
     property alias engine: signInPage.engine
     property alias pageManager: spManager
     property alias sidebar: _sidebar
-    readonly property bool search: spManager.currentItem? spManager.currentItem.searchVisible : false
+    readonly property bool search: spManager.currentItem && spManager.currentItem.searchVisible? spManager.currentItem.searchVisible : false
 
     Rectangle {
         anchors.fill: parent

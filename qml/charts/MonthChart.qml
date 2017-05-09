@@ -5,12 +5,9 @@ import QtQuick.Controls 2.1 as QtControls
 import QtCharts 2.1
 import "../globals"
 
-Item {
+AbstractChart {
     id: page
 
-    property ChartView chart
-    property variant engine
-    property string peerName
     property alias average: timeDiary.average
 
     TgChart.TimeDiaryChart {
@@ -42,6 +39,11 @@ Item {
             seriesSum.append(x, y)
             seriesOut.append(x, outSum)
             seriesIn.append(x, y-outSum)
+
+            if(max_updater_timer.max.y < y)
+                max_updater_timer.max = Qt.point(x, y)
+
+            max_updater_timer.restart()
         }
         onClearRequest: {
             if(seriesSum) chart.removeSeries(seriesSum)
@@ -56,6 +58,21 @@ Item {
         property variant seriesSum
         property variant seriesOut
         property variant seriesIn
+    }
+
+    Timer {
+        id: max_updater_timer
+        interval: 100
+        repeat: false
+        onTriggered: {
+            if(scatter) chart.removeSeries(scatter)
+            scatter = chart.createSeries(ChartView.SeriesTypeScatter, qsTr("Max: %1 messages").arg(max.y), xAxis, yAxis);
+            scatter.markerSize = 10*Devices.density
+            scatter.append(max.x, max.y)
+        }
+
+        property variant scatter
+        property point max
     }
 
     DateTimeAxis {

@@ -1,5 +1,9 @@
 #define FLOOD_ERROR_TEXT QString("FLOOD_WAIT_")
 #define INSERT_EMIT_LIMIT 5
+
+#define FAILED_FLAG_FIRSTCHECK 2
+#define FAILED_FLAG_SECONDCHECK 1
+
 #include "tgchartengine.h"
 
 #include <QPointer>
@@ -34,7 +38,7 @@ public:
     int loadedCount;
     static QHash<QString, QString> emojis;
 
-    bool failedFlag;
+    int failedFlag;
     TgChartEngine::Core *core;
     QThread *thread;
 };
@@ -49,7 +53,7 @@ TgChartEngine::TgChartEngine(QObject *parent) :
     p->limit = 1000;
     p->offset = 0;
     p->count = 0;
-    p->failedFlag = false;
+    p->failedFlag = 0;
     p->loadedCount = 0;
     p->connection = QUuid::createUuid().toString();
     p->minimumDate = QDateTime( QDate(1,1,1), QTime(0,0) );
@@ -252,7 +256,7 @@ void TgChartEngine::refresh()
 
     setRefreshing(true);
 
-    p->failedFlag = false;
+    p->failedFlag = 0;
     int offsetId = getLastMessageId();
     /*! Get from the last position !*/
     getAndWriteLastMessages(p->peer->core(), offsetId, p->offset, p->limit);
@@ -285,9 +289,9 @@ void TgChartEngine::clear()
     Q_EMIT inserted();
 }
 
-void TgChartEngine::failed()
+void TgChartEngine::failed(int failedCode)
 {
-    p->failedFlag = true;
+    p->failedFlag = failedCode;
 }
 
 bool TgChartEngine::initDatabase()
@@ -337,7 +341,8 @@ bool TgChartEngine::initDatabase()
     {
         QSqlQuery query(p->db);
         query.prepare(query_str);
-        query.exec();
+        if(!query.exec())
+            qDebug() << __FILE__ << __LINE__ << __FUNCTION__ << query.lastError().text();
     }
 
     return true;
@@ -364,7 +369,8 @@ void TgChartEngine::updateDatabase()
     {
         QSqlQuery query(p->db);
         query.prepare(query_str);
-        query.exec();
+        if(!query.exec())
+            qDebug() << __FILE__ << __LINE__ << __FUNCTION__ << query.lastError().text();
     }
 
     if(version != newVersion)
@@ -378,7 +384,8 @@ QString TgChartEngine::dbValue(const QString &key, const QString &defaultValue)
     QSqlQuery query(p->db);
     query.prepare("SELECT value FROM General WHERE key=:key");
     query.bindValue(":key", key);
-    query.exec();
+    if(!query.exec())
+        qDebug() << __FILE__ << __LINE__ << __FUNCTION__ << query.lastError().text();
 
     if(!query.next())
         return defaultValue;
@@ -394,7 +401,8 @@ void TgChartEngine::setDbValue(const QString &key, const QString &value)
     query.prepare("INSERT OR REPLACE INTO General (key, value) VALUES (:key, :value)");
     query.bindValue(":key", key);
     query.bindValue(":value", value);
-    query.exec();
+    if(!query.exec())
+        qDebug() << __FILE__ << __LINE__ << __FUNCTION__ << query.lastError().text();
 }
 
 void TgChartEngine::getAndWriteLastMessages(InputPeer peer, int offsetId, int offset, int limit, bool reverse)
@@ -416,16 +424,18 @@ void TgChartEngine::getAndWriteLastMessages(InputPeer peer, int offsetId, int of
 
         setCount(result.count());
         setLoadedCount(loadedCount() + result.messages().count());
-        writeToSqlite(result);
-        if(p->failedFlag || result.messages().count() == 0)
+        writeToSqlite(result, (offsetId? FAILED_FLAG_FIRSTCHECK : FAILED_FLAG_SECONDCHECK));
+
+        const bool failed = ((p->failedFlag == FAILED_FLAG_FIRSTCHECK && offsetId != 0) || (p->failedFlag == FAILED_FLAG_SECONDCHECK && offsetId == 0));
+        if(failed || result.messages().count() == 0)
         {
             if(offsetId) {
                 /*! Get from the first again !*/
-                p->failedFlag = false;
+                p->failedFlag = 0;
                 getAndWriteLastMessages(peer, 0, p->offset, p->limit, reverse);
             } else {
                 setRefreshing(false);
-                Q_EMIT inserted();
+                p->core->emitInserted();
             }
 
             return;
@@ -448,7 +458,7 @@ void TgChartEngine::getAndWriteLastMessages(InputPeer peer, int offsetId, int of
             if(newLimit <= 0)
             {
                 setRefreshing(false);
-                Q_EMIT inserted();
+                p->core->emitInserted();
                 return;
             }
 
@@ -530,9 +540,9 @@ QString TgChartEngine::messageType(const Message &msg)
     return "TypeUnsupportedMessage";
 }
 
-void TgChartEngine::writeToSqlite(const MessagesMessages &result)
+void TgChartEngine::writeToSqlite(const MessagesMessages &result, int failedCode)
 {
-    p->core->writeToSqlite(p->dataDirectory, result, p->minimumDate, p->peer->core());
+    p->core->writeToSqlite(p->dataDirectory, result, p->minimumDate, p->peer->core(), failedCode);
 }
 
 int TgChartEngine::getLastMessageId()
@@ -543,7 +553,7 @@ int TgChartEngine::getLastMessageId()
     query.prepare("SELECT max(rowid), msgId, message FROM messages WHERE peerId=:peerId");
     query.bindValue(":peerId", p->peer->userId());
     if(!query.exec())
-        qDebug() << query.lastError().text();
+        qDebug() << __FILE__ << __LINE__ << __FUNCTION__ << query.lastError().text();
 
     if(!query.next())
         return 0;
@@ -558,13 +568,21 @@ TgChartEngine::~TgChartEngine()
     QSqlDatabase::removeDatabase(connection);
 }
 
-void TgChartEngine::Core::writeToSqlite(const QString &path, const MessagesMessages &result, const QDateTime &minimumDate, const InputPeer &peer)
+void TgChartEngine::Core::emitInserted()
 {
-    QMetaObject::invokeMethod(this, "_writeToSqlite", Q_ARG(QString, path), Q_ARG(MessagesMessages, result),
-                              Q_ARG(QDateTime, minimumDate), Q_ARG(InputPeer, peer));
+    QMetaObject::invokeMethod(this, "inserted", Qt::QueuedConnection);
+//    Q_EMIT inserted();
 }
 
-void TgChartEngine::Core::_writeToSqlite(const QString &path, const MessagesMessages &result, const QDateTime &minimumDate, const InputPeer &peer)
+void TgChartEngine::Core::writeToSqlite(const QString &path, const MessagesMessages &result, const QDateTime &minimumDate, const InputPeer &peer, int failedCode)
+{
+    QMetaObject::invokeMethod(this, "_writeToSqlite", Qt::QueuedConnection,
+                              Q_ARG(QString, path), Q_ARG(MessagesMessages, result),
+                              Q_ARG(QDateTime, minimumDate), Q_ARG(InputPeer, peer),
+                              Q_ARG(int, failedCode));
+}
+
+void TgChartEngine::Core::_writeToSqlite(const QString &path, const MessagesMessages &result, const QDateTime &minimumDate, const InputPeer &peer, int failedCode)
 {
     initEmojis();
     QString connection = QUuid::createUuid().toString();
@@ -614,7 +632,10 @@ void TgChartEngine::Core::_writeToSqlite(const QString &path, const MessagesMess
             QDateTime dateTime = QDateTime::fromTime_t(msg.date());
             if(dateTime < minimumDate)
             {
-                Q_EMIT failed();
+                if(!failedEmitted)
+                    Q_EMIT failed(failedCode);
+
+                failedEmitted = true;
                 Q_EMIT inserted();
                 return;
             }
@@ -642,7 +663,7 @@ void TgChartEngine::Core::_writeToSqlite(const QString &path, const MessagesMess
             if(!query.exec())
             {
                 if(!failedEmitted)
-                    Q_EMIT failed();
+                    Q_EMIT failed(failedCode);
                 failedEmitted = true;
                 continue;
             }

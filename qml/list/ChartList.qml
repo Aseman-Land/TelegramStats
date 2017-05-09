@@ -22,8 +22,14 @@ QtControls.Page {
         offset: 0
         limit: 100000
         telegram: page.engine? page.engine.telegramObject : null
-        peer: page.peer
         dataDirectory: TgChartsGlobals.profilePath + "/messages.sqlite"
+    }
+
+    Timer {
+        interval: 400
+        onTriggered: chartEngine.peer = page.peer
+        repeat: false
+        Component.onCompleted: restart()
     }
 
     ItemGrabber {

@@ -4,15 +4,8 @@ import TgChart 1.0 as TgChart
 import QtCharts 2.1
 import "../globals"
 
-Item {
+AbstractChart {
     id: page
-
-    property ChartView chart
-    property variant engine
-    property string peerName
-
-    property variant catArray: new Array
-    property variant sumArray: new Array
 
     property int slice: 3
 

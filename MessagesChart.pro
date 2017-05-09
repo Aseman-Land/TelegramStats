@@ -13,8 +13,33 @@ android {
     ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android
 }
 
+win32 {
+    isEmpty(OPENSSL_LIB_DIR): OPENSSL_LIB_DIR = $${DESTDIR}
+    isEmpty(OPENSSL_INCLUDE_PATH): OPENSSL_INCLUDE_PATH = $${DESTDIR}/include
+
+    LIBS += -L$${OPENSSL_LIB_DIR} -lssleay32
+    INCLUDEPATH += $${OPENSSL_INCLUDE_PATH}
+
+    win32-msvc* {
+        LIBS += -llibeay32 -lzlibstat -lUser32 -lAdvapi32 -lGdi32 -lWs2_32
+    } else {
+        LIBS += -lcrypto -lz
+    }
+} else {
+    isEmpty(OPENSSL_INCLUDE_PATH): OPENSSL_INCLUDE_PATH = /usr/include/ /usr/local/include/
+    isEmpty(OPENSSL_LIB_DIR) {
+        LIBS += -lssl -lcrypto -lz
+    } else {
+        LIBS += -L$${OPENSSL_LIB_DIR} -lssl -lcrypto -lz
+    }
+
+    INCLUDEPATH += $${OPENSSL_INCLUDE_PATH}
+}
+
+LIBS += -lqtelegram-ae
+INCLUDEPATH += $$[QT_INSTALL_HEADERS]/libqtelegram-ae
+
 include(asemantools/asemantools.pri)
-include(telegram/libqtelegram/libqtelegram-ae.pri)
 include(telegram/telegramqml/telegramqml.pri)
 
 HEADERS += \

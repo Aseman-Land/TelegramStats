@@ -77,7 +77,7 @@ public Q_SLOTS:
     void clear();
 
 private Q_SLOTS:
-    void failed();
+    void failed(int failedCode);
 
 protected:
     bool initDatabase();
@@ -92,7 +92,7 @@ protected:
 
     void getAndWriteLastMessages(InputPeer peer, int offsetId, int offset, int limit, bool reverse = false);
     static QString messageType(const Message &msg);
-    void writeToSqlite(const MessagesMessages &result);
+    void writeToSqlite(const MessagesMessages &result, int failedCode);
 
     int getLastMessageId();
 
@@ -114,12 +114,13 @@ public:
     ~Core() {}
 
 public Q_SLOTS:
-    void writeToSqlite(const QString &path, const MessagesMessages &result, const QDateTime &minimumDate, const InputPeer &peer);
-    void _writeToSqlite(const QString &path, const MessagesMessages &result, const QDateTime &minimumDate, const InputPeer &peer);
+    void emitInserted();
+    void writeToSqlite(const QString &path, const MessagesMessages &result, const QDateTime &minimumDate, const InputPeer &peer, int failedCode);
+    void _writeToSqlite(const QString &path, const MessagesMessages &result, const QDateTime &minimumDate, const InputPeer &peer, int failedCode);
 
 Q_SIGNALS:
     void inserted();
-    void failed();
+    void failed(int failedCode);
 
 private:
     void initEmojis();

@@ -8,13 +8,9 @@ import QtCharts 2.1
 import "../globals"
 import "../toolkit" as Toolkit
 
-Item {
+AbstractChart {
     id: page
     height: column.height + 20*Devices.density
-
-    property ChartView chart
-    property variant engine
-    property string peerName
 
     property variant telegramEngine
     property variant telegramPeer

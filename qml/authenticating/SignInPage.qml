@@ -87,7 +87,7 @@ Page {
     LoggingInSplash {
         anchors.fill: parent
         busy: visible
-        visible: step <= 0
+        visible: step <= 0 && signInPage.engine.phoneNumber.length != 0
     }
 
     function showWait() {

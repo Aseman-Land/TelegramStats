@@ -5,12 +5,9 @@ import QtQuick.Controls 2.0 as QtControls
 import QtCharts 2.1
 import "../globals"
 
-Item {
+AbstractChart {
     id: page
     height: column.height + 20*Devices.density
-
-    property variant engine
-    property string peerName
 
     TgChart.EmojisDiary {
         id: senderRatio
@@ -34,9 +31,10 @@ Item {
             font.pixelSize: 12*Devices.fontDensity
         }
 
-        Row {
+        Grid {
             anchors.horizontalCenter: parent.horizontalCenter
             spacing: 12*Devices.density
+            columns: 5
             Repeater {
                 id: repeater
                 model: ListModel{}

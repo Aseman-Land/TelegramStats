@@ -2,16 +2,14 @@ import QtQuick 2.0
 import AsemanTools 1.1
 import TgChart 1.0 as TgChart
 import QtQuick.Controls 2.1 as QtControls
+import QtQuick.Controls.Material 2.0
 import QtCharts 2.1
-import "page" as Page
-import "../globals"
+import "../../globals"
 
-AbstractChart {
+AbstractChartPage {
     id: page
 
     property alias average: timeDiary.average
-
-//    onClicked: pageManager.append(page_component)
 
     TgChart.TimeDiaryChart {
         id: timeDiary
@@ -42,11 +40,6 @@ AbstractChart {
             seriesSum.append(x, y)
             seriesOut.append(x, outSum)
             seriesIn.append(x, y-outSum)
-
-            if(max_updater_timer.max.y < y)
-                max_updater_timer.max = Qt.point(x, y)
-
-            max_updater_timer.restart()
         }
         onClearRequest: {
             if(seriesSum) chart.removeSeries(seriesSum)
@@ -56,7 +49,6 @@ AbstractChart {
             seriesSum = chart.createSeries(ChartView.SeriesTypeSpline, qsTr("Sum"), xAxis, yAxis);
             seriesOut = chart.createSeries(ChartView.SeriesTypeSpline, qsTr("You"), xAxis, yAxis);
             seriesIn  = chart.createSeries(ChartView.SeriesTypeSpline, peerName, xAxis, yAxis);
-
         }
 
         property variant seriesSum
@@ -64,39 +56,23 @@ AbstractChart {
         property variant seriesIn
     }
 
-    Timer {
-        id: max_updater_timer
-        interval: 100
-        repeat: false
-        onTriggered: {
-            if(scatter) chart.removeSeries(scatter)
-            scatter = chart.createSeries(ChartView.SeriesTypeScatter, qsTr("Max: %1 messages").arg(max.y), xAxis, yAxis);
-            scatter.markerSize = 10*Devices.density
-            scatter.append(max.x, max.y)
-        }
-
-        property variant scatter
-        property point max
-    }
-
     DateTimeAxis {
         id: xAxis
         labelsFont.pixelSize: 7*Devices.fontDensity
         min: {
             var today = new Date
-            var day = today.getDay()
-            var mnth = today.getMonth() - 2
+            var mnth = today.getMonth()
             var year = today.getFullYear()
+            mnth--
             if(mnth < 1) {
                 mnth = 12
                 year--
             }
 
-            return new Date(year, mnth, day)
+            return new Date(year, mnth, 1)
         }
         max: {
             var today = new Date
-            var day = today.getDay()
             var mnth = today.getMonth()
             var year = today.getFullYear()
             mnth++
@@ -105,9 +81,14 @@ AbstractChart {
                 year++
             }
 
-            return new Date
+            return new Date(year, mnth, 1)
         }
-        tickCount: 5
+        tickCount: {
+            var maxDayes = CalendarConv.convertDateToDays(max)
+            var minDayes = CalendarConv.convertDateToDays(min)
+            return maxDayes-minDayes
+        }
+
         format: "MMM dd"
     }
 
@@ -118,16 +99,52 @@ AbstractChart {
         max: 10
     }
 
-    QtControls.Label {
-        id: avgLabel
-        anchors.horizontalCenter: parent.horizontalCenter
+    Flickable {
+        id: flick
+        width: parent.width
+        anchors.top: header.bottom
         anchors.bottom: parent.bottom
-        anchors.bottomMargin: 4*Devices.density
-        font.pixelSize: 8*Devices.fontDensity
-        color: TgChartsGlobals.foregroundColor
-        opacity: 0.8
-        text: qsTr("%1 messages per day").arg(Math.floor(average))
-        z: 100
+        flickableDirection: Flickable.HorizontalFlick
+        contentWidth: chartParent.width
+        contentHeight: chartParent.height
+
+        Item {
+            id: chartParent
+            width: xAxis.tickCount * 50*Devices.density
+            height: flick.height
+        }
+    }
+
+    ScrollBar {
+        scrollArea: flick; height: flick.height; anchors.right: flick.right; anchors.top: flick.top
+        color: TgChartsGlobals.masterColor
+        LayoutMirroring.enabled: View.layoutDirection == Qt.RightToLeft
+    }
+
+    Header {
+        id: header
+        width: parent.width
+        text: peerName
+        color: TgChartsGlobals.masterColor
+
+        Item {
+            width: parent.width
+            height: Devices.standardTitleBarHeight
+            anchors.bottom: parent.bottom
+
+            QtControls.BusyIndicator {
+                id: indicator
+                anchors.right: parent.right
+                anchors.rightMargin: y
+                anchors.verticalCenter: parent.verticalCenter
+                height: 54*Devices.density
+                width: height
+                running: true
+                transformOrigin: Item.Center
+                scale: 0.5
+                Material.accent: "#ffffff"
+            }
+        }
     }
 
     Component {
@@ -137,12 +154,10 @@ AbstractChart {
             anchors.fill: parent
             margins.left: 0
             margins.right: 0
-            margins.bottom: avgLabel.height + avgLabel.anchors.bottomMargin
+            margins.bottom: 0
             margins.top: 0
             antialiasing: true
-            title: qsTr("Your interaction based on the day")
-            legend.font.pixelSize: 7*Devices.fontDensity
-            titleFont.pixelSize: 11*Devices.fontDensity
+            legend.visible: false
         }
     }
 
@@ -155,16 +170,7 @@ AbstractChart {
         interval: 400
         repeat: false
         onTriggered: {
-            chart = chart_component.createObject(page)
-        }
-    }
-
-    Component {
-        id: page_component
-        Page.DayChartPage {
-            anchors.fill: parent
-            engine: page.engine
-            peerName: page.peerName
+            chart = chart_component.createObject(chartParent)
         }
     }
 }

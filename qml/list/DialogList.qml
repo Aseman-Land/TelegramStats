@@ -40,6 +40,7 @@ QtControls.Page {
                 border.color: "#efefef"
                 border.width: 1*Devices.density
                 radius: 5*Devices.density
+                color: marea.pressed? "#f3f7ff" : "#ffffff"
 
                 Item {
                     y: x
@@ -55,7 +56,7 @@ QtControls.Page {
                         source: model.peer
                     }
 
-                    QtControls.Label {
+                    Text {
                         width: parent.width
                         text: model.title
                         anchors.bottom: parent.bottom
@@ -67,7 +68,8 @@ QtControls.Page {
                     }
                 }
 
-                QtControls.ItemDelegate {
+                MouseArea {
+                    id: marea
                     anchors.fill: parent
                     onClicked: {
                         if(currentList)
