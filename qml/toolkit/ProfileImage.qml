@@ -29,6 +29,8 @@ Item {
         height: disabled? parent.height : parent.height*2
         sourceSize: Qt.size(width, height)
         visible: disabled
+        asynchronous: true
+        cache: false
 
         Rectangle {
             id: back

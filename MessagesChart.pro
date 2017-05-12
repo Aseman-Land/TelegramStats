@@ -50,7 +50,8 @@ HEADERS += \
     components/tgdailytimechart.h \
     components/tgfiletypechart.h \
     components/tgchartsemojisdiary.h \
-    components/tgchartsmessagedetails.h
+    components/tgchartsmessagedetails.h \
+    components/tgchartssensediary.h
 
 SOURCES += main.cpp \
     components/tgchartengine.cpp \
@@ -60,7 +61,8 @@ SOURCES += main.cpp \
     components/tgdailytimechart.cpp \
     components/tgfiletypechart.cpp \
     components/tgchartsemojisdiary.cpp \
-    components/tgchartsmessagedetails.cpp
+    components/tgchartsmessagedetails.cpp \
+    components/tgchartssensediary.cpp
 
 RESOURCES += qml/qml.qrc \
     resource.qrc \

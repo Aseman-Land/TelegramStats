@@ -38,6 +38,7 @@ QtControls.Page {
         onSaved: {
             Tools.jsDelayCall(1000, function(){
                 grabber.waitObj.destroy()
+                stickeritem.visible = true
                 Qt.openUrlExternally( Devices.localFilesPrePath + dest)
             })
         }
@@ -111,6 +112,11 @@ QtControls.Page {
                     }
                 }
 
+                Toolkit.StickerItem {
+                    id: stickeritem
+                    width: grid.cellWidth
+                }
+
                 QtControls.Label {
                     text: qsTr("All send and recieved messages")
                     font.pixelSize: 12*Devices.fontDensity
@@ -153,6 +159,20 @@ QtControls.Page {
                     Charts.EmojiChart {
                         id: emojiChart
                         width: grid.cellWidth
+                        engine: chartEngine
+                        peerName: page.title
+                        telegramEngine: page.engine
+                        telegramPeer: page.peer
+                    }
+                }
+
+                MaterialFrame {
+                    width: grid.cellWidth
+                    height: width*9/16
+
+                    Charts.SenseDiaryChart {
+                        id: senseChart
+                        anchors.fill: parent
                         engine: chartEngine
                         peerName: page.title
                     }
@@ -346,7 +366,12 @@ QtControls.Page {
         if(grabber.waitObj)
             return
 
+        if(stickeritem.isNull)
+            stickeritem.visible = false
+
         grabber.waitObj = showGlobalWait( qsTr("Please Wait"), true )
-        grabber.save(Devices.picturesLocation + "/TelegramCharts", Qt.size(chartBack.width*2, chartBack.height*2))
+        Tools.jsDelayCall(100, function(){
+            grabber.save(Devices.picturesLocation + "/TelegramCharts", Qt.size(chartBack.width*2, chartBack.height*2))
+        })
     }
 }

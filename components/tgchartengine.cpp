@@ -628,6 +628,7 @@ void TgChartEngine::Core::_writeToSqlite(const QString &path, const MessagesMess
             }
 
             QString messageText = msg.message().isEmpty()? msg.media().caption() : msg.message();
+            QString msgType = TgChartEngine::messageType(msg);
 
             QDateTime dateTime = QDateTime::fromTime_t(msg.date());
             if(dateTime < minimumDate)
@@ -642,11 +643,18 @@ void TgChartEngine::Core::_writeToSqlite(const QString &path, const MessagesMess
 
             int msgLength = messageText.length();
             for(const DocumentAttribute &attr: msg.media().document().attributes())
+            {
                 if(attr.classType() == DocumentAttribute::typeDocumentAttributeAudio && attr.voice())
                 {
                     msgLength = attr.duration();
                     break;
                 }
+                if(attr.classType() == DocumentAttribute::typeDocumentAttributeSticker)
+                {
+                    messageText += attr.alt();
+                    break;
+                }
+            }
 
             QSqlQuery query(db);
             query.prepare("INSERT INTO Messages (msgId, peerId, fromId, out, date, type, message, messageLength, mediaSize) "
@@ -656,7 +664,7 @@ void TgChartEngine::Core::_writeToSqlite(const QString &path, const MessagesMess
             query.bindValue(":fromId", user.id());
             query.bindValue(":out", (user.id() != peer.userId()? 1 : 0));
             query.bindValue(":date", dateTime);
-            query.bindValue(":type", TgChartEngine::messageType(msg));
+            query.bindValue(":type", msgType);
             query.bindValue(":message", messageText);
             query.bindValue(":messageLength", msgLength );
             query.bindValue(":mediaSize", msg.media().document().size());

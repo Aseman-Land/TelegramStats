@@ -1,4 +1,4 @@
-#include "tgchartsemojisdiary.h"
+#include "tgchartssensediary.h"
 #include "tgchartengine.h"
 
 #include <QThread>
@@ -8,7 +8,7 @@
 #include <QSqlRecord>
 #include <QDateTime>
 
-class TgChartsEmojisDiary::Core: public TgAbstractChartItem::Core
+class TgChartsSenseDiary::Core: public TgAbstractChartItem::Core
 {
 public:
     Core(QObject *parent = Q_NULLPTR): TgAbstractChartItem::Core(parent) {}
@@ -23,38 +23,24 @@ public:
             db.open();
 
             QSqlQuery query(db);
-            query.prepare("SELECT count(*) as cnt, emoji FROM emojis WHERE peerId=:peerId AND fromId=:peerId GROUP By emoji ORDER BY cnt DESC LIMIT 5");
+            query.prepare("SELECT count(*) as cnt, a.emoji as emoji, strftime(\"%m-%Y\", b.date) as dt, b.date as fullDate FROM emojis as a, (SELECT * FROM messages) as b WHERE a.msgId=b.msgId AND a.peerId=:peerId GROUP BY dt, emoji ORDER BY dt DESC");
             query.bindValue(":peerId", peerId);
             query.exec();
 
             while(query.next())
             {
                 QSqlRecord record = query.record();
-                QString emoji = record.value("emoji").toString();
                 qint32 cnt = record.value("cnt").toInt();
+                QString emoji = record.value("emoji").toString();
+                QDateTime fullDate = record.value("fullDate").toDateTime();
+                QDate date = QDate(fullDate.date().year(), fullDate.date().month(), 28);
+                if(QDate::currentDate().month() == date.month())
+                    date = QDate(date.year(), date.month(), QDate::currentDate().day());
 
                 QVariantMap map;
                 map["emoji"] = emoji;
                 map["count"] = cnt;
-                map["out"] = false;
-
-                Q_EMIT pointRequest(map);
-            }
-
-            query.prepare("SELECT count(*) as cnt, emoji FROM emojis WHERE peerId=:peerId AND fromId<>:peerId GROUP By emoji ORDER BY cnt DESC LIMIT 5");
-            query.bindValue(":peerId", peerId);
-            query.exec();
-
-            while(query.next())
-            {
-                QSqlRecord record = query.record();
-                QString emoji = record.value("emoji").toString();
-                qint32 cnt = record.value("cnt").toInt();
-
-                QVariantMap map;
-                map["emoji"] = emoji;
-                map["count"] = cnt;
-                map["out"] = true;
+                map["date"] = QDateTime(date, QTime(0,0,0)).toMSecsSinceEpoch();
 
                 Q_EMIT pointRequest(map);
             }
@@ -63,14 +49,14 @@ public:
     }
 };
 
-class TgChartsEmojisDiary::Private
+class TgChartsSenseDiary::Private
 {
 public:
-    TgChartsEmojisDiary::Core *core;
+    TgChartsSenseDiary::Core *core;
     QThread *thread;
 };
 
-TgChartsEmojisDiary::TgChartsEmojisDiary(QObject *parent) :
+TgChartsSenseDiary::TgChartsSenseDiary(QObject *parent) :
     TgAbstractChartItem(parent)
 {
     p = new Private;
@@ -81,11 +67,11 @@ TgChartsEmojisDiary::TgChartsEmojisDiary(QObject *parent) :
     p->core = new Core();
     p->core->moveToThread(p->thread);
 
-    connect(p->core, &TgChartsEmojisDiary::Core::clearRequest, this, &TgChartsEmojisDiary::clearRequest, Qt::QueuedConnection);
-    connect(p->core, &TgChartsEmojisDiary::Core::pointRequest, this, &TgChartsEmojisDiary::pointRequest, Qt::QueuedConnection);
+    connect(p->core, &TgChartsSenseDiary::Core::clearRequest, this, &TgChartsSenseDiary::clearRequest, Qt::QueuedConnection);
+    connect(p->core, &TgChartsSenseDiary::Core::pointRequest, this, &TgChartsSenseDiary::pointRequest, Qt::QueuedConnection);
 }
 
-void TgChartsEmojisDiary::refresh()
+void TgChartsSenseDiary::refresh()
 {
     if(!engine() || !engine()->peer()) return;
     QString source = engine()->dataDirectory();
@@ -94,7 +80,7 @@ void TgChartsEmojisDiary::refresh()
     QMetaObject::invokeMethod(p->core, "start", Qt::QueuedConnection, Q_ARG(QString, source), Q_ARG(qint32, peerId));
 }
 
-TgChartsEmojisDiary::~TgChartsEmojisDiary()
+TgChartsSenseDiary::~TgChartsSenseDiary()
 {
     p->core->deleteLater();
     p->thread->quit();

@@ -38,5 +38,13 @@
         <file>charts/AbstractChart.qml</file>
         <file>charts/page/DayChartPage.qml</file>
         <file>charts/page/AbstractChartPage.qml</file>
+        <file>toolkit/StickerItem.qml</file>
+        <file>toolkit/stickers/RageFaceLike.png</file>
+        <file>toolkit/stickers/RageFaceNerd.png</file>
+        <file>toolkit/stickers/VickyLike.png</file>
+        <file>toolkit/stickers/VickyNerd.png</file>
+        <file>toolkit/stickers/vk_smilesLike.png</file>
+        <file>toolkit/stickers/vk_smilesNerd.png</file>
+        <file>charts/SenseDiaryChart.qml</file>
     </qresource>
 </RCC>

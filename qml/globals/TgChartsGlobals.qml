@@ -6,7 +6,7 @@ import QtQuick.Controls.Material 2.0
 AsemanObject {
     property string profilePath: AsemanApp.homePath
 
-    property color masterColor: "#03A9F4"
+    property color masterColor: "#249ac0"
     property color headerTextsColor: "#ffffff"
     property color alternativeColor: Material.color(Material.Cyan)
     property color backgroundColor: Material.background

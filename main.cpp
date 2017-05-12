@@ -10,6 +10,7 @@
 #include "components/tgfiletypechart.h"
 #include "components/tgchartsemojisdiary.h"
 #include "components/tgchartsmessagedetails.h"
+#include "components/tgchartssensediary.h"
 
 #include <QApplication>
 #include <QQmlApplicationEngine>
@@ -27,6 +28,7 @@ int main(int argc, char *argv[])
     qmlRegisterType<TgFileTypeChart>("TgChart", 1, 0, "FileTypeChart");
     qmlRegisterType<TgChartsEmojisDiary>("TgChart", 1, 0, "EmojisDiary");
     qmlRegisterType<TgChartsMessageDetails>("TgChart", 1, 0, "MessageDetailsChart");
+    qmlRegisterType<TgChartsSenseDiary>("TgChart", 1, 0, "SenseDiary");
 
     AsemanApplication app(argc, argv, AsemanApplication::WidgetApplication);
 

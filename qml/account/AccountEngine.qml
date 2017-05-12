@@ -17,4 +17,5 @@ Telegram.Engine {
     host.hostPort: 443
 
     cache.path: configDirectory + "/" + phoneNumber + "/cache"
+    cache.cacheMessages: false
 }
