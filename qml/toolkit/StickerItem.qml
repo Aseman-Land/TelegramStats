@@ -117,7 +117,7 @@ Item {
                     anchors.fill: parent
                     source: "stickers/" + listv.model[index]
                     asynchronous: true
-                    sourceSize: Qt.size(width, height)
+                    sourceSize: Qt.size(1.2*width, 1.2*height)
                 }
 
                 QtControls.ItemDelegate {

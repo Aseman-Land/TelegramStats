@@ -36,11 +36,16 @@ QtControls.Page {
 
             Rectangle {
                 anchors.fill: parent
-                anchors.margins: 1*Devices.density
-                border.color: "#efefef"
-                border.width: 1*Devices.density
+                anchors.margins: 2*Devices.density
                 radius: 5*Devices.density
-                color: marea.pressed? "#f3f7ff" : "#ffffff"
+                color: TgChartsGlobals.backgroundAlternativeColor
+
+                Rectangle {
+                    anchors.fill: parent
+                    color: TgChartsGlobals.masterColor
+                    radius: 5*Devices.density
+                    opacity: marea.pressed? 0.2 : 0
+                }
 
                 Item {
                     y: x
@@ -65,6 +70,7 @@ QtControls.Page {
                         wrapMode: Text.WrapAtWordBoundaryOrAnywhere
                         maximumLineCount: 1
                         elide: Text.ElideRight
+                        color: TgChartsGlobals.foregroundColor
                     }
                 }
 
@@ -95,13 +101,15 @@ QtControls.Page {
         text: qsTr("Telegram Charts")
         color: TgChartsGlobals.masterColor
 
-        MaterialFrame {
+        Rectangle {
             id: searchFrame
             width: parent.width - 20*Devices.density
             x: 10*Devices.density
-            height: Devices.standardTitleBarHeight - 20*Devices.density
+            height: Devices.standardTitleBarHeight - 10*Devices.density
             y: Devices.statusBarHeight + (Devices.standardTitleBarHeight-height)/2
             visible: searchAction.active
+            radius: 2*Devices.density
+            color: TgChartsGlobals.backgroundColor
             onVisibleChanged: {
                 if(visible) {
                     textField.forceActiveFocus()

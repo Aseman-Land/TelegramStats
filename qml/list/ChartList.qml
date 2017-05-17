@@ -67,6 +67,7 @@ QtControls.Page {
                 spacing: 8*Devices.density
                 horizontalItemAlignment: Grid.AlignHCenter
                 verticalItemAlignment: Grid.AlignVCenter
+                layoutDirection: View.layoutDirection
                 leftPadding: columnSpacing
                 rightPadding: leftPadding
                 topPadding: leftPadding
@@ -124,6 +125,7 @@ QtControls.Page {
 
                 Row {
                     spacing: 8*Devices.density
+                    layoutDirection: View.layoutDirection
 
                     QtControls.Label {
                         anchors.verticalCenter: parent.verticalCenter
@@ -143,6 +145,8 @@ QtControls.Page {
                 MaterialFrame {
                     width: grid.cellWidth
                     height: width*9/16
+                    color: TgChartsGlobals.backgroundColor
+                    shadowColor: TgChartsGlobals.foregroundColor
 
                     Charts.DayChart {
                         id: dayChart
@@ -155,6 +159,8 @@ QtControls.Page {
                 MaterialFrame {
                     width: grid.cellWidth
                     height: emojiChart.height
+                    color: TgChartsGlobals.backgroundColor
+                    shadowColor: TgChartsGlobals.foregroundColor
 
                     Charts.EmojiChart {
                         id: emojiChart
@@ -169,6 +175,8 @@ QtControls.Page {
                 MaterialFrame {
                     width: grid.cellWidth
                     height: width*9/16
+                    color: TgChartsGlobals.backgroundColor
+                    shadowColor: TgChartsGlobals.foregroundColor
 
                     Charts.SenseDiaryChart {
                         id: senseChart
@@ -181,6 +189,8 @@ QtControls.Page {
                 MaterialFrame {
                     width: grid.cellWidth
                     height: width*9/16
+                    color: TgChartsGlobals.backgroundColor
+                    shadowColor: TgChartsGlobals.foregroundColor
 
                     Charts.MonthChart {
                         id: monthChart
@@ -193,6 +203,8 @@ QtControls.Page {
                 MaterialFrame {
                     width: grid.cellWidth
                     height: width*14/16
+                    color: TgChartsGlobals.backgroundColor
+                    shadowColor: TgChartsGlobals.foregroundColor
 
                     Charts.FileChart {
                         anchors.fill: parent
@@ -204,6 +216,8 @@ QtControls.Page {
                 MaterialFrame {
                     width: grid.cellWidth
                     height: detailsChart.height
+                    color: TgChartsGlobals.backgroundColor
+                    shadowColor: TgChartsGlobals.foregroundColor
 
                     Charts.MessageDetailsChart {
                         id: detailsChart
@@ -218,6 +232,8 @@ QtControls.Page {
                 MaterialFrame {
                     width: grid.cellWidth
                     height: width*16/16
+                    color: TgChartsGlobals.backgroundColor
+                    shadowColor: TgChartsGlobals.foregroundColor
 
                     Charts.TimePolarChart {
                         anchors.fill: parent
@@ -247,8 +263,9 @@ QtControls.Page {
 
             QtControls.BusyIndicator {
                 id: indicator
-                anchors.right: parent.right
-                anchors.rightMargin: y
+                anchors.right: View.defaultLayout? parent.right : undefined
+                anchors.left: View.defaultLayout? undefined : parent.left
+                anchors.margins: y
                 anchors.verticalCenter: parent.verticalCenter
                 height: 54*Devices.density
                 width: height
@@ -261,7 +278,8 @@ QtControls.Page {
             QtControls.Button {
                 width: height
                 height: parent.height
-                anchors.right: parent.right
+                anchors.right: View.defaultLayout? parent.right : undefined
+                anchors.left: View.defaultLayout? undefined : parent.left
                 font.family: Awesome.family
                 font.pixelSize: 12*Devices.fontDensity
                 text: Awesome.fa_ellipsis_v

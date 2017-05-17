@@ -2,6 +2,7 @@ import QtQuick 2.0
 import AsemanTools 1.1
 import TelegramQml 2.0
 import QtQuick.Controls 2.0
+import QtQuick.Layouts 1.3 as QtLayouts
 
 Page {
     property Engine engine
@@ -22,10 +23,22 @@ Page {
             model: cModel
         }
 
-        TextField {
-            id: phoneField
+        QtLayouts.RowLayout {
             width: parent.width
-            placeholderText: qsTr("Phone number")
+
+            TextField {
+                id: countryCodeField
+                text: "+" + cModel.get(cCombo.currentIndex, CountriesModel.CallingCodeRole)
+                readOnly: true
+                QtLayouts.Layout.preferredWidth: 64*Devices.density
+            }
+
+            TextField {
+                id: phoneField
+                width: parent.width
+                placeholderText: qsTr("Phone number")
+                QtLayouts.Layout.fillWidth: true
+            }
         }
 
         Button {
@@ -33,7 +46,7 @@ Page {
             text: qsTr("Sign-in")
             highlighted: true
             onClicked: {
-                var code = "+" + cModel.get(cCombo.currentIndex, CountriesModel.CallingCodeRole)
+                var code = countryCodeField.text
                 engine.phoneNumber = code + phoneField.text
             }
         }

@@ -4,6 +4,8 @@ import AsemanTools 1.1
 import QtQuick.Controls.Material 2.0
 
 AsemanObject {
+    Material.theme: darkMode? Material.Dark : Material.Light
+
     property string profilePath: AsemanApp.homePath
 
     property color masterColor: "#249ac0"
@@ -12,6 +14,9 @@ AsemanObject {
     property color backgroundColor: Material.background
     property color backgroundAlternativeColor: Qt.lighter(Material.background)
     property color foregroundColor: Material.foreground
+    property color foregroundAlternativeColor: darkMode? "#ff0000" : Qt.lighter(Material.foreground, 1.5)
+
+    property bool darkMode: false
 
     function textAlignment(txt) {
         var dir = Tools.directionOf(txt)

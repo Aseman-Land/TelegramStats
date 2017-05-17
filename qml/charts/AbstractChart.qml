@@ -1,5 +1,6 @@
 import QtQuick 2.0
 import TgChart 1.0
+import AsemanTools 1.0
 import QtCharts 2.1
 import QtQuick.Controls 2.1 as QtControls
 import "../globals"
@@ -11,6 +12,9 @@ Item {
     property string peerName
 
     signal clicked()
+
+    LayoutMirroring.childrenInherit: true
+    LayoutMirroring.enabled: View.reverseLayout
 
     MouseArea {
         anchors.fill: parent

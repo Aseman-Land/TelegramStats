@@ -33,8 +33,9 @@ AbstractChart {
                 log++
             }
 
-            var newMax = Math.floor( y/(Math.pow(10, log)*2.5)+1 )*2.5
-            newMax = newMax*Math.pow(10, log)
+            var newMax = 100
+            while(newMax < y)
+                newMax += 100
 
             if(yAxis.max < newMax)
                 yAxis.max = newMax
@@ -56,6 +57,8 @@ AbstractChart {
             seriesSum = chart.createSeries(ChartView.SeriesTypeSpline, qsTr("Sum"), xAxis, yAxis);
             seriesOut = chart.createSeries(ChartView.SeriesTypeSpline, qsTr("You"), xAxis, yAxis);
             seriesIn  = chart.createSeries(ChartView.SeriesTypeSpline, peerName, xAxis, yAxis);
+
+            seriesSum.pointLabelsColor = TgChartsGlobals.foregroundColor
 
         }
 
@@ -105,10 +108,12 @@ AbstractChart {
                 year++
             }
 
-            return new Date
+            return Tools.dateAddDays(new Date, 4)
         }
         tickCount: 5
         format: "MMM dd"
+        color: TgChartsGlobals.foregroundColor
+        labelsColor: TgChartsGlobals.foregroundColor
     }
 
     ValueAxis {
@@ -116,6 +121,8 @@ AbstractChart {
         labelsFont.pixelSize: 7*Devices.fontDensity
         min: 0
         max: 10
+        color: TgChartsGlobals.foregroundColor
+        labelsColor: TgChartsGlobals.foregroundColor
     }
 
     QtControls.Label {
@@ -143,6 +150,10 @@ AbstractChart {
             title: qsTr("Your interaction based on the day")
             legend.font.pixelSize: 7*Devices.fontDensity
             titleFont.pixelSize: 11*Devices.fontDensity
+            legend.labelColor: TgChartsGlobals.foregroundColor
+            backgroundColor: TgChartsGlobals.backgroundColor
+            titleColor: TgChartsGlobals.foregroundColor
+            plotAreaColor: TgChartsGlobals.backgroundColor
         }
     }
 

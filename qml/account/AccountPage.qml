@@ -4,6 +4,7 @@ import TelegramQml 2.0 as Telegram
 import QtQuick.Controls 2.0
 import "../authenticating" as Auth
 import "../list" as List
+import "../toolkit" as Toolkit
 import "../globals"
 
 Page {
@@ -11,7 +12,7 @@ Page {
 
     property alias engine: signInPage.engine
     property alias pageManager: spManager
-    property alias sidebar: _sidebar
+    readonly property variant sidebar: spManager.mainItem.sidebar
     readonly property bool search: spManager.currentItem && spManager.currentItem.searchVisible? spManager.currentItem.searchVisible : false
 
     Rectangle {
@@ -28,26 +29,31 @@ Page {
             engine: accPage.engine
             anchors.fill: parent
             visible: engine.state == Telegram.Engine.AuthLoggedIn
-        }
-    }
 
-    SideMenu {
-        id: _sidebar
-        anchors.fill: parent
-        source: spManager
-        menuType: sidebar.menuTypeMaterial
-        delegate: Rectangle {
-            anchors.fill: parent
-            color: sidebar.menuType == sidebar.menuTypeModern? TgChartsGlobals.masterColor : TgChartsGlobals.backgroundColor
+            property alias sidebar: _sidebar
+
+            SideMenu {
+                id: _sidebar
+                anchors.fill: parent
+                source: spManager
+                menuType: sidebar.menuTypeMaterial
+                delegate: Toolkit.SideMenuItem {
+                    anchors.fill: parent
+                    color: sidebar.menuType == sidebar.menuTypeModern? TgChartsGlobals.masterColor : TgChartsGlobals.backgroundColor
+                    engine: accPage.engine
+                }
+            }
         }
     }
 
     HeaderMenuButton {
         buttonColor: {
-            if(accPage.search)
-                return TgChartsGlobals.foregroundColor
-            var c1 = TgChartsGlobals.headerTextsColor
-            var c2 = _sidebar.showed? TgChartsGlobals.foregroundColor : TgChartsGlobals.headerTextsColor
+            if(!accPage.search)
+                return TgChartsGlobals.headerTextsColor
+
+            var ratio = sidebar.percent
+            var c1 = TgChartsGlobals.foregroundColor
+            var c2 = TgChartsGlobals.headerTextsColor
             return Qt.rgba(c2.r*ratio + c1.r*(1-ratio),
                            c2.g*ratio + c1.g*(1-ratio),
                            c2.b*ratio + c1.b*(1-ratio), 1)

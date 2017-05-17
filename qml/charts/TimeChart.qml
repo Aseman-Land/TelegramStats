@@ -64,12 +64,16 @@ AbstractChart {
         id: xAxis
         categories: catArray
         labelsFont.pixelSize: 6*Devices.fontDensity
+        color: TgChartsGlobals.foregroundColor
+        labelsColor: TgChartsGlobals.foregroundColor
     }
 
     ValueAxis {
         id: yAxis
         max: 1000
         labelsFont.pixelSize: 6*Devices.fontDensity
+        color: TgChartsGlobals.foregroundColor
+        labelsColor: TgChartsGlobals.foregroundColor
     }
 
     Component {
@@ -85,6 +89,10 @@ AbstractChart {
             legend.font.pixelSize: 7*Devices.fontDensity
             legend.visible: false
             titleFont.pixelSize: 11*Devices.fontDensity
+            legend.labelColor: TgChartsGlobals.foregroundColor
+            backgroundColor: TgChartsGlobals.backgroundColor
+            titleColor: TgChartsGlobals.foregroundColor
+            plotAreaColor: TgChartsGlobals.backgroundColor
         }
     }
 

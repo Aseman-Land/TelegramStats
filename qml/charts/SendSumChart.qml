@@ -27,10 +27,14 @@ AbstractChart {
 
     ValueAxis {
         id: xAxis
+        color: TgChartsGlobals.foregroundColor
+        labelsColor: TgChartsGlobals.foregroundColor
     }
 
     ValueAxis {
         id: yAxis
+        color: TgChartsGlobals.foregroundColor
+        labelsColor: TgChartsGlobals.foregroundColor
     }
 
     Component {
@@ -46,6 +50,10 @@ AbstractChart {
             legend.alignment: Qt.AlignLeft
             legend.font.pixelSize: 7*Devices.fontDensity
             titleFont.pixelSize: 11*Devices.fontDensity
+            legend.labelColor: TgChartsGlobals.foregroundColor
+            backgroundColor: TgChartsGlobals.backgroundColor
+            titleColor: TgChartsGlobals.foregroundColor
+            plotAreaColor: TgChartsGlobals.backgroundColor
         }
     }
 

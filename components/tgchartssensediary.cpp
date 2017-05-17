@@ -23,7 +23,7 @@ public:
             db.open();
 
             QSqlQuery query(db);
-            query.prepare("SELECT count(*) as cnt, a.emoji as emoji, strftime(\"%m-%Y\", b.date) as dt, b.date as fullDate FROM emojis as a, (SELECT * FROM messages) as b WHERE a.msgId=b.msgId AND a.peerId=:peerId GROUP BY dt, emoji ORDER BY dt DESC");
+            query.prepare("SELECT count(*) as cnt, a.emoji as emoji, strftime(\"%m-%Y\", b.date) as dt, b.date as fullDate FROM emojis as a, (SELECT * FROM messages) as b WHERE a.msgId=b.msgId AND a.peerId=:peerId GROUP BY dt, emoji ORDER BY fullDate DESC");
             query.bindValue(":peerId", peerId);
             query.exec();
 
@@ -34,13 +34,15 @@ public:
                 QString emoji = record.value("emoji").toString();
                 QDateTime fullDate = record.value("fullDate").toDateTime();
                 QDate date = QDate(fullDate.date().year(), fullDate.date().month(), 28);
-                if(QDate::currentDate().month() == date.month())
+                if(QDate::currentDate().year() == date.year() && QDate::currentDate().month() == date.month())
                     date = QDate(date.year(), date.month(), QDate::currentDate().day());
+
+                qint64 dateValue = QDateTime(date, QTime(0,0,0)).toMSecsSinceEpoch();
 
                 QVariantMap map;
                 map["emoji"] = emoji;
                 map["count"] = cnt;
-                map["date"] = QDateTime(date, QTime(0,0,0)).toMSecsSinceEpoch();
+                map["date"] = dateValue;
 
                 Q_EMIT pointRequest(map);
             }

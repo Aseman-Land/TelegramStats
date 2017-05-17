@@ -9,8 +9,8 @@ Telegram.Engine {
     configDirectory: TgChartsGlobals.profilePath
     tempPath: configDirectory + "/" + phoneNumber + "/temp"
 
-    app.appId: 13682
-    app.appHash: "de37bcf00f4688de900510f4f87384bb"
+    app.appId: 22432
+    app.appHash: "d1a8259a0c129bfab0b9756cd5d8a47f"
 
     host.hostDcId: 2
     host.hostAddress: "149.154.167.50"

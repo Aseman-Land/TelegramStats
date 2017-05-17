@@ -90,6 +90,8 @@ AbstractChartPage {
         }
 
         format: "MMM dd"
+        color: TgChartsGlobals.foregroundColor
+        labelsColor: TgChartsGlobals.foregroundColor
     }
 
     ValueAxis {
@@ -97,6 +99,8 @@ AbstractChartPage {
         labelsFont.pixelSize: 7*Devices.fontDensity
         min: 0
         max: 10
+        color: TgChartsGlobals.foregroundColor
+        labelsColor: TgChartsGlobals.foregroundColor
     }
 
     Flickable {
@@ -158,6 +162,10 @@ AbstractChartPage {
             margins.top: 0
             antialiasing: true
             legend.visible: false
+            legend.labelColor: TgChartsGlobals.foregroundColor
+            backgroundColor: TgChartsGlobals.backgroundColor
+            titleColor: TgChartsGlobals.foregroundColor
+            plotAreaColor: TgChartsGlobals.backgroundColor
         }
     }
 

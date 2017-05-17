@@ -32,7 +32,7 @@ Page {
 
             case Telegram.Authenticate.AuthCheckingPhoneError:
                 closeWait()
-                showTooltip( qsTr("Error checking phone :(") )
+                showTooltip( qsTr("Error checking phone :(\n%1").arg(auth.errorText) )
                 step = 0
                 break;
 
@@ -44,7 +44,7 @@ Page {
 
             case Telegram.Authenticate.AuthCodeRequestingError:
                 closeWait()
-                showTooltip( qsTr("Can't request code :(") )
+                showTooltip( qsTr("Can't request code :(\n%1").arg(auth.errorText) )
                 step = 0
                 break;
 
@@ -61,7 +61,7 @@ Page {
             case Telegram.Authenticate.AuthLoggingInError:
                 closeWait()
                 step = 1
-                showTooltip( qsTr("Wrong code") )
+                showTooltip( auth.errorText )
                 break;
 
             case Telegram.Authenticate.AuthLoggedIn:

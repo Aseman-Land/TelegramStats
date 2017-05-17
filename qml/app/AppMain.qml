@@ -3,6 +3,7 @@ import QtQuick.Window 2.2
 import QtQuick.Controls 2.0 as QtControls
 import AsemanTools 1.1
 import TelegramQml 2.0 as Telegram
+import QtQuick.Controls.Material 2.0
 import "../account" as Account
 import "../globals"
 
@@ -11,7 +12,9 @@ AsemanWindow {
     visible: true
     width: 550
     height: 800
-    title: qsTr("Hello World")
+    title: qsTr("Telegram Stats")
+
+    Material.theme: TgChartsGlobals.darkMode? Material.Dark : Material.Light
 
     Telegram.ProfileManagerModel {
         id: profiles_model

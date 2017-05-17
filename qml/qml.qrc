@@ -46,5 +46,7 @@
         <file>toolkit/stickers/vk_smilesLike.png</file>
         <file>toolkit/stickers/vk_smilesNerd.png</file>
         <file>charts/SenseDiaryChart.qml</file>
+        <file>pages/Configure.qml</file>
+        <file>toolkit/SideMenuItem.qml</file>
     </qresource>
 </RCC>

@@ -50,12 +50,16 @@ AbstractChart {
         min: 0; max: 24
         tickCount: 25
         labelsFont.pixelSize: 6*Devices.fontDensity
+        color: TgChartsGlobals.foregroundColor
+        labelsColor: TgChartsGlobals.foregroundColor
     }
 
     ValueAxis {
         id: yAxis
         max: 10
         labelsFont.pixelSize: 6*Devices.fontDensity
+        color: TgChartsGlobals.foregroundColor
+        labelsColor: TgChartsGlobals.foregroundColor
     }
 
     Component {
@@ -72,6 +76,10 @@ AbstractChart {
             legend.visible: false
             titleFont.pixelSize: 11*Devices.fontDensity
             title: qsTr("Daily interaction")
+            legend.labelColor: TgChartsGlobals.foregroundColor
+            backgroundColor: TgChartsGlobals.backgroundColor
+            titleColor: TgChartsGlobals.foregroundColor
+            plotAreaColor: TgChartsGlobals.backgroundColor
         }
     }
 

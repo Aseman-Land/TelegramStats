@@ -104,6 +104,8 @@ AbstractChart {
         }
         tickCount: 5
         format: "yyyy/MM"
+        color: TgChartsGlobals.foregroundColor
+        labelsColor: TgChartsGlobals.foregroundColor
     }
 
     ValueAxis {
@@ -111,6 +113,8 @@ AbstractChart {
         labelsFont.pixelSize: 7*Devices.fontDensity
         min: 0
         max: 10
+        color: TgChartsGlobals.foregroundColor
+        labelsColor: TgChartsGlobals.foregroundColor
     }
 
     QtControls.Label {
@@ -138,6 +142,10 @@ AbstractChart {
             title: qsTr("Your interaction based on the month")
             legend.font.pixelSize: 7*Devices.fontDensity
             titleFont.pixelSize: 11*Devices.fontDensity
+            legend.labelColor: TgChartsGlobals.foregroundColor
+            backgroundColor: TgChartsGlobals.backgroundColor
+            titleColor: TgChartsGlobals.foregroundColor
+            plotAreaColor: TgChartsGlobals.backgroundColor
         }
     }
 
