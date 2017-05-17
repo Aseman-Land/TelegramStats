@@ -98,7 +98,9 @@ Rectangle {
             }
         }
 
-        Component.onCompleted: {
+        Component.onCompleted: refresh()
+        function refresh() {
+            model.clear()
             model.append({"name": qsTr("Home")   , "icon": Awesome.fa_home, "component": null})
             model.append({"name": qsTr("Settings"), "icon": Awesome.fa_gear, "component": configure_component})
             model.append({"name": qsTr("Contact"), "icon": Awesome.fa_mail_reply, "component": null})

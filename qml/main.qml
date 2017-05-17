@@ -4,9 +4,9 @@ import QtQuick.Dialogs 1.1
 
 AsemanApplication {
     id: app
-    applicationName: "TgCharts"
-    applicationDisplayName: "Telegram Charts"
-    applicationVersion: "0.0.1"
+    applicationName: "TelegramStats"
+    applicationDisplayName: "Telegram Stats"
+    applicationVersion: "0.1.0"
     applicationId: "fab2c9df-1af2-48bd-ab0c-4a5f4e2167dd"
     organizationName: "Aseman"
     organizationDomain: "land.aseman"
@@ -39,7 +39,7 @@ AsemanApplication {
     MessageDialog {
         id: errorDialog
         title: "Fatal Error"
-        text: "TgCharts could not be started. Additional information:"
+        text: "Telegram Stats could not be started. Additional information:"
         onAccepted: app.exit(1)
     }
 }

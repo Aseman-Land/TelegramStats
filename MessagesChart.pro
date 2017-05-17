@@ -9,6 +9,10 @@ CONFIG += c++11
 CONFIG += typeobjects
 DEFINES += DISABLE_KEYCHAIN
 
+translationsFiles.source = translations
+translationsFiles.target = .
+DEPLOYMENTFOLDERS += translationsFiles
+
 android {
     ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android
 }
@@ -41,6 +45,8 @@ INCLUDEPATH += $$[QT_INSTALL_HEADERS]/libqtelegram-ae
 
 include(asemantools/asemantools.pri)
 include(telegram/telegramqml/telegramqml.pri)
+include(qmake/qtcAddDeployment.pri)
+qtcAddDeployment()
 
 HEADERS += \
     components/tgchartengine.h \

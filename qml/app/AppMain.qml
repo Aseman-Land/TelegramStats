@@ -12,7 +12,6 @@ AsemanWindow {
     visible: true
     width: 550
     height: 800
-    title: qsTr("Telegram Stats")
 
     Material.theme: TgChartsGlobals.darkMode? Material.Dark : Material.Light
 
@@ -21,6 +20,12 @@ AsemanWindow {
         source: TgChartsGlobals.profilePath + "/profiles.sqlite"
         engineDelegate: Account.AccountEngine {}
         Component.onCompleted: if(count == 0) addNew()
+        onCountChanged: {
+            if(count) return
+            Tools.jsDelayCall(400, function(){
+                if(count == 0) addNew()
+            })
+        }
     }
 
     QtControls.SwipeView {

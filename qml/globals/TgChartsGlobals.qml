@@ -16,7 +16,7 @@ AsemanObject {
     property color foregroundColor: Material.foreground
     property color foregroundAlternativeColor: darkMode? "#ff0000" : Qt.lighter(Material.foreground, 1.5)
 
-    property bool darkMode: false
+    property alias darkMode: settings.darMode
 
     function textAlignment(txt) {
         var dir = Tools.directionOf(txt)
@@ -27,6 +27,14 @@ AsemanObject {
             return TextEdit.AlignRight
         }
         return TextEdit.AlignLeft
+    }
+
+    Settings {
+        id: settings
+        source: profilePath + "/settings.ini"
+        category: "UserInterface"
+
+        property bool darMode: false
     }
 }
 

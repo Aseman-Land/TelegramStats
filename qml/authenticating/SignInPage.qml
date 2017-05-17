@@ -2,6 +2,7 @@ import QtQuick 2.0
 import AsemanTools 1.1
 import TelegramQml 2.0 as Telegram
 import QtQuick.Controls 2.0
+import "../globals"
 
 Page {
     id: signInPage
@@ -92,6 +93,7 @@ Page {
 
     function showWait() {
         if(!waitDialog) waitDialog = showGlobalWait( qsTr("Please Wait"), true )
+        waitDialog.color = TgChartsGlobals.backgroundColor
     }
 
     function closeWait() {

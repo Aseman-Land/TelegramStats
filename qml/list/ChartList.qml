@@ -388,6 +388,7 @@ QtControls.Page {
             stickeritem.visible = false
 
         grabber.waitObj = showGlobalWait( qsTr("Please Wait"), true )
+        grabber.waitObj.color = TgChartsGlobals.backgroundColor
         Tools.jsDelayCall(100, function(){
             grabber.save(Devices.picturesLocation + "/TelegramCharts", Qt.size(chartBack.width*2, chartBack.height*2))
         })

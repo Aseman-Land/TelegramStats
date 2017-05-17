@@ -172,6 +172,8 @@ QtControls.Page {
 
         onAccepted: {
             var obj = showGlobalWait( qsTr("Please Wait"), true )
+            obj.color = TgChartsGlobals.backgroundColor
+
             configure.engine.logout()
             configure.engine.authLoggedOut.connect(function(){
                 obj.destroy()
