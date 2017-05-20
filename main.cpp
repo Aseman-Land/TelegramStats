@@ -1,6 +1,5 @@
 #include "asemantools/asemanapplication.h"
 #include "asemantools/asemanqmlengine.h"
-#include "telegram/telegramqml/telegramqmlinitializer.h"
 
 #include "components/tgchartengine.h"
 #include "components/tgabstractchartitem.h"
@@ -18,8 +17,6 @@
 
 int main(int argc, char *argv[])
 {
-    TelegramQmlInitializer::init("TelegramQml");
-
     qmlRegisterType<TgChartEngine>("TgChart", 1, 0, "Engine");
     qmlRegisterUncreatableType<TgAbstractChartItem>("TgChart", 1, 0, "AbstractChartItem", "");
     qmlRegisterType<TgTimeDiaryChart>("TgChart", 1, 0, "TimeDiaryChart");
@@ -31,6 +28,11 @@ int main(int argc, char *argv[])
     qmlRegisterType<TgChartsSenseDiary>("TgChart", 1, 0, "SenseDiary");
 
     AsemanApplication app(argc, argv, AsemanApplication::WidgetApplication);
+
+    QFont font = app.font();
+    font.setFamily("IRANSans");
+    app.setFont(font);
+    app.setGlobalFont(font);
 
     AsemanQmlEngine engine;
     engine.load(QUrl(QStringLiteral("qrc:/main.qml")));

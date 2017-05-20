@@ -22,7 +22,7 @@ QtControls.Page {
         offset: 0
         limit: 100000
         telegram: page.engine? page.engine.telegramObject : null
-        dataDirectory: TgChartsGlobals.profilePath + "/messages.sqlite"
+        dataDirectory: engine.configDirectory + "/" + engine.phoneNumber + "/messages.sqlite"
     }
 
     Timer {
@@ -53,41 +53,26 @@ QtControls.Page {
         anchors.bottom: parent.bottom
         anchors.topMargin: -pictureRow.height - pictureRow.y
         contentWidth: flick.width
-        contentHeight: grid.height
+        contentHeight: chartBack.height
 
         Rectangle {
             id: chartBack
-            width: grid.width
-            height: grid.height
+            width: column.width
+            height: column.height
             color: TgChartsGlobals.backgroundColor
 
-            Grid {
-                id: grid
+            Column {
+                id: column
                 width: flick.width
                 spacing: 8*Devices.density
-                horizontalItemAlignment: Grid.AlignHCenter
-                verticalItemAlignment: Grid.AlignVCenter
-                layoutDirection: View.layoutDirection
-                leftPadding: columnSpacing
-                rightPadding: leftPadding
-                topPadding: leftPadding
-                bottomPadding: leftPadding
-                rowSpacing: columnSpacing
-                columnSpacing: 10*Devices.density
-                flow: Grid.LeftToRight
-                columns: {
-                    var res = Math.floor(width/(300*Devices.density))
-                    if(res < 1)
-                        res = 1
-                    return res
-                }
 
-                property real cellWidth: width/columns - columnSpacing*2
+                Item { width: 1; height: 10*Devices.density }
 
                 Row {
                     id: pictureRow
                     spacing: 8*Devices.density
                     layoutDirection: View.layoutDirection
+                    anchors.horizontalCenter: parent.horizontalCenter
 
                     Toolkit.ProfileImage {
                         width: 64*Devices.density
@@ -115,130 +100,199 @@ QtControls.Page {
 
                 Toolkit.StickerItem {
                     id: stickeritem
-                    width: grid.cellWidth
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    width: {
+                        var res = column.width - grid.spacing*2
+                        if(res > 500*Devices.density)
+                            res = 500*Devices.density
+                        return res
+                    }
                 }
 
-                QtControls.Label {
-                    text: qsTr("All send and recieved messages")
-                    font.pixelSize: 12*Devices.fontDensity
+                Column {
+                    width: stickeritem.width
+                    spacing: 10*Devices.density
+                    anchors.horizontalCenter: parent.horizontalCenter
+
+                    QtControls.Label {
+                        text: qsTr("All send and recieved messages")
+                        font.pixelSize: 12*Devices.fontDensity
+                        anchors.horizontalCenter: parent.horizontalCenter
+                    }
+
+                    Row {
+                        spacing: 8*Devices.density
+                        layoutDirection: View.layoutDirection
+                        anchors.horizontalCenter: parent.horizontalCenter
+
+                        QtControls.Label {
+                            anchors.verticalCenter: parent.verticalCenter
+                            font.pixelSize: 18*Devices.fontDensity
+                            font.family: Awesome.family
+                            text: Awesome.fa_comments
+                            color: TgChartsGlobals.masterColor
+                        }
+
+                        QtControls.Label {
+                            anchors.verticalCenter: parent.verticalCenter
+                            font.pixelSize: 15*Devices.fontDensity
+                            text: Tools.trNums(chartEngine.count)
+                        }
+                    }
                 }
 
-                Row {
+                Flow {
+                    id: grid
+                    width: column.width
+                    height: {
+                        var clmns = new Array
+                        var sum = 0
+                        for(i in children)
+                            sum += children[i].height + spacing
+
+                        var perColumn = sum/columns
+                        var oprDone = false
+                        while(!oprDone) {
+                            oprDone = true
+                            for(var i=0 ; i<columns; i++)
+                                clmns[i] = 0
+
+                            var columnIdx = 0
+                            for(i in children) {
+                                var itemHeight = children[i].height + spacing
+                                if(perColumn < clmns[columnIdx] + itemHeight)
+                                    columnIdx++
+                                if(columnIdx >= columns) {
+                                    oprDone = false
+                                    perColumn += 20*Devices.density
+                                    break
+                                }
+
+                                clmns[columnIdx] += itemHeight
+                            }
+                        }
+
+                        var max = 0
+                        for(i in clmns)
+                            if(clmns[i] > max)
+                                max = clmns[i]
+
+                        return topPadding + max + bottomPadding
+                    }
                     spacing: 8*Devices.density
                     layoutDirection: View.layoutDirection
-
-                    QtControls.Label {
-                        anchors.verticalCenter: parent.verticalCenter
-                        font.pixelSize: 18*Devices.fontDensity
-                        font.family: Awesome.family
-                        text: Awesome.fa_comments
-                        color: TgChartsGlobals.masterColor
+                    leftPadding: spacing
+                    rightPadding: leftPadding
+                    topPadding: leftPadding
+                    bottomPadding: leftPadding
+                    flow: Flow.TopToBottom
+                    property int columns: {
+                        var res = Math.floor(width/(350*Devices.density))
+                        if(res < 1)
+                            res = 1
+                        return res
                     }
 
-                    QtControls.Label {
-                        anchors.verticalCenter: parent.verticalCenter
-                        font.pixelSize: 15*Devices.fontDensity
-                        text: chartEngine.count
-                    }
-                }
+                    property real cellWidth: (width - spacing)/columns - spacing
 
-                MaterialFrame {
-                    width: grid.cellWidth
-                    height: width*9/16
-                    color: TgChartsGlobals.backgroundColor
-                    shadowColor: TgChartsGlobals.foregroundColor
-
-                    Charts.DayChart {
-                        id: dayChart
-                        anchors.fill: parent
-                        engine: chartEngine
-                        peerName: page.title
-                    }
-                }
-
-                MaterialFrame {
-                    width: grid.cellWidth
-                    height: emojiChart.height
-                    color: TgChartsGlobals.backgroundColor
-                    shadowColor: TgChartsGlobals.foregroundColor
-
-                    Charts.EmojiChart {
-                        id: emojiChart
+                    MaterialFrame {
                         width: grid.cellWidth
-                        engine: chartEngine
-                        peerName: page.title
-                        telegramEngine: page.engine
-                        telegramPeer: page.peer
+                        height: width*3/4
+                        color: TgChartsGlobals.backgroundColor
+                        shadowColor: TgChartsGlobals.foregroundColor
+
+                        Charts.DayChart {
+                            id: dayChart
+                            anchors.fill: parent
+                            engine: chartEngine
+                            peerName: page.title
+                        }
                     }
-                }
 
-                MaterialFrame {
-                    width: grid.cellWidth
-                    height: width*9/16
-                    color: TgChartsGlobals.backgroundColor
-                    shadowColor: TgChartsGlobals.foregroundColor
-
-                    Charts.SenseDiaryChart {
-                        id: senseChart
-                        anchors.fill: parent
-                        engine: chartEngine
-                        peerName: page.title
-                    }
-                }
-
-                MaterialFrame {
-                    width: grid.cellWidth
-                    height: width*9/16
-                    color: TgChartsGlobals.backgroundColor
-                    shadowColor: TgChartsGlobals.foregroundColor
-
-                    Charts.MonthChart {
-                        id: monthChart
-                        anchors.fill: parent
-                        engine: chartEngine
-                        peerName: page.title
-                    }
-                }
-
-                MaterialFrame {
-                    width: grid.cellWidth
-                    height: width*14/16
-                    color: TgChartsGlobals.backgroundColor
-                    shadowColor: TgChartsGlobals.foregroundColor
-
-                    Charts.FileChart {
-                        anchors.fill: parent
-                        engine: chartEngine
-                        peerName: page.title
-                    }
-                }
-
-                MaterialFrame {
-                    width: grid.cellWidth
-                    height: detailsChart.height
-                    color: TgChartsGlobals.backgroundColor
-                    shadowColor: TgChartsGlobals.foregroundColor
-
-                    Charts.MessageDetailsChart {
-                        id: detailsChart
+                    MaterialFrame {
                         width: grid.cellWidth
-                        engine: chartEngine
-                        peerName: page.title
-                        telegramEngine: page.engine
-                        telegramPeer: page.peer
+                        height: emojiChart.height
+                        color: TgChartsGlobals.backgroundColor
+                        shadowColor: TgChartsGlobals.foregroundColor
+
+                        Charts.EmojiChart {
+                            id: emojiChart
+                            width: grid.cellWidth
+                            engine: chartEngine
+                            peerName: page.title
+                            telegramEngine: page.engine
+                            telegramPeer: page.peer
+                        }
                     }
-                }
 
-                MaterialFrame {
-                    width: grid.cellWidth
-                    height: width*16/16
-                    color: TgChartsGlobals.backgroundColor
-                    shadowColor: TgChartsGlobals.foregroundColor
+                    MaterialFrame {
+                        width: grid.cellWidth
+                        height: width*3/4
+                        color: TgChartsGlobals.backgroundColor
+                        shadowColor: TgChartsGlobals.foregroundColor
 
-                    Charts.TimePolarChart {
-                        anchors.fill: parent
-                        engine: chartEngine
-                        peerName: page.title
+                        Charts.SenseDiaryChart {
+                            id: senseChart
+                            anchors.fill: parent
+                            engine: chartEngine
+                            peerName: page.title
+                        }
+                    }
+
+                    MaterialFrame {
+                        width: grid.cellWidth
+                        height: width*3/4
+                        color: TgChartsGlobals.backgroundColor
+                        shadowColor: TgChartsGlobals.foregroundColor
+
+                        Charts.MonthChart {
+                            id: monthChart
+                            anchors.fill: parent
+                            engine: chartEngine
+                            peerName: page.title
+                        }
+                    }
+
+                    MaterialFrame {
+                        width: grid.cellWidth
+                        height: width*14/16
+                        color: TgChartsGlobals.backgroundColor
+                        shadowColor: TgChartsGlobals.foregroundColor
+
+                        Charts.FileChart {
+                            anchors.fill: parent
+                            engine: chartEngine
+                            peerName: page.title
+                        }
+                    }
+
+                    MaterialFrame {
+                        width: grid.cellWidth
+                        height: detailsChart.height
+                        color: TgChartsGlobals.backgroundColor
+                        shadowColor: TgChartsGlobals.foregroundColor
+
+                        Charts.MessageDetailsChart {
+                            id: detailsChart
+                            width: grid.cellWidth
+                            engine: chartEngine
+                            peerName: page.title
+                            telegramEngine: page.engine
+                            telegramPeer: page.peer
+                        }
+                    }
+
+                    MaterialFrame {
+                        width: grid.cellWidth
+                        height: width*16/16
+                        color: TgChartsGlobals.backgroundColor
+                        shadowColor: TgChartsGlobals.foregroundColor
+
+                        Charts.TimePolarChart {
+                            anchors.fill: parent
+                            engine: chartEngine
+                            peerName: page.title
+                        }
                     }
                 }
             }

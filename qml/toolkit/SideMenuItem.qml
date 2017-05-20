@@ -98,7 +98,10 @@ Rectangle {
             }
         }
 
-        Component.onCompleted: refresh()
+        Component.onCompleted: {
+            TgChartsGlobals.translator.refreshed.connect(refresh)
+            refresh()
+        }
         function refresh() {
             model.clear()
             model.append({"name": qsTr("Home")   , "icon": Awesome.fa_home, "component": null})

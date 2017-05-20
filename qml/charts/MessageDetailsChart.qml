@@ -15,16 +15,16 @@ AbstractChart {
     property variant telegramEngine
     property variant telegramPeer
 
-    property string sentVoice
-    property string receivedVoice
-    property string sentChars
-    property string receivedChars
-    property string sentFileSize
-    property string receivedFileSize
-    property string sentEmojis
-    property string receivedEmojis
-    property string sentMessages
-    property string receivedMessages
+    property string sentVoice: "N/A"
+    property string receivedVoice: "N/A"
+    property string sentChars: "N/A"
+    property string receivedChars: "N/A"
+    property string sentFileSize: "N/A"
+    property string receivedFileSize: "N/A"
+    property string sentEmojis: "N/A"
+    property string receivedEmojis: "N/A"
+    property string sentMessages: "N/A"
+    property string receivedMessages: "N/A"
 
     TgChart.MessageDetailsChart {
         id: senderRatio
@@ -45,49 +45,49 @@ AbstractChart {
                     str = qsTr("%1 seconds").arg(length)
 
                 if(out)
-                    sentVoice = str
+                    sentVoice = Tools.trNums(str)
                 else
-                    receivedVoice = str
+                    receivedVoice = Tools.trNums(str)
             }
                 break;
             case TgChart.MessageDetailsChart.TypeMessageLength: {
                 str = qsTr("%1 characters").arg(length)
                 if(out)
-                    sentChars = str
+                    sentChars = Tools.trNums(str)
                 else
-                    receivedChars = str
+                    receivedChars = Tools.trNums(str)
             }
                 break;
             case TgChart.MessageDetailsChart.TypeMediaSize: {
                 var mediaSize = value.mediaSize
                 if(mediaSize > 1024*1024)
-                    str = Math.floor(10*mediaSize/(1024*1024))/10 + "MB"
+                    str = qsTr("%1MB").arg(Math.floor(10*mediaSize/(1024*1024))/10)
                 else
                 if(mediaSize > 1024)
-                    str = Math.floor(10*mediaSize/(1024))/10 + "KB"
+                    str = qsTr("%1KB").arg(Math.floor(10*mediaSize/(1024))/10)
                 else
-                    str = mediaSize + "B"
+                    str = qsTr("%1B").arg(mediaSize)
 
                 if(out)
-                    sentFileSize = str
+                    sentFileSize = Tools.trNums(str)
                 else
-                    receivedFileSize = str
+                    receivedFileSize = Tools.trNums(str)
             }
                 break;
             case TgChart.MessageDetailsChart.TypeEmojisCount: {
                 str = qsTr("%1 emoji").arg(value.count)
                 if(out)
-                    sentEmojis = str
+                    sentEmojis = Tools.trNums(str)
                 else
-                    receivedEmojis = str
+                    receivedEmojis = Tools.trNums(str)
             }
                 break;
             case TgChart.MessageDetailsChart.TypeMessagesCount: {
                 str = qsTr("%1 message").arg(value.count)
                 if(out)
-                    sentMessages = str
+                    sentMessages = Tools.trNums(str)
                 else
-                    receivedMessages = str
+                    receivedMessages = Tools.trNums(str)
             }
                 break;
             }

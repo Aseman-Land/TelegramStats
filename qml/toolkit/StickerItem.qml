@@ -57,7 +57,7 @@ Item {
     QtControls.Dialog {
         id: dialog
         title: qsTr("Select Sticker")
-        standardButtons: QtControls.Dialog.Ok | QtControls.Dialog.Cancel
+        standardButtons: QtControls.Dialog.Cancel
         contentHeight: listv.height
         contentWidth: listv.width
         x: parent.width/2 - width/2
@@ -72,7 +72,7 @@ Item {
                 BackHandler.removeHandler(this)
         }
 
-        ListView {
+        AsemanListView {
             id: listv
             width: stickeritem.width - 60*Devices.density
             height: View.root.height/2
@@ -131,7 +131,6 @@ Item {
             }
         }
 
-        onAccepted: console.log("Ok clicked")
-        onRejected: console.log("Cancel clicked")
+        onRejected: close()
     }
 }

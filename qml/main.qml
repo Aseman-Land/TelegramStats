@@ -42,4 +42,8 @@ AsemanApplication {
         text: "Telegram Stats could not be started. Additional information:"
         onAccepted: app.exit(1)
     }
+
+    FontLoader {
+        source: "fonts/IRAN Sans.ttf"
+    }
 }

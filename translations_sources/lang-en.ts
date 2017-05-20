@@ -25,13 +25,6 @@
     </message>
 </context>
 <context>
-    <name>AppMain</name>
-    <message>
-        <source>Telegram Stats</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>AppWindow</name>
     <message>
         <source>Hello World</source>
@@ -205,6 +198,10 @@
         <source>Please Wait</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Languages</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>CountriesModelExample</name>
@@ -330,11 +327,11 @@
 <context>
     <name>DialogList</name>
     <message>
-        <source>Telegram Charts</source>
+        <source>Search</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Search</source>
+        <source>Telegram Stats</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -604,6 +601,18 @@ To download to memory, use destination property.</source>
     </message>
     <message>
         <source>You</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1MB</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1KB</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1B</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

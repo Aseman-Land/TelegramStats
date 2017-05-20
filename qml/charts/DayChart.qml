@@ -73,7 +73,7 @@ AbstractChart {
         repeat: false
         onTriggered: {
             if(scatter) chart.removeSeries(scatter)
-            scatter = chart.createSeries(ChartView.SeriesTypeScatter, qsTr("Max: %1 messages").arg(max.y), xAxis, yAxis);
+            scatter = chart.createSeries(ChartView.SeriesTypeScatter, Tools.trNums(qsTr("Max: %1 messages").arg(max.y)) , xAxis, yAxis);
             scatter.markerSize = 10*Devices.density
             scatter.append(max.x, max.y)
         }
@@ -133,7 +133,7 @@ AbstractChart {
         font.pixelSize: 8*Devices.fontDensity
         color: TgChartsGlobals.foregroundColor
         opacity: 0.8
-        text: qsTr("%1 messages per day").arg(Math.floor(average))
+        text: Tools.trNums( qsTr("%1 messages per day").arg(Math.floor(average)) )
         z: 100
     }
 

@@ -5,6 +5,7 @@ import AsemanTools 1.1
 import TelegramQml 2.0 as Telegram
 import QtQuick.Controls.Material 2.0
 import "../account" as Account
+import "../toolkit" as Toolkit
 import "../globals"
 
 AsemanWindow {
@@ -35,6 +36,18 @@ AsemanWindow {
             Account.AccountPage {
                 engine: model.engine
             }
+        }
+    }
+
+    Toolkit.LanguageSelectorDialog {
+        anchors.fill: parent
+        Component.onCompleted: {
+            Tools.jsDelayCall(400, function(){
+                if(!TgChartsGlobals.languageSelected)
+                    open()
+
+                TgChartsGlobals.languageSelected = true
+            })
         }
     }
 }

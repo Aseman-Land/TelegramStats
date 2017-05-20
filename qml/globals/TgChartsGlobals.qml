@@ -17,6 +17,10 @@ AsemanObject {
     property color foregroundAlternativeColor: darkMode? "#ff0000" : Qt.lighter(Material.foreground, 1.5)
 
     property alias darkMode: settings.darMode
+    property alias localeName: settings.localeName
+    property alias languageSelected: settings.languageSelected
+
+    property alias translator: translationManager
 
     function textAlignment(txt) {
         var dir = Tools.directionOf(txt)
@@ -35,6 +39,25 @@ AsemanObject {
         category: "UserInterface"
 
         property bool darMode: false
+        property string localeName: "en"
+        property bool languageSelected: false
+    }
+
+    TranslationManager {
+        id: translationManager
+        sourceDirectory: Devices.resourcePath + "/translations"
+        delimiters: "-"
+        fileName: "lang"
+        localeName: settings.localeName
+
+        function refreshLayouts() {
+            if(localeName == "fa")
+                Devices.fontScale = 0.9
+
+            View.layoutDirection = textDirection
+        }
+        Component.onCompleted: refreshLayouts()
+        onLocaleNameChanged: refreshLayouts()
     }
 }
 

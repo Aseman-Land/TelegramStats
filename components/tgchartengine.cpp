@@ -18,6 +18,7 @@
 #include <QRegularExpression>
 #include <QUuid>
 #include <QThread>
+#include <QTimer>
 
 class TgChartEngine::Private
 {

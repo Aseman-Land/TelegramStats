@@ -48,5 +48,7 @@
         <file>charts/SenseDiaryChart.qml</file>
         <file>pages/Configure.qml</file>
         <file>toolkit/SideMenuItem.qml</file>
+        <file>fonts/IRAN Sans.ttf</file>
+        <file>toolkit/LanguageSelectorDialog.qml</file>
     </qresource>
 </RCC>

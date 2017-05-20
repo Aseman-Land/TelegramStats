@@ -25,6 +25,9 @@ QtControls.Page {
             id: sceneColumn
             width: flick.width
 
+            LayoutMirroring.childrenInherit: true
+            LayoutMirroring.enabled: View.reverseLayout
+
             QtControls.ItemDelegate {
                 width: parent.width
                 height: 56*Devices.density
@@ -38,7 +41,7 @@ QtControls.Page {
                     QtControls.Label {
                         anchors.verticalCenter: parent.verticalCenter
                         color: TgChartsGlobals.foregroundColor
-                        text: qsTr("Dark mode")
+                        text: qsTr("Dark mode") + TgChartsGlobals.translator.refresher
                         font.pixelSize: 9*Devices.fontDensity
                         QtLayouts.Layout.fillWidth: true
                     }
@@ -48,6 +51,47 @@ QtControls.Page {
                         width: parent.width
                         checked: TgChartsGlobals.darkMode
                         onClicked: TgChartsGlobals.darkMode = !TgChartsGlobals.darkMode
+                    }
+                }
+            }
+
+            Item {
+                width: parent.width
+                height: 56*Devices.density
+
+                QtLayouts.RowLayout {
+                    width: parent.width - 40*Devices.density
+                    anchors.centerIn: parent
+
+                    QtControls.Label {
+                        anchors.verticalCenter: parent.verticalCenter
+                        color: TgChartsGlobals.foregroundColor
+                        text: qsTr("Languages") + TgChartsGlobals.translator.refresher
+                        font.pixelSize: 9*Devices.fontDensity
+                        QtLayouts.Layout.fillWidth: true
+                    }
+
+                    QtControls.ComboBox {
+                        anchors.verticalCenter: parent.verticalCenter
+                        width: parent.width
+                        model: [ "English", "فارسی" ]
+                        onCurrentTextChanged: {
+                            if(!inited) return
+                            if(currentText == "English")
+                                TgChartsGlobals.localeName = "en"
+                            else
+                            if(currentText == "فارسی")
+                                TgChartsGlobals.localeName = "fa"
+                        }
+                        Component.onCompleted: {
+                            if(TgChartsGlobals.localeName == "en")
+                                currentIndex = 0
+                            else
+                            if(TgChartsGlobals.localeName == "fa")
+                                currentIndex = 1
+                            inited = true
+                        }
+                        property bool inited: false
                     }
                 }
             }
@@ -75,7 +119,7 @@ QtControls.Page {
                 anchors.centerIn: parent
                 font.pixelSize: 11*Devices.fontDensity
                 color: TgChartsGlobals.headerTextsColor
-                text: qsTr("Settings")
+                text: qsTr("Settings") + TgChartsGlobals.translator.refresher
             }
 
             QtControls.Button {
@@ -150,7 +194,7 @@ QtControls.Page {
 
     QtControls.Dialog {
         id: dialog
-        title: qsTr("Logout")
+        title: qsTr("Logout") + TgChartsGlobals.translator.refresher
         standardButtons: QtControls.Dialog.Ok | QtControls.Dialog.Cancel
         x: parent.width/2 - width/2
         y: parent.height/2 - height/2
@@ -167,7 +211,7 @@ QtControls.Page {
 
         QtControls.Label {
             font.pixelSize: 9*Devices.fontDensity
-            text: qsTr("Do you realy want to logout?")
+            text: qsTr("Do you realy want to logout?") + TgChartsGlobals.translator.refresher
         }
 
         onAccepted: {

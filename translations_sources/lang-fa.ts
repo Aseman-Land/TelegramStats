@@ -5,79 +5,79 @@
     <name>AboutPageAseman</name>
     <message>
         <source>Aseman</source>
-        <translation type="unfinished"></translation>
+        <translation>آسمان</translation>
     </message>
     <message>
         <source>Aseman Team</source>
-        <translation type="unfinished"></translation>
+        <translation>تیم آسمان</translation>
     </message>
     <message>
         <source>Aseman is a non-profit organization, exists to support and lead the free, open source and cross-platform projects and researches.</source>
-        <translation type="unfinished"></translation>
+        <translation>آسمان یک سازمان غیر انتفاهی است برای حمایت و هدایت تحقیقات و پروژه‌های اُپن‌سورس، مالتی پلتفرم و آزاد.</translation>
     </message>
     <message>
         <source>The Goal of the Aseman is to provide free and secure products to keep people’s freedom and their privacy.</source>
-        <translation type="unfinished"></translation>
+        <translation>هدف در تیم آسمان ارائه محصولات امن و آزاد است که به آزادی و حریم خصوصی افراد احترام می‌گذارد.</translation>
     </message>
     <message>
         <source>Home</source>
-        <translation type="unfinished"></translation>
+        <translation>خانه</translation>
     </message>
 </context>
 <context>
     <name>AppMain</name>
     <message>
         <source>Telegram Stats</source>
-        <translation type="unfinished"></translation>
+        <translation type="vanished">آمار تلگرام</translation>
     </message>
 </context>
 <context>
     <name>AppWindow</name>
     <message>
         <source>Hello World</source>
-        <translation type="unfinished"></translation>
+        <translation>سلام دنیا</translation>
     </message>
     <message>
         <source>SlidePageManager</source>
-        <translation type="unfinished"></translation>
+        <translation>مدیریت صفحه اسلاید</translation>
     </message>
 </context>
 <context>
     <name>AsemanAbout</name>
     <message>
         <source>Aseman is a non-profit organization, exists to support and lead the free, open source and cross-platform projects and researches.</source>
-        <translation type="unfinished"></translation>
+        <translation>آسمان یک سازمان غیر انتفاهی است برای حمایت و هدایت تحقیقات و پروژه‌های اُپن‌سورس، مالتی پلتفرم و آزاد.</translation>
     </message>
     <message>
         <source>The Goal of the Aseman is to provide free and secure products to keep people’s freedom and their privacy.</source>
-        <translation type="unfinished"></translation>
+        <translation>هدف در تیم آسمان ارائه محصولات امن و آزاد است که به آزادی و حریم خصوصی افراد احترام می‌گذارد.</translation>
     </message>
     <message>
         <source>Home Page</source>
-        <translation type="unfinished"></translation>
+        <translation>خانه</translation>
     </message>
 </context>
 <context>
     <name>AsemanAppExample</name>
     <message>
         <source>Paths</source>
-        <translation type="unfinished"></translation>
+        <translation>مسیرها</translation>
     </message>
     <message>
         <source>Statuses</source>
-        <translation type="unfinished"></translation>
+        <translation>وضعیت‌ها</translation>
     </message>
     <message>
         <source>App Details</source>
-        <translation type="unfinished"></translation>
+        <translation>جزئیات اَپ</translation>
     </message>
     <message>
         <source>Methods</source>
-        <translation type="unfinished"></translation>
+        <translation>متدها</translation>
     </message>
     <message>
         <source>AsemanApp</source>
-        <translation type="unfinished"></translation>
+        <translation>اپلیکیشن آسمان</translation>
     </message>
 </context>
 <context>
@@ -99,54 +99,54 @@
     <name>AsemanFontHandler</name>
     <message>
         <source>Select font</source>
-        <translation type="unfinished"></translation>
+        <translation>انتخاب فونت</translation>
     </message>
 </context>
 <context>
     <name>AsemanTools</name>
     <message>
         <source>0</source>
-        <translation type="unfinished"></translation>
+        <translation>۰</translation>
     </message>
     <message>
         <source>1</source>
-        <translation type="unfinished"></translation>
+        <translation>۱</translation>
     </message>
     <message>
         <source>2</source>
-        <translation type="unfinished"></translation>
+        <translation>۲</translation>
     </message>
     <message>
         <source>3</source>
-        <translation type="unfinished"></translation>
+        <translation>۳</translation>
     </message>
     <message>
         <source>4</source>
-        <translation type="unfinished"></translation>
+        <translation>۴</translation>
     </message>
     <message>
         <source>5</source>
-        <translation type="unfinished"></translation>
+        <translation>۵</translation>
     </message>
     <message>
         <source>6</source>
-        <translation type="unfinished"></translation>
+        <translation>۶</translation>
     </message>
     <message>
         <source>7</source>
-        <translation type="unfinished"></translation>
+        <translation>۷</translation>
     </message>
     <message>
         <source>8</source>
-        <translation type="unfinished"></translation>
+        <translation>۸</translation>
     </message>
     <message>
         <source>9</source>
-        <translation type="unfinished"></translation>
+        <translation>۹</translation>
     </message>
     <message>
         <source>Aseman is a not-for-profit research and software development team launched in February 2014 focusing on development of products, technologies and solutions in order to publish them as open-source projects accessible to all people in the universe. Currently, we are focusing on design and development of software applications and tools which have direct connection with end users.</source>
-        <translation type="unfinished"></translation>
+        <translation>آسمان یک تیم غیر انتفاهی تحقیق و توسعه نرم‌افزار است. تیم آسمان در بهمن ماه سال 92 کار خود را با تمرکز بر توسعه محصولات، تکنولوژی‌ها و راه حل‌ها به منظور انتشار آن‌ها به صورت اُپن‌سورس و در دسترس همه شروع کرد. در حال حاضر تمرکز ما بر روی طراحی و توسعه نرم‌افزارها و ابزاری است که با کاربر نهایی در ارتباط مستقیم است.</translation>
     </message>
     <message>
         <source>By enabling innovative projects and distributing software to millions of users globally, the lab is working to accelerate the growth of high-impact open source software projects and promote an open source culture of accessibility and increased productivity around the world. The lab partners with industry leaders and policy makers to bring open source technologies to new sectors, including education, health and government.</source>
@@ -164,128 +164,132 @@
     <name>ChartList</name>
     <message>
         <source>All send and recieved messages</source>
-        <translation type="unfinished"></translation>
+        <translation>همه پیامای ارسالی و دریافتی</translation>
     </message>
     <message>
         <source>Share</source>
-        <translation type="unfinished"></translation>
+        <translation>اشتراک‌گذاری</translation>
     </message>
     <message>
         <source>Clear Cache</source>
-        <translation type="unfinished"></translation>
+        <translation>پاک‌کردن مخزن</translation>
     </message>
     <message>
         <source>%1 messages</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 پیام</translation>
     </message>
     <message>
         <source>Please Wait</source>
-        <translation type="unfinished"></translation>
+        <translation>یه کم صبر کن</translation>
     </message>
 </context>
 <context>
     <name>Configure</name>
     <message>
         <source>Dark mode</source>
-        <translation type="unfinished"></translation>
+        <translation>حالت تیره</translation>
     </message>
     <message>
         <source>Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>تنظیمات</translation>
     </message>
     <message>
         <source>Logout</source>
-        <translation type="unfinished"></translation>
+        <translation>خروج</translation>
     </message>
     <message>
         <source>Do you realy want to logout?</source>
-        <translation type="unfinished"></translation>
+        <translation>واقعا می‌خوای خارج شی؟</translation>
     </message>
     <message>
         <source>Please Wait</source>
-        <translation type="unfinished"></translation>
+        <translation>یه کم صبر کن</translation>
+    </message>
+    <message>
+        <source>Languages</source>
+        <translation>زبان</translation>
     </message>
 </context>
 <context>
     <name>CountriesModelExample</name>
     <message>
         <source>Filter...</source>
-        <translation type="unfinished"></translation>
+        <translation>فیلتر...</translation>
     </message>
     <message>
         <source>CountriesModel</source>
-        <translation type="unfinished"></translation>
+        <translation>مدل کشورها</translation>
     </message>
 </context>
 <context>
     <name>CursorPicker</name>
     <message>
         <source>Copy</source>
-        <translation type="unfinished"></translation>
+        <translation>کپی</translation>
     </message>
     <message>
         <source>Cut</source>
-        <translation type="unfinished"></translation>
+        <translation>کات</translation>
     </message>
     <message>
         <source>Paste</source>
-        <translation type="unfinished"></translation>
+        <translation>پیست</translation>
     </message>
     <message>
         <source>Delete</source>
-        <translation type="unfinished"></translation>
+        <translation>حذف</translation>
     </message>
 </context>
 <context>
     <name>DateTimeChooser</name>
     <message>
         <source>Date</source>
-        <translation type="unfinished"></translation>
+        <translation>تاریخ</translation>
     </message>
     <message>
         <source>Time</source>
-        <translation type="unfinished"></translation>
+        <translation>ساعت</translation>
     </message>
 </context>
 <context>
     <name>DayChart</name>
     <message>
         <source>Sum</source>
-        <translation type="unfinished"></translation>
+        <translation>مجموع</translation>
     </message>
     <message>
         <source>You</source>
-        <translation type="unfinished"></translation>
+        <translation>تو</translation>
     </message>
     <message>
         <source>Max: %1 messages</source>
-        <translation type="unfinished"></translation>
+        <translation>بیشترین: %1 پیام</translation>
     </message>
     <message>
         <source>%1 messages per day</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 پیام در روز</translation>
     </message>
     <message>
         <source>Your interaction based on the day</source>
-        <translation type="unfinished"></translation>
+        <translation>تعاملتون بر اساس روز</translation>
     </message>
 </context>
 <context>
     <name>DayChartPage</name>
     <message>
         <source>Sum</source>
-        <translation type="unfinished"></translation>
+        <translation>مجموع</translation>
     </message>
     <message>
         <source>You</source>
-        <translation type="unfinished"></translation>
+        <translation>تو</translation>
     </message>
 </context>
 <context>
     <name>DesktopExample</name>
     <message>
         <source>Methods</source>
-        <translation type="unfinished"></translation>
+        <translation>متدها</translation>
     </message>
     <message>
         <source>Properties</source>
@@ -293,7 +297,7 @@
     </message>
     <message>
         <source>Desktop</source>
-        <translation type="unfinished"></translation>
+        <translation>دسکتاپ</translation>
     </message>
 </context>
 <context>
@@ -316,11 +320,11 @@
     </message>
     <message>
         <source>Paths</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">مسیرها</translation>
     </message>
     <message>
         <source>Methods</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">متدها</translation>
     </message>
     <message>
         <source>Devices</source>
@@ -331,34 +335,39 @@
     <name>DialogList</name>
     <message>
         <source>Telegram Charts</source>
-        <translation type="unfinished"></translation>
+        <translation type="vanished">آمار تلگرام</translation>
     </message>
     <message>
         <source>Search</source>
-        <translation type="unfinished"></translation>
+        <translation>جستجو</translation>
+    </message>
+    <message>
+        <source>Telegram Stats</source>
+        <translation>آمار تلگرام</translation>
     </message>
 </context>
 <context>
     <name>DownloaderExample</name>
     <message>
         <source>Download Link: http://...</source>
-        <translation type="unfinished"></translation>
+        <translation>لینک دانلود: http://...</translation>
     </message>
     <message>
         <source>Downloading to the RAM...
 To download to memory, use destination property.</source>
-        <translation type="unfinished"></translation>
+        <translation>دانلود در رَم...
+برای دانلود تو حافظه، مقصد رو مشخص کنید.</translation>
     </message>
     <message>
         <source>Downloader</source>
-        <translation type="unfinished"></translation>
+        <translation>دانلودر</translation>
     </message>
 </context>
 <context>
     <name>EmojiChart</name>
     <message>
         <source>Your senses</source>
-        <translation type="unfinished"></translation>
+        <translation>نمودار احساسات</translation>
     </message>
 </context>
 <context>
@@ -376,11 +385,11 @@ To download to memory, use destination property.</source>
     <name>FileChart</name>
     <message>
         <source>Sum</source>
-        <translation type="unfinished"></translation>
+        <translation>مجموع</translation>
     </message>
     <message>
         <source>Total %1 media</source>
-        <translation type="unfinished"></translation>
+        <translation>کل %1 رسانه</translation>
     </message>
 </context>
 <context>
@@ -398,23 +407,23 @@ To download to memory, use destination property.</source>
     <name>GetPassDialog</name>
     <message>
         <source>Paste</source>
-        <translation type="unfinished"></translation>
+        <translation>پیست</translation>
     </message>
     <message>
         <source>Please enter the password</source>
-        <translation type="unfinished"></translation>
+        <translation>رمزتو وارد کن</translation>
     </message>
     <message>
         <source>password</source>
-        <translation type="unfinished"></translation>
+        <translation>رمز</translation>
     </message>
     <message>
         <source>Done</source>
-        <translation type="unfinished"></translation>
+        <translation>تمام</translation>
     </message>
     <message>
         <source>Incorrect!</source>
-        <translation type="unfinished"></translation>
+        <translation>اشتباه زدی!</translation>
     </message>
 </context>
 <context>
@@ -428,7 +437,7 @@ To download to memory, use destination property.</source>
     <name>Header</name>
     <message>
         <source>Back</source>
-        <translation type="unfinished"></translation>
+        <translation>برگشت</translation>
     </message>
 </context>
 <context>
@@ -442,113 +451,113 @@ To download to memory, use destination property.</source>
     <name>JalaliCalendarObject</name>
     <message>
         <source>Farvardin</source>
-        <translation type="unfinished"></translation>
+        <translation>فروردین</translation>
     </message>
     <message>
         <source>Ordibehesht</source>
-        <translation type="unfinished"></translation>
+        <translation>اردیبهشت</translation>
     </message>
     <message>
         <source>Khordad</source>
-        <translation type="unfinished"></translation>
+        <translation>خرداد</translation>
     </message>
     <message>
         <source>Tir</source>
-        <translation type="unfinished"></translation>
+        <translation>تیر</translation>
     </message>
     <message>
         <source>Mordad</source>
-        <translation type="unfinished"></translation>
+        <translation>مرداد</translation>
     </message>
     <message>
         <source>Shahrivar</source>
-        <translation type="unfinished"></translation>
+        <translation>شهریور</translation>
     </message>
     <message>
         <source>Mehr</source>
-        <translation type="unfinished"></translation>
+        <translation>مهر</translation>
     </message>
     <message>
         <source>Abaan</source>
-        <translation type="unfinished"></translation>
+        <translation>آبان</translation>
     </message>
     <message>
         <source>Aazar</source>
-        <translation type="unfinished"></translation>
+        <translation>آذر</translation>
     </message>
     <message>
         <source>Dey</source>
-        <translation type="unfinished"></translation>
+        <translation>دی</translation>
     </message>
     <message>
         <source>Bahman</source>
-        <translation type="unfinished"></translation>
+        <translation>بهمن</translation>
     </message>
     <message>
         <source>Esfand</source>
-        <translation type="unfinished"></translation>
+        <translation>اسفند</translation>
     </message>
     <message>
         <source>Shanbe</source>
-        <translation type="unfinished"></translation>
+        <translation>شنبه</translation>
     </message>
     <message>
         <source>1Shanbe</source>
-        <translation type="unfinished"></translation>
+        <translation>یکشنبه</translation>
     </message>
     <message>
         <source>2Shanbe</source>
-        <translation type="unfinished"></translation>
+        <translation>دوشنبه</translation>
     </message>
     <message>
         <source>3Shanbe</source>
-        <translation type="unfinished"></translation>
+        <translation>سه‌شنبه</translation>
     </message>
     <message>
         <source>4Shanbe</source>
-        <translation type="unfinished"></translation>
+        <translation>چهارشنبه</translation>
     </message>
     <message>
         <source>5Shanbe</source>
-        <translation type="unfinished"></translation>
+        <translation>پنجشنبه</translation>
     </message>
     <message>
         <source>Jome</source>
-        <translation type="unfinished"></translation>
+        <translation>جمعه</translation>
     </message>
 </context>
 <context>
     <name>LoginForm</name>
     <message>
         <source>Enter Your Phone</source>
-        <translation type="unfinished"></translation>
+        <translation>شماره موبایلتو وارد کن</translation>
     </message>
     <message>
         <source>ex: +123456789</source>
-        <translation type="unfinished"></translation>
+        <translation>مثلا: +123456789</translation>
     </message>
     <message>
         <source>Login</source>
-        <translation type="unfinished"></translation>
+        <translation>ورود</translation>
     </message>
     <message>
         <source>Enter Code</source>
-        <translation type="unfinished"></translation>
+        <translation>کُد رو وارد کن</translation>
     </message>
     <message>
         <source>Send Code</source>
-        <translation type="unfinished"></translation>
+        <translation>کد بفرست</translation>
     </message>
 </context>
 <context>
     <name>MainPage</name>
     <message>
         <source>Home</source>
-        <translation type="unfinished"></translation>
+        <translation>خانه</translation>
     </message>
     <message>
         <source>Page</source>
-        <translation type="unfinished"></translation>
+        <translation>صفحه</translation>
     </message>
 </context>
 <context>
@@ -570,89 +579,101 @@ To download to memory, use destination property.</source>
     <name>MaterialButtonExample</name>
     <message>
         <source>MaterialDesignButton</source>
-        <translation type="unfinished"></translation>
+        <translation>دکمه متریال</translation>
     </message>
 </context>
 <context>
     <name>MenuControllerExample</name>
     <message>
         <source>MenuController</source>
-        <translation type="unfinished"></translation>
+        <translation>کنترلر منو</translation>
     </message>
 </context>
 <context>
     <name>MessageDetailsChart</name>
     <message>
         <source>%1 minutes</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 دقیقه</translation>
     </message>
     <message>
         <source>%1 seconds</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 ثانیه</translation>
     </message>
     <message>
         <source>%1 characters</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 کاراکتر</translation>
     </message>
     <message>
         <source>%1 emoji</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 ایموجی</translation>
     </message>
     <message>
         <source>%1 message</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 پیام</translation>
     </message>
     <message>
         <source>You</source>
-        <translation type="unfinished"></translation>
+        <translation>تو</translation>
+    </message>
+    <message>
+        <source>%1MB</source>
+        <translation>%1 مگابایت</translation>
+    </message>
+    <message>
+        <source>%1KB</source>
+        <translation>%1 کیلوبایت</translation>
+    </message>
+    <message>
+        <source>%1B</source>
+        <translation>%1 بایت</translation>
     </message>
 </context>
 <context>
     <name>MessageDialogOkCancelWarning</name>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>کَنسل</translation>
     </message>
     <message>
         <source>OK</source>
-        <translation type="unfinished"></translation>
+        <translation>اُکی</translation>
     </message>
 </context>
 <context>
     <name>MessageFrame</name>
     <message>
         <source>SEND</source>
-        <translation type="unfinished"></translation>
+        <translation>بفرست</translation>
     </message>
 </context>
 <context>
     <name>ModelComponentExamples</name>
     <message>
         <source>Model Components</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>
     <name>MonthChart</name>
     <message>
         <source>Sum</source>
-        <translation type="unfinished"></translation>
+        <translation>مجموع</translation>
     </message>
     <message>
         <source>You</source>
-        <translation type="unfinished"></translation>
+        <translation>تو</translation>
     </message>
     <message>
         <source>Max: %1 messages</source>
-        <translation type="unfinished"></translation>
+        <translation>بیشترین: %1 پیام</translation>
     </message>
     <message>
         <source>%1 messages per menth</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 پیام در ماه</translation>
     </message>
     <message>
         <source>Your interaction based on the month</source>
-        <translation type="unfinished"></translation>
+        <translation>تعاملتون بر اساس ماه</translation>
     </message>
 </context>
 <context>
@@ -673,33 +694,33 @@ To download to memory, use destination property.</source>
     <name>NotificationExample</name>
     <message>
         <source>Title</source>
-        <translation type="unfinished"></translation>
+        <translation>عنوان</translation>
     </message>
     <message>
         <source>Body text</source>
-        <translation type="unfinished"></translation>
+        <translation>متن اصلی</translation>
     </message>
     <message>
         <source>Notification</source>
-        <translation type="unfinished"></translation>
+        <translation>نوتیفیکیشن</translation>
     </message>
 </context>
 <context>
     <name>PasteButton</name>
     <message>
         <source>Paste</source>
-        <translation type="unfinished"></translation>
+        <translation>پیست</translation>
     </message>
 </context>
 <context>
     <name>QObject</name>
     <message>
         <source>Last month</source>
-        <translation type="unfinished"></translation>
+        <translation>ماه آخر</translation>
     </message>
     <message>
         <source>Last week</source>
-        <translation type="unfinished"></translation>
+        <translation>هفته آخر</translation>
     </message>
     <message>
         <source>Last seen %1</source>
@@ -737,96 +758,96 @@ To download to memory, use destination property.</source>
     <name>SearchList</name>
     <message>
         <source>Search Keyword</source>
-        <translation type="unfinished"></translation>
+        <translation>عبارت جستجو</translation>
     </message>
 </context>
 <context>
     <name>SendSumChart</name>
     <message>
         <source>You</source>
-        <translation type="unfinished"></translation>
+        <translation>تو</translation>
     </message>
     <message>
         <source>%1 (%2 msg)</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 (%2 پیام)</translation>
     </message>
     <message>
         <source>Sum</source>
-        <translation type="unfinished"></translation>
+        <translation>مجموع</translation>
     </message>
 </context>
 <context>
     <name>SenseDiaryChart</name>
     <message>
         <source>Love</source>
-        <translation type="unfinished"></translation>
+        <translation>عشق</translation>
     </message>
     <message>
         <source>Happiness</source>
-        <translation type="unfinished"></translation>
+        <translation>شادمانی</translation>
     </message>
     <message>
         <source>Sadness</source>
-        <translation type="unfinished"></translation>
+        <translation>ناراحتی</translation>
     </message>
     <message>
         <source>Violence</source>
-        <translation type="unfinished"></translation>
+        <translation>خشم</translation>
     </message>
     <message>
         <source>Your senses based on the month</source>
-        <translation type="unfinished"></translation>
+        <translation>نمودار احساساتت بر اساس ماه</translation>
     </message>
 </context>
 <context>
     <name>SettingsExample</name>
     <message>
         <source>Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>تنظیمات</translation>
     </message>
 </context>
 <context>
     <name>ShareDialog</name>
     <message>
         <source>Select Application</source>
-        <translation type="unfinished"></translation>
+        <translation>انتخاب اپلیکیشن</translation>
     </message>
 </context>
 <context>
     <name>SideMenuExample</name>
     <message>
         <source>SideMenu</source>
-        <translation type="unfinished"></translation>
+        <translation>منوی کناری</translation>
     </message>
 </context>
 <context>
     <name>SideMenuItem</name>
     <message>
         <source>Home</source>
-        <translation type="unfinished"></translation>
+        <translation>خانه</translation>
     </message>
     <message>
         <source>Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>تنظیمات</translation>
     </message>
     <message>
         <source>Contact</source>
-        <translation type="unfinished"></translation>
+        <translation>تماس با ما</translation>
     </message>
     <message>
         <source>About</source>
-        <translation type="unfinished"></translation>
+        <translation>درباره ما</translation>
     </message>
 </context>
 <context>
     <name>SignInCodePage</name>
     <message>
         <source>Code</source>
-        <translation type="unfinished"></translation>
+        <translation>کُد</translation>
     </message>
     <message>
         <source>Send Code</source>
-        <translation type="unfinished"></translation>
+        <translation>کُد بفرست</translation>
     </message>
 </context>
 <context>
@@ -834,31 +855,33 @@ To download to memory, use destination property.</source>
     <message>
         <source>Error checking phone :(
 %1</source>
-        <translation type="unfinished"></translation>
+        <translation>مشکل چک‌کردن شماره :(
+%1</translation>
     </message>
     <message>
         <source>Account not found, Sign-up using telegram first.</source>
-        <translation type="unfinished"></translation>
+        <translation>این اکانت پیدا نشد، اول باید عضو تلگرام بشی.</translation>
     </message>
     <message>
         <source>Can&apos;t request code :(
 %1</source>
-        <translation type="unfinished"></translation>
+        <translation>مشکل درخواست کُد :(
+%1</translation>
     </message>
     <message>
         <source>Please Wait</source>
-        <translation type="unfinished"></translation>
+        <translation>یه کم صبر کن</translation>
     </message>
 </context>
 <context>
     <name>SignInPhonePage</name>
     <message>
         <source>Phone number</source>
-        <translation type="unfinished"></translation>
+        <translation>شماره موبایل</translation>
     </message>
     <message>
         <source>Sign-in</source>
-        <translation type="unfinished"></translation>
+        <translation>ورود</translation>
     </message>
 </context>
 <context>
@@ -872,33 +895,33 @@ To download to memory, use destination property.</source>
     <name>StickerItem</name>
     <message>
         <source>Select a sticker</source>
-        <translation type="unfinished"></translation>
+        <translation>یه استیکر انتخاب کن</translation>
     </message>
     <message>
         <source>Select Sticker</source>
-        <translation type="unfinished"></translation>
+        <translation>انتخاب استیکر</translation>
     </message>
     <message>
         <source>Null</source>
-        <translation type="unfinished"></translation>
+        <translation>پوچ</translation>
     </message>
 </context>
 <context>
     <name>StickerList</name>
     <message>
         <source>Sticker short name</source>
-        <translation type="unfinished"></translation>
+        <translation>اسم کوتاه استیکر</translation>
     </message>
 </context>
 <context>
     <name>TelegramDialogListModel</name>
     <message>
         <source>Last month</source>
-        <translation type="unfinished"></translation>
+        <translation>ماه آخر</translation>
     </message>
     <message>
         <source>Last week</source>
-        <translation type="unfinished"></translation>
+        <translation>هفته آخر</translation>
     </message>
     <message>
         <source>Last seen %1</source>
@@ -914,44 +937,44 @@ To download to memory, use destination property.</source>
     </message>
     <message>
         <source>%1 members</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 عضو</translation>
     </message>
 </context>
 <context>
     <name>TelegramPeerDetails</name>
     <message>
         <source>%1 members</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 عضو</translation>
     </message>
 </context>
 <context>
     <name>TelegramQml</name>
     <message>
         <source>Secret Chat</source>
-        <translation type="unfinished"></translation>
+        <translation>چت امن</translation>
     </message>
 </context>
 <context>
     <name>TextCursorArea</name>
     <message>
         <source>Copy</source>
-        <translation type="unfinished"></translation>
+        <translation>کپی</translation>
     </message>
     <message>
         <source>Delete</source>
-        <translation type="unfinished"></translation>
+        <translation>حذف</translation>
     </message>
     <message>
         <source>Paste</source>
-        <translation type="unfinished"></translation>
+        <translation>پیست</translation>
     </message>
     <message>
         <source>Select All</source>
-        <translation type="unfinished"></translation>
+        <translation>انتخاب همه</translation>
     </message>
     <message>
         <source>Cut</source>
-        <translation type="unfinished"></translation>
+        <translation>کات</translation>
     </message>
 </context>
 <context>
@@ -969,29 +992,29 @@ To download to memory, use destination property.</source>
     <name>TimeChart</name>
     <message>
         <source>Sum</source>
-        <translation type="unfinished"></translation>
+        <translation>مجموع</translation>
     </message>
     <message>
         <source>Times</source>
-        <translation type="unfinished"></translation>
+        <translation>زمان</translation>
     </message>
 </context>
 <context>
     <name>TimePolarChart</name>
     <message>
         <source>Sum</source>
-        <translation type="unfinished"></translation>
+        <translation>مجموع</translation>
     </message>
     <message>
         <source>Daily interaction</source>
-        <translation type="unfinished"></translation>
+        <translation>تعامل روزانه</translation>
     </message>
 </context>
 <context>
     <name>ToolsExample</name>
     <message>
         <source>Tools</source>
-        <translation type="unfinished"></translation>
+        <translation>ابزار</translation>
     </message>
 </context>
 <context>

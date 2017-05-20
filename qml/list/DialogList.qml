@@ -98,7 +98,7 @@ QtControls.Page {
     Header {
         id: header
         width: parent.width
-        text: qsTr("Telegram Charts")
+        text: qsTr("Telegram Stats") + TgChartsGlobals.translator.refresher
         color: TgChartsGlobals.masterColor
 
         Rectangle {
@@ -155,7 +155,7 @@ QtControls.Page {
                     font: textField.font
                     verticalAlignment: Text.AlignVCenter
                     color: "#888888"
-                    text: qsTr("Search")
+                    text: qsTr("Search") + TgChartsGlobals.translator.refresher
                     visible: textField.text.length == 0
                 }
 

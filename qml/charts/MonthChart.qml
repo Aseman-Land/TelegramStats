@@ -66,7 +66,7 @@ AbstractChart {
         repeat: false
         onTriggered: {
             if(scatter) chart.removeSeries(scatter)
-            scatter = chart.createSeries(ChartView.SeriesTypeScatter, qsTr("Max: %1 messages").arg(max.y), xAxis, yAxis);
+            scatter = chart.createSeries(ChartView.SeriesTypeScatter, Tools.trNums(qsTr("Max: %1 messages").arg(max.y)), xAxis, yAxis);
             scatter.markerSize = 10*Devices.density
             scatter.append(max.x, max.y)
         }

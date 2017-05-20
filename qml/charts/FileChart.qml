@@ -87,7 +87,7 @@ AbstractChart {
             antialiasing: true
             legend.alignment: Qt.AlignLeft
             legend.font.pixelSize: 7*Devices.fontDensity
-            title: qsTr("Total %1 media").arg(senderRatio.total)
+            title: Tools.trNums(qsTr("Total %1 media").arg(senderRatio.total))
             titleFont.pixelSize: 11*Devices.fontDensity
             legend.labelColor: TgChartsGlobals.foregroundColor
             backgroundColor: TgChartsGlobals.backgroundColor
