@@ -18,6 +18,7 @@ AbstractChart {
         series = chart.createSeries(ChartView.SeriesTypePie, qsTr("Sum"), xAxis, yAxis);
         series.size = 1
 
+        var list = new Array
         var counter = 0
         for(var value in dataMap) {
             counter++
@@ -26,7 +27,12 @@ AbstractChart {
 
             var name = dataMap[value]
             var color = colors[counter%10]
-            series.append("%1 (%2)".arg(name).arg(value), value).color = color
+            list[list.length] = {"name": name, "color": color, "value": value}
+        }
+
+        for(var i=list.length-1; i>=0; i--) {
+            var d = list[i]
+            series.append("%1 (%2)".arg(d.name).arg(d.value), d.value).color = d.color
         }
     }
 
