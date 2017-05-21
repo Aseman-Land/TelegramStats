@@ -22,30 +22,39 @@ AbstractChart {
             {
             case "Animated":
                 color = "#F48FB1"
+                name = qsTr("Animated")
                 break
             case "Audio":
                 color = "#673AB7"
+                name = qsTr("Audio")
                 break
             case "Document":
                 color = "#2196F3"
+                name = qsTr("Document")
                 break
             case "Geo":
                 color = "#E91E63"
+                name = qsTr("Geo")
                 break
             case "Photo":
                 color = "#009688"
+                name = qsTr("Photo")
                 break
             case "Sticker":
                 color = "#FFC107"
+                name = qsTr("Sticker")
                 break
             case "Video":
                 color = "#8BC34A"
+                name = qsTr("Video")
                 break
             case "WebPage":
                 color = "#9E9E9E"
+                name = qsTr("WebPage")
                 break
             case "Voice":
                 color = "#B39DDB"
+                name = qsTr("Voice")
                 break
             }
 

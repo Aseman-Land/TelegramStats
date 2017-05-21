@@ -2,6 +2,7 @@ import QtQuick 2.0
 import AsemanTools 1.1
 import AsemanTools.Awesome 1.0
 import TelegramQml 2.0 as Telegram
+import TgChart 1.0 as TgChart
 import QtQuick.Controls 2.0 as QtControls
 import QtQuick.Controls.Material 2.0
 import "../authenticating" as Auth
@@ -20,6 +21,22 @@ QtControls.Page {
         visibility: Telegram.DialogListModel.VisibilityUsers
     }
 
+    TgChart.UserMessageCounter {
+        id: msgCounter
+        telegram: engine.telegramObject
+        limit: 20
+        onRefreshingChanged: {
+            if(refreshing) {
+                if(!waitObj && !TgChartsGlobals.topChats) waitObj = showGlobalWait( qsTr("Please wait..."), true )
+            } else {
+                if(waitObj) waitObj.destroy()
+            }
+        }
+        onTopChatsChanged: if(topChats.length && !TgChartsGlobals.topChats) TgChartsGlobals.topChats = topChats
+
+        property variant waitObj
+    }
+
     AsemanGridView {
         id: dlist
         width: parent.width
@@ -30,11 +47,26 @@ QtControls.Page {
         cellWidth: parent.width/Math.floor(dlist.width/(128*Devices.density))
         cellHeight: cellWidth + 25*Devices.density
 
+        header: Column {
+            width: dlist.width
+
+            Toolkit.PremiumButton {
+                width: parent.width
+            }
+
+            Toolkit.FullChartButton {
+                width: parent.width
+                dataMap: msgCounter.chats
+                refreshing: msgCounter.refreshing
+            }
+        }
+
         delegate: Item {
             width: dlist.cellWidth
             height: dlist.cellHeight
 
             Rectangle {
+                id: back
                 anchors.fill: parent
                 anchors.margins: 2*Devices.density
                 radius: 5*Devices.density
@@ -84,6 +116,36 @@ QtControls.Page {
                         currentList = pageManager.append(chart_component, {"title": model.title, "peer": model.peer})
                         discardSearchFocus()
                     }
+                }
+
+                Rectangle {
+                    id: lockArea
+                    anchors.fill: parent
+                    color: TgChartsGlobals.foregroundColor
+                    opacity: 0.5
+                    radius: back.radius
+                    visible: {
+                        cacheString = model.peer.userId
+                        if(msgCounter.refreshing && !TgChartsGlobals.topChats) return false
+                        var idx = TgChartsGlobals.topChats.indexOf(cacheString)
+                        if(idx < 0 || idx > 2)
+                            return true
+                        else
+                            return false
+                    }
+
+                    property string cacheString
+
+                    MouseArea { anchors.fill: parent }
+                }
+
+                Text {
+                    anchors.centerIn: lockArea
+                    visible: lockArea.visible
+                    color: TgChartsGlobals.backgroundColor
+                    font.family: Awesome.family
+                    font.pixelSize: 20*Devices.fontDensity
+                    text: Awesome.fa_lock
                 }
             }
         }

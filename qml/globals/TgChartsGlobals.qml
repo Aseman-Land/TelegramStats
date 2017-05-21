@@ -19,6 +19,7 @@ AsemanObject {
     property alias darkMode: settings.darMode
     property alias localeName: settings.localeName
     property alias languageSelected: settings.languageSelected
+    property alias topChats: settings.topChats
 
     property alias translator: translationManager
 
@@ -41,6 +42,7 @@ AsemanObject {
         property bool darMode: false
         property string localeName: "en"
         property bool languageSelected: false
+        property variant topChats
     }
 
     TranslationManager {

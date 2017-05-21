@@ -29,7 +29,8 @@ HEADERS += \
     components/tgfiletypechart.h \
     components/tgchartsemojisdiary.h \
     components/tgchartsmessagedetails.h \
-    components/tgchartssensediary.h
+    components/tgchartssensediary.h \
+    components/tgchartusermessagecounter.h
 
 SOURCES += main.cpp \
     components/tgchartengine.cpp \
@@ -40,7 +41,8 @@ SOURCES += main.cpp \
     components/tgfiletypechart.cpp \
     components/tgchartsemojisdiary.cpp \
     components/tgchartsmessagedetails.cpp \
-    components/tgchartssensediary.cpp
+    components/tgchartssensediary.cpp \
+    components/tgchartusermessagecounter.cpp
 
 RESOURCES += qml/qml.qrc \
     resource.qrc \

@@ -10,6 +10,7 @@
 #include "components/tgchartsemojisdiary.h"
 #include "components/tgchartsmessagedetails.h"
 #include "components/tgchartssensediary.h"
+#include "components/tgchartusermessagecounter.h"
 
 #include <QApplication>
 #include <QQmlApplicationEngine>
@@ -18,6 +19,7 @@
 int main(int argc, char *argv[])
 {
     qmlRegisterType<TgChartEngine>("TgChart", 1, 0, "Engine");
+    qmlRegisterType<TgChartUserMessageCounter>("TgChart", 1, 0, "UserMessageCounter");
     qmlRegisterUncreatableType<TgAbstractChartItem>("TgChart", 1, 0, "AbstractChartItem", "");
     qmlRegisterType<TgTimeDiaryChart>("TgChart", 1, 0, "TimeDiaryChart");
     qmlRegisterType<TgChartSenderRatioChart>("TgChart", 1, 0, "SenderRatioChart");

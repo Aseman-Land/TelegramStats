@@ -8,3 +8,4 @@ MessageDetailsChart 1.0 MessageDetailsChart.qml
 TimePolarChart 1.0 TimePolarChart.qml
 AbstractChart 1.0 AbstractChart.qml
 SenseDiaryChart 1.0 SenseDiaryChart.qml
+CompareAllChart 1.0 CompareAllChart.qml
