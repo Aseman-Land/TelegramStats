@@ -20,19 +20,28 @@ AbstractChart {
 
         var list = new Array
         var counter = 0
+        var total = 0
         for(var value in dataMap) {
             counter++
-            if(counter < 10)
+            if(counter < 14)
                 continue;
 
             var name = dataMap[value]
+            total += value*1
             var color = colors[counter%10]
             list[list.length] = {"name": name, "color": color, "value": value}
         }
 
         for(var i=list.length-1; i>=0; i--) {
             var d = list[i]
-            series.append("%1 (%2)".arg(d.name).arg(d.value), d.value).color = d.color
+            var percent = Math.floor(100*d.value/total)
+            var slice = series.append("%1 %2%".arg(d.name).arg(percent), d.value)
+            slice.color = d.color
+            slice.labelVisible = (percent >= 10)
+//            slice.label = "%1%".arg(percent)
+            slice.labelPosition = PieSlice.LabelInsideHorizontal
+            slice.labelFont.pixelSize = 5*Devices.fontDensity
+            slice.labelColor = "#ffffff"
         }
     }
 
@@ -60,6 +69,7 @@ AbstractChart {
         legend.font.pixelSize: 7*Devices.fontDensity
         titleFont.pixelSize: 11*Devices.fontDensity
         legend.labelColor: TgChartsGlobals.foregroundColor
+        legend.visible: true
         backgroundColor: TgChartsGlobals.backgroundColor
         titleColor: TgChartsGlobals.foregroundColor
         plotAreaColor: TgChartsGlobals.backgroundColor

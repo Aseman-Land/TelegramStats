@@ -27,7 +27,7 @@ Item {
 
             QtControls.Label {
                 anchors.centerIn: parent
-                text: qsTr("Compare all chats")
+                text: qsTr("Compare all actived chats")
                 font.pixelSize: 11*Devices.fontDensity
                 color: "#ffffff"
                 visible: !indicator.running
@@ -60,7 +60,7 @@ Item {
         id: selector_component
         QtControls.Dialog {
             id: dialog
-            title: qsTr("Your top chats")
+            title: qsTr("Your top actived chats")
             standardButtons: QtControls.Dialog.Cancel
             contentHeight: callChart.height
             contentWidth: callChart.width
@@ -85,8 +85,8 @@ Item {
 
             Charts.CompareAllChart {
                 id: callChart
-                width: fchartBtn.width - 60*Devices.density
-                height: width*3/4
+                width: fchartBtn.width - 20*Devices.density
+                height: width*4/5
                 dataMap: fchartBtn.dataMap
             }
 

@@ -117,8 +117,11 @@ void TgChartUserMessageCounter::refresh()
             {
                 if(dialogUsers.count() >= p->limit)
                     break;
+                User usr = users[dlg.peer().userId()];
+                if(usr.bot())
+                    continue;
 
-                dialogUsers << users[dlg.peer().userId()];
+                dialogUsers << usr;
             }
 
         checkDialogs(dialogUsers);
