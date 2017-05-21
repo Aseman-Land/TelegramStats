@@ -177,6 +177,13 @@
     </message>
 </context>
 <context>
+    <name>CompareAllChart</name>
+    <message>
+        <source>Sum</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>Configure</name>
     <message>
         <source>Dark mode</source>
@@ -334,6 +341,10 @@
         <source>Telegram Stats</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Please wait...</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>DownloaderExample</name>
@@ -379,6 +390,42 @@ To download to memory, use destination property.</source>
         <source>Total %1 media</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Animated</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Audio</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Document</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Geo</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Photo</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Sticker</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Video</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>WebPage</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Voice</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>FileSystemModelExample</name>
@@ -388,6 +435,17 @@ To download to memory, use destination property.</source>
     </message>
     <message>
         <source>FileSystemModel</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>FullChartButton</name>
+    <message>
+        <source>Compare all active chats</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Your top active chats</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -515,25 +573,9 @@ To download to memory, use destination property.</source>
     </message>
 </context>
 <context>
-    <name>LoginForm</name>
+    <name>LanguageSelectorDialog</name>
     <message>
-        <source>Enter Your Phone</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>ex: +123456789</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Login</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Enter Code</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Send Code</source>
+        <source>Select Language</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -628,13 +670,6 @@ To download to memory, use destination property.</source>
     </message>
 </context>
 <context>
-    <name>MessageFrame</name>
-    <message>
-        <source>SEND</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>ModelComponentExamples</name>
     <message>
         <source>Model Components</source>
@@ -701,25 +736,13 @@ To download to memory, use destination property.</source>
     </message>
 </context>
 <context>
-    <name>QObject</name>
+    <name>PremiumButton</name>
     <message>
-        <source>Last month</source>
+        <source>Active Premium</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Last week</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Last seen %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Online</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Last seen recently</source>
+        <source>You can active premium free or payment</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -739,13 +762,6 @@ To download to memory, use destination property.</source>
     </message>
     <message>
         <source>Press Me 2</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>SearchList</name>
-    <message>
-        <source>Search Keyword</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -893,54 +909,6 @@ To download to memory, use destination property.</source>
     </message>
 </context>
 <context>
-    <name>StickerList</name>
-    <message>
-        <source>Sticker short name</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>TelegramDialogListModel</name>
-    <message>
-        <source>Last month</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Last week</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Last seen %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Online</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Last seen recently</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>%1 members</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>TelegramPeerDetails</name>
-    <message>
-        <source>%1 members</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>TelegramQml</name>
-    <message>
-        <source>Secret Chat</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>TextCursorArea</name>
     <message>
         <source>Copy</source>
@@ -1019,17 +987,6 @@ To download to memory, use destination property.</source>
     </message>
     <message>
         <source>View</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>main</name>
-    <message>
-        <source>TgQml Demo: StickerManager</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>TgQml Demo: SimpleClient</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
