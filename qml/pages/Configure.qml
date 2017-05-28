@@ -95,6 +95,27 @@ QtControls.Page {
                     }
                 }
             }
+
+            QtControls.ItemDelegate {
+                width: parent.width
+                height: 56*Devices.density
+                hoverEnabled: false
+                visible: !TgChartsGlobals.premium
+                onClicked: premiumDialog.open()
+
+                QtLayouts.RowLayout {
+                    width: parent.width - 40*Devices.density
+                    anchors.centerIn: parent
+
+                    QtControls.Label {
+                        anchors.verticalCenter: parent.verticalCenter
+                        color: TgChartsGlobals.foregroundColor
+                        text: qsTr("Active premium using code") + TgChartsGlobals.translator.refresher
+                        font.pixelSize: 9*Devices.fontDensity
+                        QtLayouts.Layout.fillWidth: true
+                    }
+                }
+            }
         }
     }
 
@@ -226,5 +247,65 @@ QtControls.Page {
         }
 
         onRejected: close()
+    }
+
+    QtControls.Dialog {
+        id: premiumDialog
+        title: qsTr("Active Premium")
+        contentHeight: premiumDialogColumn.height
+        contentWidth: premiumDialogColumn.width
+        x: parent.width/2 - width/2
+        y: parent.height/2 - height/2
+        modal: true
+        dim: true
+        closePolicy: QtControls.Popup.CloseOnPressOutside
+
+        onVisibleChanged: {
+            if(visible)
+                BackHandler.pushHandler(this, function(){visible = false})
+            else
+                BackHandler.removeHandler(this)
+        }
+
+        footer: QtControls.DialogButtonBox {
+            QtControls.Button {
+                text: qsTr("Active")
+                flat: true
+                onClicked: {
+                    var res = TgChartsStore.activePremiumUsingCode(codeField.text)
+                    if(res) {
+                        premiumDialog.close()
+                        showTooltip( qsTr("Premium activated :)") )
+                    } else {
+                        showTooltip( qsTr("Wrong code :/") )
+                    }
+                }
+            }
+            QtControls.Button {
+                text: qsTr("Cancel")
+                flat: true
+                onClicked: premiumDialog.close()
+            }
+        }
+
+        Column {
+            id: premiumDialogColumn
+            width: configure.width - 80*Devices.density
+
+            QtControls.Label {
+                id: label
+                font.pixelSize: 9*Devices.fontDensity
+                wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+                width: parent.width
+                text: qsTr("To active premium, enter the code below:")
+            }
+
+            QtControls.TextField {
+                id: codeField
+                width: parent.width
+                placeholderText: qsTr("Active code")
+                inputMethodHints: Qt.ImhNoPredictiveText
+            }
+        }
     }
 }

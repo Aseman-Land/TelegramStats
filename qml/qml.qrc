@@ -62,5 +62,6 @@
         <file>files/default_background.png</file>
         <file>files/WaterMark.png</file>
         <file>files/premium-account.png</file>
+        <file>toolkit/PremiumRequiredDialog.qml</file>
     </qresource>
 </RCC>

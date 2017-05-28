@@ -28,14 +28,14 @@ Item {
 
                 QtControls.Label {
                     anchors.horizontalCenter: parent.horizontalCenter
-                    text: qsTr("Active Premium")
+                    text: qsTr("Active Premium") + TgChartsGlobals.translator.refresher
                     font.pixelSize: 12*Devices.fontDensity
                     color: "#ffffff"
                 }
 
                 QtControls.Label {
                     anchors.horizontalCenter: parent.horizontalCenter
-                    text: qsTr("You can active premium free or payment")
+                    text: qsTr("You can active premium free or payment") + TgChartsGlobals.translator.refresher
                     font.pixelSize: 9*Devices.fontDensity
                     color: "#ffffff"
                 }

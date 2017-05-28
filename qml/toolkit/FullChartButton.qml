@@ -27,7 +27,7 @@ Item {
 
             QtControls.Label {
                 anchors.centerIn: parent
-                text: qsTr("Compare all active chats")
+                text: qsTr("Compare all active chats") + TgChartsGlobals.translator.refresher
                 font.pixelSize: 11*Devices.fontDensity
                 color: "#ffffff"
                 visible: !indicator.running

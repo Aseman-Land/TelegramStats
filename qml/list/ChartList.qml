@@ -80,6 +80,7 @@ QtControls.Page {
                     mmodel.sendFile(Enums.SendFileTypeDocument, Devices.localFilesPrePath + dest, null, null, function(){
                         grabber.waitObj.destroy()
                         stickeritem.visible = true
+                        Tools.deleteFile(dest)
                         showTooltip( qsTr("Sent") )
                     })
                 } else {
@@ -427,10 +428,15 @@ QtControls.Page {
                         onTriggered: share(true)
                     }
                     QtControls.MenuItem {
-                        text: qsTr("Share")
+                        text: qsTr("Save")
                         font.family: AsemanApp.globalFont.family
                         font.pixelSize: 9*Devices.fontDensity
-                        onTriggered: share(false)
+                        onTriggered: {
+                            if(TgChartsGlobals.premium)
+                                share(false)
+                            else
+                                premiumReqDialog.open()
+                        }
                     }
                     QtControls.MenuItem {
                         text: qsTr("Clear Cache")
@@ -523,8 +529,12 @@ QtControls.Page {
             var resWidth = chartBack.width*ratio
             var resHeight = chartBack.height*ratio
 
+            var path = Devices.picturesLocation + "/Telegram Stats"
+            if(toUser)
+                path = AsemanApp.homePath + "/temp"
+
             grabber.fileName = qsTr("Your telegram stats") + " - " + Tools.dateToMSec(new Date)
-            grabber.save(Devices.picturesLocation + "/Telegram Stats", Qt.size(resWidth, resHeight))
+            grabber.save(path, Qt.size(resWidth, resHeight))
         })
     }
 
@@ -538,5 +548,10 @@ QtControls.Page {
             title: page.title
             messagesModel: mmodel
         }
+    }
+
+    Toolkit.PremiumRequiredDialog {
+        id: premiumReqDialog
+        anchors.fill: parent
     }
 }
