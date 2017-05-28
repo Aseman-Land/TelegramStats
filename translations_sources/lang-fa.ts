@@ -193,6 +193,18 @@
         <source>Loading...</source>
         <translation>بارگذاری...</translation>
     </message>
+    <message>
+        <source>Sending photo...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Sent</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Share with %1</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>CompareAllChart</name>

@@ -13,18 +13,11 @@ Rectangle {
     color: TgChartsGlobals.backgroundColor
 
     property string title
-    property alias engine: mmodel.engine
-    property alias currentPeer: mmodel.currentPeer
+    property variant messagesModel
 
     property variant waitDialog
 
     NullMouseArea { anchors.fill: parent }
-
-    Telegram.MessageListModel {
-        id: mmodel
-        limit: 1
-        useCache: false
-    }
 
     AsemanFlickable {
         id: flick
@@ -152,7 +145,7 @@ Rectangle {
         if(waitDialog) return
         waitDialog = showGlobalWait( qsTr("Senging message..."), true )
         Tools.jsDelayCall(1000, function(){
-            mmodel.sendMessage(msg, null, null, function(){
+            messagesModel.sendMessage(msg, null, null, function(){
                 showTooltip( qsTr("Message sent") )
                 waitDialog.destroy()
                 unlockUser()
@@ -165,7 +158,7 @@ Rectangle {
         if(!chats)
             chats = new Array
 
-        chats[chats.length] = currentPeer.userId + ""
+        chats[chats.length] = messagesModel.currentPeer.userId + ""
         TgChartsGlobals.unlockedChats = Tools.toStringList(chats)
     }
 }

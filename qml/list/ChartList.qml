@@ -53,6 +53,14 @@ QtControls.Page {
         dataDirectory: engine.configDirectory + "/" + engine.phoneNumber + "/messages.sqlite"
     }
 
+    MessageListModel {
+        id: mmodel
+        limit: 1
+        useCache: false
+        currentPeer: page.peer
+        engine: page.engine
+    }
+
     Timer {
         interval: 400
         onTriggered: chartEngine.peer = page.peer
@@ -64,14 +72,24 @@ QtControls.Page {
         id: grabber
         item: chartBack
         onSaved: {
+            stickeritem.visible = true
             Tools.jsDelayCall(1000, function(){
-                grabber.waitObj.destroy()
-                stickeritem.visible = true
-                Qt.openUrlExternally( Devices.localFilesPrePath + dest)
+                if(grabber.toUser) {
+                    grabber.waitObj.text = qsTr("Sending photo...")
+                    mmodel.sendFile(Enums.SendFileTypeDocument, Devices.localFilesPrePath + dest, null, null, function(){
+                        grabber.waitObj.destroy()
+                        stickeritem.visible = true
+                        showTooltip( qsTr("Sent") )
+                    })
+                } else {
+                    grabber.waitObj.destroy()
+                    Qt.openUrlExternally( Devices.localFilesPrePath + dest)
+                }
             })
         }
 
         property variant waitObj
+        property bool toUser: false
     }
 
     AsemanFlickable {
@@ -336,8 +354,8 @@ QtControls.Page {
                 QtControls.Label {
                     anchors.horizontalCenter: parent.horizontalCenter
                     font.pixelSize: 9*Devices.fontDensity
-                    text: "<a href=\"http://aseman.co/tgstats\">aseman.co/tgstats</a>"
-                    onLinkActivated: Qt.openUrlExternally(link)
+                    color: TgChartsGlobals.masterColor
+                    text: "aseman.co/tgstats"
                 }
 
                 Item { width: 1; height: 10*Devices.density }
@@ -402,10 +420,16 @@ QtControls.Page {
                     }
 
                     QtControls.MenuItem {
+                        text: qsTr("Share with %1").arg(page.title)
+                        font.family: AsemanApp.globalFont.family
+                        font.pixelSize: 9*Devices.fontDensity
+                        onTriggered: share(true)
+                    }
+                    QtControls.MenuItem {
                         text: qsTr("Share")
                         font.family: AsemanApp.globalFont.family
                         font.pixelSize: 9*Devices.fontDensity
-                        onTriggered: share()
+                        onTriggered: share(false)
                     }
                     QtControls.MenuItem {
                         text: qsTr("Clear Cache")
@@ -483,13 +507,14 @@ QtControls.Page {
         }
     }
 
-    function share() {
+    function share(toUser) {
         if(grabber.waitObj)
             return
 
         if(stickeritem.isNull)
             stickeritem.visible = false
 
+        grabber.toUser = toUser
         grabber.waitObj = showGlobalWait( qsTr("Please Wait"), true )
         grabber.waitObj.color = TgChartsGlobals.backgroundColor
         Tools.jsDelayCall(100, function(){
@@ -505,8 +530,7 @@ QtControls.Page {
             anchors.topMargin: blackBar.height + blackBar.y
             anchors.bottom: parent.bottom
             title: page.title
-            currentPeer: page.peer
-            engine: page.engine
+            messagesModel: mmodel
         }
     }
 }
