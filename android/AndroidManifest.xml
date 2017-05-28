@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
-<manifest android:versionName="3.5.0" xmlns:android="http://schemas.android.com/apk/res/android" package="co.aseman.TgCharts" android:installLocation="auto" android:versionCode="22">
-    <application android:label="TgCharts" android:icon="@drawable/icon" android:name="land.aseman.android.AsemanApplication">
-        <activity android:label="@string/app_name" android:configChanges="orientation|uiMode|screenLayout|screenSize|smallestScreenSize|locale|fontScale|keyboard|keyboardHidden|navigation" android:name="land.aseman.android.AsemanActivity" android:theme="@style/splashScreenTheme">
+<manifest android:versionName="0.1.0" xmlns:android="http://schemas.android.com/apk/res/android" package="co.aseman.TgStats" android:installLocation="auto" android:versionCode="22">
+    <application android:label="Telegram Stats" android:icon="@drawable/icon" android:name="land.aseman.android.AsemanApplication">
+        <activity android:label="Telegram Stats" android:configChanges="orientation|uiMode|screenLayout|screenSize|smallestScreenSize|locale|fontScale|keyboard|keyboardHidden|navigation" android:name="land.aseman.android.AsemanActivity" android:theme="@style/splashScreenTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>

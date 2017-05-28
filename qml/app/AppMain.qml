@@ -15,6 +15,7 @@ AsemanWindow {
     height: 800
 
     Material.theme: TgChartsGlobals.darkMode? Material.Dark : Material.Light
+    Material.accent: TgChartsGlobals.masterColor
 
     Telegram.ProfileManagerModel {
         id: profiles_model

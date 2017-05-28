@@ -25,6 +25,13 @@
     </message>
 </context>
 <context>
+    <name>ActivePremiumPage</name>
+    <message>
+        <source>Active Premium</source>
+        <translation>فعال‌سازی پکیج حرفه‌ای</translation>
+    </message>
+</context>
+<context>
     <name>AppMain</name>
     <message>
         <source>Telegram Stats</source>
@@ -182,12 +189,16 @@
         <source>Please Wait</source>
         <translation>یه کم صبر کن</translation>
     </message>
+    <message>
+        <source>Loading...</source>
+        <translation>بارگذاری...</translation>
+    </message>
 </context>
 <context>
     <name>CompareAllChart</name>
     <message>
         <source>Sum</source>
-        <translation type="unfinished">مجموع</translation>
+        <translation>مجموع</translation>
     </message>
 </context>
 <context>
@@ -354,7 +365,7 @@
     </message>
     <message>
         <source>Please wait...</source>
-        <translation type="unfinished"></translation>
+        <translation>یه کم صبر کن...</translation>
     </message>
 </context>
 <context>
@@ -404,39 +415,39 @@ To download to memory, use destination property.</source>
     </message>
     <message>
         <source>Animated</source>
-        <translation type="unfinished"></translation>
+        <translation>گیف</translation>
     </message>
     <message>
         <source>Audio</source>
-        <translation type="unfinished"></translation>
+        <translation>صدا</translation>
     </message>
     <message>
         <source>Document</source>
-        <translation type="unfinished"></translation>
+        <translation>داکیومنت</translation>
     </message>
     <message>
         <source>Geo</source>
-        <translation type="unfinished"></translation>
+        <translation>لوکیشن</translation>
     </message>
     <message>
         <source>Photo</source>
-        <translation type="unfinished"></translation>
+        <translation>عکس</translation>
     </message>
     <message>
         <source>Sticker</source>
-        <translation type="unfinished"></translation>
+        <translation>استیکر</translation>
     </message>
     <message>
         <source>Video</source>
-        <translation type="unfinished"></translation>
+        <translation>ویدئو</translation>
     </message>
     <message>
         <source>WebPage</source>
-        <translation type="unfinished"></translation>
+        <translation>لینک</translation>
     </message>
     <message>
         <source>Voice</source>
-        <translation type="unfinished"></translation>
+        <translation>وُیس</translation>
     </message>
 </context>
 <context>
@@ -454,11 +465,11 @@ To download to memory, use destination property.</source>
     <name>FullChartButton</name>
     <message>
         <source>Compare all active chats</source>
-        <translation type="unfinished"></translation>
+        <translation>مقایسه همه چت‌های فعال</translation>
     </message>
     <message>
         <source>Your top active chats</source>
-        <translation type="unfinished"></translation>
+        <translation>چت‌های با بیشترین فعالیت</translation>
     </message>
 </context>
 <context>
@@ -588,7 +599,7 @@ To download to memory, use destination property.</source>
     <name>LanguageSelectorDialog</name>
     <message>
         <source>Select Language</source>
-        <translation type="unfinished"></translation>
+        <translation>انتخاب زبان</translation>
     </message>
 </context>
 <context>
@@ -781,11 +792,59 @@ To download to memory, use destination property.</source>
     <name>PremiumButton</name>
     <message>
         <source>Active Premium</source>
-        <translation type="unfinished"></translation>
+        <translation>پکیج حرفه‌ای رو می‌خرم</translation>
     </message>
     <message>
         <source>You can active premium free or payment</source>
-        <translation type="unfinished"></translation>
+        <translation>با خرید پکیج حرفه‌ای آمار تلگرام یک بار برای همیشه، می‌تونی از تمام امکانات برنامه استفاده کنی، چه اونایی که الان هست، چه اونایی که در آینده اضافه میشه</translation>
+    </message>
+</context>
+<context>
+    <name>PremiumNotifyItem</name>
+    <message>
+        <source>Please choose on of the below plans to view these stats.
+1. Send a message to %1 and let him/her to create stats using this application.
+2. Buy premium package, unlocks all of the Telegram stats feature.</source>
+        <translation>برای دیدن این آمار، کدومو انتخاب می‌کنی؟
+
+1. فرستادن پیام تو تلگرام برای این دوستت که اونم بِتونه آمار تلگرامش رو بگیره (رایگان)
+2. خریدن پکیج حرفه‌ای آمار تلگرام، که اطلاعات آماری تمام دوستات رو بدون نیاز به ارسال پیام در اختیارت قرار میده.</translation>
+    </message>
+    <message>
+        <source>Send message to %1</source>
+        <translation>برای %1 پیام بفرست</translation>
+    </message>
+    <message>
+        <source>Buy Premium package</source>
+        <translation>پکیج حرفه‌ای رو می‌خرم</translation>
+    </message>
+    <message>
+        <source>Send</source>
+        <translation>بفرست</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation>کَنسل</translation>
+    </message>
+    <message>
+        <source>Hey, take a look what I found.
+It&apos;s an application to create stats from your telegram chats.
+It will create awesome charts from your telegram history. Install it :)
+aseman.co/tgstats</source>
+        <translation>ببین چی پیدا کردم، یه اپلیکیشن زدن به اسم آمار تلگرام، اطلاعات آماری چَت‌های توی تلگرامو میده، آمارای باحالی میده. نمودار احساس و این که تو چه ساعتایی بیشتر با هم حرف زدیم، کلا تا حالا چقدر پیام بینمون رد و بدل شده، بیشترین اموجی‌هایی که فرستادیم چی بوده و اینا
+
+بعد میذاره عکس اون آماری که میده رو هم برای رفیقت بفرستی
+
+خودتم می‌تونی ببینی البته، این لینکش:
+</translation>
+    </message>
+    <message>
+        <source>Senging message...</source>
+        <translation>در حال فرستادن پیام</translation>
+    </message>
+    <message>
+        <source>Message sent</source>
+        <translation>پیام ارسال شد</translation>
     </message>
 </context>
 <context>
@@ -913,6 +972,14 @@ To download to memory, use destination property.</source>
         <source>Send Code</source>
         <translation>کُد بفرست</translation>
     </message>
+    <message>
+        <source>Code Request...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>We&apos;ll send you a code. Please enter the code below</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SignInPage</name>
@@ -938,6 +1005,25 @@ To download to memory, use destination property.</source>
     </message>
 </context>
 <context>
+    <name>SignInPasswordPage</name>
+    <message>
+        <source>Password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Login</source>
+        <translation type="unfinished">ورود</translation>
+    </message>
+    <message>
+        <source>2-Step Authenticate...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Your account protected using a password. Please enter your password to login.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>SignInPhonePage</name>
     <message>
         <source>Phone number</source>
@@ -946,6 +1032,22 @@ To download to memory, use destination property.</source>
     <message>
         <source>Sign-in</source>
         <translation>ورود</translation>
+    </message>
+    <message>
+        <source>Telegram Stats</source>
+        <translation type="unfinished">آمار تلگرام</translation>
+    </message>
+    <message>
+        <source>Please enter your phone number below</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Powered by &lt;a href=&quot;http://aseman.co&quot;&gt;Aseman Team&lt;/a&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Phone number length is too low</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

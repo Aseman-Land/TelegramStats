@@ -53,5 +53,14 @@
         <file>toolkit/PremiumButton.qml</file>
         <file>toolkit/FullChartButton.qml</file>
         <file>charts/CompareAllChart.qml</file>
+        <file>files/icon.png</file>
+        <file>files/icon2.png</file>
+        <file>pages/ActivePremiumPage.qml</file>
+        <file>toolkit/PremiumNotifyItem.qml</file>
+        <file>globals/TgChartsStore.qml</file>
+        <file>authenticating/SignInPasswordPage.qml</file>
+        <file>files/default_background.png</file>
+        <file>files/WaterMark.png</file>
+        <file>files/premium-account.png</file>
     </qresource>
 </RCC>

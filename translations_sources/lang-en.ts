@@ -25,6 +25,13 @@
     </message>
 </context>
 <context>
+    <name>ActivePremiumPage</name>
+    <message>
+        <source>Active Premium</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>AppWindow</name>
     <message>
         <source>Hello World</source>
@@ -173,6 +180,10 @@
     </message>
     <message>
         <source>Please Wait</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Loading...</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -747,6 +758,46 @@ To download to memory, use destination property.</source>
     </message>
 </context>
 <context>
+    <name>PremiumNotifyItem</name>
+    <message>
+        <source>Please choose on of the below plans to view these stats.
+1. Send a message to %1 and let him/her to create stats using this application.
+2. Buy premium package, unlocks all of the Telegram stats feature.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Send message to %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Buy Premium package</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Send</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Hey, take a look what I found.
+It&apos;s an application to create stats from your telegram chats.
+It will create awesome charts from your telegram history. Install it :)
+aseman.co/tgstats</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Senging message...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Message sent</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>QmlControls</name>
     <message>
         <source>Switch</source>
@@ -853,6 +904,14 @@ To download to memory, use destination property.</source>
         <source>Send Code</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Code Request...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>We&apos;ll send you a code. Please enter the code below</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SignInPage</name>
@@ -876,6 +935,25 @@ To download to memory, use destination property.</source>
     </message>
 </context>
 <context>
+    <name>SignInPasswordPage</name>
+    <message>
+        <source>Password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Login</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>2-Step Authenticate...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Your account protected using a password. Please enter your password to login.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>SignInPhonePage</name>
     <message>
         <source>Phone number</source>
@@ -883,6 +961,22 @@ To download to memory, use destination property.</source>
     </message>
     <message>
         <source>Sign-in</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Telegram Stats</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please enter your phone number below</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Powered by &lt;a href=&quot;http://aseman.co&quot;&gt;Aseman Team&lt;/a&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Phone number length is too low</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

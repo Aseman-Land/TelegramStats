@@ -6,7 +6,10 @@ import QtQuick.Controls.Material 2.1
 import "../globals"
 
 Item {
+    id: premiumBtn
     height: 120*Devices.density
+
+    signal clicked()
 
     Item {
         id: scene
@@ -14,7 +17,7 @@ Item {
 
         Rectangle {
             anchors.fill: parent
-            anchors.bottomMargin: 4*Devices.density
+            anchors.bottomMargin: 0
             anchors.margins: 8*Devices.density
             radius: 5*Devices.density
             color: Material.color(Material.Orange)
@@ -41,6 +44,7 @@ Item {
             QtControls.ItemDelegate {
                 anchors.fill: parent
                 hoverEnabled: false
+                onClicked: premiumBtn.clicked()
             }
         }
     }

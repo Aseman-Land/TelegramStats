@@ -19,11 +19,11 @@ Item {
 
         Rectangle {
             anchors.fill: parent
-            anchors.topMargin: 4*Devices.density
+            anchors.topMargin: 8*Devices.density
             anchors.bottomMargin: 4*Devices.density
             anchors.margins: 8*Devices.density
             radius: 5*Devices.density
-            color: Material.color(Material.Teal)
+            color: TgChartsGlobals.masterColor
 
             QtControls.Label {
                 anchors.centerIn: parent

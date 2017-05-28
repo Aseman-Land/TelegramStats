@@ -20,6 +20,8 @@ AsemanObject {
     property alias localeName: settings.localeName
     property alias languageSelected: settings.languageSelected
     property alias topChats: settings.topChats
+    property alias unlockedChats: settings.unlockedChats
+    property alias premium: settings.premium
 
     property alias translator: translationManager
 
@@ -37,12 +39,14 @@ AsemanObject {
     Settings {
         id: settings
         source: profilePath + "/settings.ini"
-        category: "UserInterface"
+        category: "General"
 
         property bool darMode: false
         property string localeName: "en"
         property bool languageSelected: false
+        property bool premium: false
         property variant topChats
+        property variant unlockedChats
     }
 
     TranslationManager {

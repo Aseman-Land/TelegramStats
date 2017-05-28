@@ -2,6 +2,7 @@ import QtQuick 2.0
 import AsemanTools 1.1
 import TelegramQml 2.0 as Telegram
 import QtQuick.Controls 2.0
+import QtGraphicalEffects 1.0
 import "../globals"
 
 Page {
@@ -34,18 +35,21 @@ Page {
             case Telegram.Authenticate.AuthCheckingPhoneError:
                 closeWait()
                 showTooltip( qsTr("Error checking phone :(\n%1").arg(auth.errorText) )
+                signInPage.engine.phoneNumber = ""
                 step = 0
                 break;
 
             case Telegram.Authenticate.AuthSignUpNeeded:
                 closeWait()
                 showTooltip( qsTr("Account not found, Sign-up using telegram first.") )
+                signInPage.engine.phoneNumber = ""
                 step = 0
                 break;
 
             case Telegram.Authenticate.AuthCodeRequestingError:
                 closeWait()
                 showTooltip( qsTr("Can't request code :(\n%1").arg(auth.errorText) )
+                signInPage.engine.phoneNumber = ""
                 step = 0
                 break;
 
@@ -73,10 +77,33 @@ Page {
         }
     }
 
+    Image {
+        id: back
+        anchors.fill: parent
+        source: "../files/default_background.png"
+        sourceSize: Qt.size(2*width, 2*height)
+        fillMode: Image.PreserveAspectCrop
+        visible: !TgChartsGlobals.darkMode
+    }
+
+    LevelAdjust {
+        anchors.fill: back
+        source: back
+        minimumOutput: "#00ffffff"
+        maximumOutput: "#ff000000"
+        visible: step >= 0 && step <= 2 && TgChartsGlobals.darkMode
+    }
+
     SignInPhonePage {
         anchors.fill: parent
         engine: signInPage.engine
         visible: step == 0
+    }
+
+    SignInPasswordPage {
+        anchors.fill: parent
+        visible: step == 2
+        onPasswordSend: auth.checkPassword(password)
     }
 
     SignInCodePage {

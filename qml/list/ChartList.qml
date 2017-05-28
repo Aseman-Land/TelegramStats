@@ -17,11 +17,39 @@ QtControls.Page {
     property alias engine: profilePic.engine
     property InputPeer peer
 
+    readonly property bool locked: {
+        if(TgChartsGlobals.premium)
+            return false
+
+        var idx
+        if(TgChartsGlobals.topChats) {
+            idx = TgChartsGlobals.topChats.indexOf(peer.userId + "")
+            if(idx >= 0 && idx < 3)
+                return false
+        }
+        if(TgChartsGlobals.unlockedChats) {
+            idx = TgChartsGlobals.unlockedChats.indexOf(peer.userId + "")
+            if(idx != -1)
+                return false
+        }
+
+        return true
+    }
+
+    property variant premiumObject
+    onLockedChanged: {
+        if(locked) {
+            if(!premiumObject) premiumObject = premiumItem_component.createObject(page)
+        } else  {
+            if(premiumObject) premiumObject.destroy()
+        }
+    }
+
     TgChart.Engine {
         id: chartEngine
         offset: 0
         limit: 100000
-        telegram: page.engine? page.engine.telegramObject : null
+        telegram: page.engine && !page.locked? page.engine.telegramObject : null
         dataDirectory: engine.configDirectory + "/" + engine.phoneNumber + "/messages.sqlite"
     }
 
@@ -295,6 +323,24 @@ QtControls.Page {
                         }
                     }
                 }
+
+                Image {
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    width: stickeritem.width
+                    height: 175*width/1080
+                    sourceSize: Qt.size(1.2*width, 1.2*height)
+                    source: "../files/WaterMark.png"
+                    fillMode: Image.PreserveAspectFit
+                }
+
+                QtControls.Label {
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    font.pixelSize: 9*Devices.fontDensity
+                    text: "<a href=\"http://aseman.co/tgstats\">aseman.co/tgstats</a>"
+                    onLinkActivated: Qt.openUrlExternally(link)
+                }
+
+                Item { width: 1; height: 10*Devices.density }
             }
         }
     }
@@ -337,7 +383,7 @@ QtControls.Page {
                 font.family: Awesome.family
                 font.pixelSize: 12*Devices.fontDensity
                 text: Awesome.fa_ellipsis_v
-                visible: !indicator.running
+                visible: !indicator.running && !page.locked
                 flat: true
                 Material.theme: Material.Dark
                 onClicked: optionsMenu.open()
@@ -381,6 +427,7 @@ QtControls.Page {
         anchors.top: header.bottom
         height: Devices.standardTitleBarHeight*0.8
         color: "#222222"
+        z: 10
 
         Toolkit.ProfileImage {
             id: blackProfilePic
@@ -402,6 +449,7 @@ QtControls.Page {
             horizontalAlignment: Text.AlignRight
             font.pixelSize: 9*Devices.fontDensity
             wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+            visible: !page.locked
             maximumLineCount: 1
         }
 
@@ -411,9 +459,10 @@ QtControls.Page {
             anchors.verticalCenter: parent.verticalCenter
             horizontalAlignment: Text.AlignLeft
             color: "#ffffff"
-            text: qsTr("%1 messages").arg(chartEngine.count)
+            text: !chartEngine.refreshing || chartEngine.count? qsTr("%1 messages").arg(chartEngine.count) : qsTr("Loading...")
             font.pixelSize: 9*Devices.fontDensity
             wrapMode: Text.WrapAnywhere
+            visible: !page.locked
             maximumLineCount: 1
         }
 
@@ -446,5 +495,18 @@ QtControls.Page {
         Tools.jsDelayCall(100, function(){
             grabber.save(Devices.picturesLocation + "/TelegramCharts", Qt.size(chartBack.width*2, chartBack.height*2))
         })
+    }
+
+    Component {
+        id: premiumItem_component
+        Toolkit.PremiumNotifyItem {
+            width: parent.width
+            anchors.top: parent.top
+            anchors.topMargin: blackBar.height + blackBar.y
+            anchors.bottom: parent.bottom
+            title: page.title
+            currentPeer: page.peer
+            engine: page.engine
+        }
     }
 }

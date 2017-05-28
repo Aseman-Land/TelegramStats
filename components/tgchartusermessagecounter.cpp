@@ -35,10 +35,10 @@ void TgChartUserMessageCounter::setTelegram(Telegram *telegram)
         return;
 
     if(p->telegram)
-        disconnect(p->telegram, &Telegram::connected, this, &TgChartUserMessageCounter::refresh);
+        disconnect(p->telegram, &Telegram::authLoggedIn, this, &TgChartUserMessageCounter::refresh);
     p->telegram = telegram;
     if(p->telegram)
-        connect(p->telegram, &Telegram::connected, this, &TgChartUserMessageCounter::refresh);
+        connect(p->telegram, &Telegram::authLoggedIn, this, &TgChartUserMessageCounter::refresh);
 
     if(p->telegram && p->telegram->isConnected())
         refresh();

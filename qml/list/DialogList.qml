@@ -8,6 +8,7 @@ import QtQuick.Controls.Material 2.0
 import "../authenticating" as Auth
 import "../globals"
 import "../toolkit" as Toolkit
+import "../pages" as Pages
 
 QtControls.Page {
 
@@ -37,12 +38,22 @@ QtControls.Page {
         property variant waitObj
     }
 
+    QtControls.BusyIndicator {
+        id: indicator
+        anchors.centerIn: parent
+        height: 48*Devices.density
+        width: height
+        transformOrigin: Item.Center
+        running: dmodel.refreshing && dmodel.count == 0
+    }
+
     AsemanGridView {
         id: dlist
         width: parent.width
         anchors.top: header.bottom
         anchors.bottom: parent.bottom
         model: dmodel
+        layoutDirection: View.layoutDirection
 
         cellWidth: parent.width/Math.floor(dlist.width/(128*Devices.density))
         cellHeight: cellWidth + 25*Devices.density
@@ -52,6 +63,8 @@ QtControls.Page {
 
             Toolkit.PremiumButton {
                 width: parent.width
+                visible: !TgChartsGlobals.premium
+                onClicked: TgChartsStore.activePremium()
             }
 
             Toolkit.FullChartButton {
@@ -62,8 +75,26 @@ QtControls.Page {
         }
 
         delegate: Item {
+            id: item
             width: dlist.cellWidth
             height: dlist.cellHeight
+
+            property bool locked: {
+                if(TgChartsGlobals.premium)
+                    return false
+                if(TgChartsGlobals.topChats) {
+                    var idx = TgChartsGlobals.topChats.indexOf(peer.userId + "")
+                    if(idx >= 0 && idx < 3)
+                        return false
+                }
+                if(TgChartsGlobals.unlockedChats) {
+                    var idx = TgChartsGlobals.unlockedChats.indexOf(peer.userId + "")
+                    if(idx != -1)
+                        return false
+                }
+
+                return true
+            }
 
             Rectangle {
                 id: back
@@ -112,40 +143,22 @@ QtControls.Page {
                     onClicked: {
                         if(currentList)
                             return
-
                         currentList = pageManager.append(chart_component, {"title": model.title, "peer": model.peer})
                         discardSearchFocus()
                     }
                 }
 
                 Rectangle {
-                    id: lockArea
                     anchors.fill: parent
-                    color: TgChartsGlobals.foregroundColor
-                    opacity: 0.5
+                    color: TgChartsGlobals.backgroundColor
+                    opacity: 0.7
                     radius: back.radius
                     visible: {
-                        cacheString = model.peer.userId
-                        if(msgCounter.refreshing && !TgChartsGlobals.topChats) return false
-                        var idx = TgChartsGlobals.topChats.indexOf(cacheString)
-                        if(idx < 0 || idx > 2)
-                            return true
-                        else
+                        if(!TgChartsGlobals.topChats && msgCounter.refreshing)
                             return false
+                        else
+                            return item.locked
                     }
-
-                    property string cacheString
-
-                    MouseArea { anchors.fill: parent }
-                }
-
-                Text {
-                    anchors.centerIn: lockArea
-                    visible: lockArea.visible
-                    color: TgChartsGlobals.backgroundColor
-                    font.family: Awesome.family
-                    font.pixelSize: 20*Devices.fontDensity
-                    text: Awesome.fa_lock
                 }
             }
         }
@@ -261,6 +274,13 @@ QtControls.Page {
         ChartList {
             anchors.fill: parent
             engine: dmodel.engine
+        }
+    }
+
+    Component {
+        id: premium_component
+        Pages.ActivePremiumPage {
+            anchors.fill: parent
         }
     }
 
