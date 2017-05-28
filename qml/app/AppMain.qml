@@ -14,6 +14,9 @@ AsemanWindow {
     width: 550
     height: 800
 
+    tooltip.color: TgChartsGlobals.masterColor
+    tooltip.textColor: "#ffffff"
+
     Material.theme: TgChartsGlobals.darkMode? Material.Dark : Material.Light
     Material.accent: TgChartsGlobals.masterColor
 

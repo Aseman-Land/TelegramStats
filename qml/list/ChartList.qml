@@ -104,13 +104,13 @@ QtControls.Page {
 
         Rectangle {
             id: chartBack
-            width: column.width
+            width: flick.width
             height: column.height
             color: TgChartsGlobals.backgroundColor
 
             Column {
                 id: column
-                width: flick.width
+                width: chartBack.width
                 spacing: 8*Devices.density
 
                 Item { width: 1; height: 10*Devices.density }
@@ -149,7 +149,7 @@ QtControls.Page {
                     id: stickeritem
                     anchors.horizontalCenter: parent.horizontalCenter
                     width: {
-                        var res = column.width - grid.spacing*2
+                        var res = flick.width - grid.spacing*2
                         if(res > 500*Devices.density)
                             res = 500*Devices.density
                         return res
@@ -234,7 +234,7 @@ QtControls.Page {
                     bottomPadding: leftPadding
                     flow: Flow.TopToBottom
                     property int columns: {
-                        var res = Math.floor(width/(350*Devices.density))
+                        var res = Math.floor(flick.width/(350*Devices.density))
                         if(res < 1)
                             res = 1
                         return res
@@ -519,7 +519,12 @@ QtControls.Page {
         grabber.waitObj = showGlobalWait( qsTr("Please Wait"), true )
         grabber.waitObj.color = TgChartsGlobals.backgroundColor
         Tools.jsDelayCall(100, function(){
-            grabber.save(Devices.picturesLocation + "/TelegramCharts", Qt.size(chartBack.width*2, chartBack.height*2))
+            var ratio = Devices.deviceDensity
+            var resWidth = chartBack.width*ratio
+            var resHeight = chartBack.height*ratio
+
+            grabber.fileName = qsTr("Your telegram stats") + " - " + Tools.dateToMSec(new Date)
+            grabber.save(Devices.picturesLocation + "/Telegram Stats", Qt.size(resWidth, resHeight))
         })
     }
 

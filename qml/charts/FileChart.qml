@@ -56,6 +56,9 @@ AbstractChart {
                 color = "#B39DDB"
                 name = qsTr("Voice")
                 break
+
+            default:
+                return;
             }
 
             series.append("%1 (%2)".arg(name).arg(y), y).color = color
