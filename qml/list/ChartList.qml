@@ -71,6 +71,7 @@ QtControls.Page {
     ItemGrabber {
         id: grabber
         item: chartBack
+        suffix: "jpg"
         onSaved: {
             stickeritem.visible = true
             Tools.jsDelayCall(1000, function(){
