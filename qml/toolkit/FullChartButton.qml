@@ -85,7 +85,12 @@ Item {
 
             Charts.CompareAllChart {
                 id: callChart
-                width: fchartBtn.width - 20*Devices.density
+                width: {
+                    var res = fchartBtn.width - 20*Devices.density
+                    if(res > 500*Devices.density)
+                        res = 500*Devices.density
+                    return res
+                }
                 height: width*4/5
                 dataMap: fchartBtn.dataMap
             }
