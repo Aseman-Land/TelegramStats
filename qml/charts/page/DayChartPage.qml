@@ -122,7 +122,7 @@ AbstractChartPage {
     ScrollBar {
         scrollArea: flick; height: flick.height; anchors.right: flick.right; anchors.top: flick.top
         color: TgChartsGlobals.masterColor
-        LayoutMirroring.enabled: View.layoutDirection == Qt.RightToLeft
+        LayoutMirroring.enabled: View.reverseLayout
     }
 
     Header {

@@ -5,3 +5,4 @@ SideMenuItem 1.0 SideMenuItem.qml
 PremiumButton 1.0 PremiumButton.qml
 FullChartButton 1.0 FullChartButton.qml
 PremiumRequiredDialog 1.0 PremiumRequiredDialog.qml
+OpenSourceProjects 1.0 OpenSourceProjects.qml

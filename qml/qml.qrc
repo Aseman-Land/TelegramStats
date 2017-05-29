@@ -63,5 +63,8 @@
         <file>files/WaterMark.png</file>
         <file>files/premium-account.png</file>
         <file>toolkit/PremiumRequiredDialog.qml</file>
+        <file>pages/Contact.qml</file>
+        <file>pages/About.qml</file>
+        <file>toolkit/OpenSourceProjects.qml</file>
     </qresource>
 </RCC>

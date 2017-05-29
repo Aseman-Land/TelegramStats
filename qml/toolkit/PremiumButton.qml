@@ -24,6 +24,7 @@ Item {
 
             Column {
                 anchors.centerIn: parent
+                width: parent.width - 20*Devices.density
                 spacing: 4*Devices.density
 
                 QtControls.Label {
@@ -34,8 +35,10 @@ Item {
                 }
 
                 QtControls.Label {
-                    anchors.horizontalCenter: parent.horizontalCenter
                     text: qsTr("You can active premium free or payment") + TgChartsGlobals.translator.refresher
+                    width: parent.width
+                    horizontalAlignment: Text.AlignHCenter
+                    wrapMode: Text.WrapAtWordBoundaryOrAnywhere
                     font.pixelSize: 9*Devices.fontDensity
                     color: "#ffffff"
                 }

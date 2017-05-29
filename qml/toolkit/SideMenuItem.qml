@@ -106,8 +106,8 @@ Rectangle {
             model.clear()
             model.append({"name": qsTr("Home")   , "icon": Awesome.fa_home, "component": null})
             model.append({"name": qsTr("Settings"), "icon": Awesome.fa_gear, "component": configure_component})
-            model.append({"name": qsTr("Contact"), "icon": Awesome.fa_mail_reply, "component": null})
-            model.append({"name": qsTr("About")  , "icon": Awesome.fa_star, "component": null})
+            model.append({"name": qsTr("Contact"), "icon": Awesome.fa_mail_reply, "component": contact_component})
+            model.append({"name": qsTr("About")  , "icon": Awesome.fa_star, "component": about_component})
         }
     }
 
@@ -116,6 +116,20 @@ Rectangle {
         Pages.Configure {
             anchors.fill: parent
             engine: sideMenu.engine
+        }
+    }
+
+    Component {
+        id: contact_component
+        Pages.Contact {
+            anchors.fill: parent
+        }
+    }
+
+    Component {
+        id: about_component
+        Pages.About {
+            anchors.fill: parent
         }
     }
 }
