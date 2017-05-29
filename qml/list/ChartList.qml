@@ -17,6 +17,8 @@ QtControls.Page {
     property alias engine: profilePic.engine
     property InputPeer peer
 
+    property bool takingImage: false
+
     readonly property bool locked: {
         if(TgChartsGlobals.premium)
             return false
@@ -73,7 +75,8 @@ QtControls.Page {
         item: chartBack
         suffix: "jpg"
         onSaved: {
-            stickeritem.visible = true
+            takingImage = false
+
             Tools.jsDelayCall(1000, function(){
                 if(grabber.toUser) {
                     grabber.waitObj.text = qsTr("Sending photo...")
@@ -149,6 +152,7 @@ QtControls.Page {
                 Toolkit.StickerItem {
                     id: stickeritem
                     anchors.horizontalCenter: parent.horizontalCenter
+                    visible: !stickeritem.isNull || !takingImage
                     width: {
                         var res = flick.width - grid.spacing*2
                         if(res > 500*Devices.density)
@@ -195,8 +199,13 @@ QtControls.Page {
                     height: {
                         var clmns = new Array
                         var sum = 0
-                        for(i in children)
-                            sum += children[i].height + spacing
+                        for(var i in children) {
+                            var chld = children[i]
+                            if(!chld.visible)
+                                continue
+
+                            sum += chld.height + spacing
+                        }
 
                         var perColumn = sum/columns
                         var oprDone = false
@@ -207,7 +216,11 @@ QtControls.Page {
 
                             var columnIdx = 0
                             for(i in children) {
-                                var itemHeight = children[i].height + spacing
+                                var chld = children[i]
+                                if(!chld.visible)
+                                    continue
+
+                                var itemHeight = chld.height + spacing
                                 if(perColumn < clmns[columnIdx] + itemHeight)
                                     columnIdx++
                                 if(columnIdx >= columns) {
@@ -248,12 +261,14 @@ QtControls.Page {
                         height: width*3/4
                         color: TgChartsGlobals.backgroundColor
                         shadowColor: TgChartsGlobals.foregroundColor
+                        visible: dayChart.checkBox.checked || !takingImage
 
                         Charts.DayChart {
                             id: dayChart
                             anchors.fill: parent
                             engine: chartEngine
                             peerName: page.title
+                            checkBox.visible: !takingImage
                         }
                     }
 
@@ -262,6 +277,7 @@ QtControls.Page {
                         height: emojiChart.height
                         color: TgChartsGlobals.backgroundColor
                         shadowColor: TgChartsGlobals.foregroundColor
+                        visible: emojiChart.checkBox.checked || !takingImage
 
                         Charts.EmojiChart {
                             id: emojiChart
@@ -270,6 +286,7 @@ QtControls.Page {
                             peerName: page.title
                             telegramEngine: page.engine
                             telegramPeer: page.peer
+                            checkBox.visible: !takingImage
                         }
                     }
 
@@ -278,12 +295,14 @@ QtControls.Page {
                         height: width*3/4
                         color: TgChartsGlobals.backgroundColor
                         shadowColor: TgChartsGlobals.foregroundColor
+                        visible: senseChart.checkBox.checked || !takingImage
 
                         Charts.SenseDiaryChart {
                             id: senseChart
                             anchors.fill: parent
                             engine: chartEngine
                             peerName: page.title
+                            checkBox.visible: !takingImage
                         }
                     }
 
@@ -292,12 +311,14 @@ QtControls.Page {
                         height: width*3/4
                         color: TgChartsGlobals.backgroundColor
                         shadowColor: TgChartsGlobals.foregroundColor
+                        visible: monthChart.checkBox.checked || !takingImage
 
                         Charts.MonthChart {
                             id: monthChart
                             anchors.fill: parent
                             engine: chartEngine
                             peerName: page.title
+                            checkBox.visible: !takingImage
                         }
                     }
 
@@ -306,11 +327,14 @@ QtControls.Page {
                         height: width*14/16
                         color: TgChartsGlobals.backgroundColor
                         shadowColor: TgChartsGlobals.foregroundColor
+                        visible: fileChart.checkBox.checked || !takingImage
 
                         Charts.FileChart {
+                            id: fileChart
                             anchors.fill: parent
                             engine: chartEngine
                             peerName: page.title
+                            checkBox.visible: !takingImage
                         }
                     }
 
@@ -319,6 +343,7 @@ QtControls.Page {
                         height: detailsChart.height
                         color: TgChartsGlobals.backgroundColor
                         shadowColor: TgChartsGlobals.foregroundColor
+                        visible: detailsChart.checkBox.checked || !takingImage
 
                         Charts.MessageDetailsChart {
                             id: detailsChart
@@ -327,6 +352,7 @@ QtControls.Page {
                             peerName: page.title
                             telegramEngine: page.engine
                             telegramPeer: page.peer
+                            checkBox.visible: !takingImage
                         }
                     }
 
@@ -335,11 +361,14 @@ QtControls.Page {
                         height: width*16/16
                         color: TgChartsGlobals.backgroundColor
                         shadowColor: TgChartsGlobals.foregroundColor
+                        visible: timeChart.checkBox.checked || !takingImage
 
                         Charts.TimePolarChart {
+                            id: timeChart
                             anchors.fill: parent
                             engine: chartEngine
                             peerName: page.title
+                            checkBox.visible: !takingImage
                         }
                     }
                 }
@@ -518,8 +547,7 @@ QtControls.Page {
         if(grabber.waitObj)
             return
 
-        if(stickeritem.isNull)
-            stickeritem.visible = false
+        takingImage = true
 
         grabber.toUser = toUser
         grabber.waitObj = showGlobalWait( qsTr("Please Wait"), true )

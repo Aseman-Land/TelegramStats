@@ -9,6 +9,8 @@ import "../globals"
 AbstractChart {
     id: page
 
+    checkBox.visible: false
+
     property variant dataMap
     property variant series
     property variant colors: ["#F44336", "#9C27B0", "#009688", "#3F51B5", "#795548", "#2196F3", "#FF5722", "#8BC34A", "#607D8B", "#FF9800"]

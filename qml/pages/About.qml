@@ -100,6 +100,9 @@ QtControls.Page {
         width: parent.width
         anchors.top: header.bottom
         model: [qsTr("Application"), qsTr("Open-source")]
+        highlightColor: TgChartsGlobals.masterColor
+        color: TgChartsGlobals.backgroundAlternativeColor
+        textColor: TgChartsGlobals.foregroundColor
         fontSize: 10*Devices.fontDensity
         currentIndex: 0
         onCurrentIndexChanged: swipe.currentIndex = currentIndex

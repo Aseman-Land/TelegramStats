@@ -11,6 +11,8 @@ Item {
     property Engine engine
     property string peerName
 
+    property alias checkBox: checkBox
+
     signal clicked()
 
     LayoutMirroring.childrenInherit: true
@@ -20,5 +22,18 @@ Item {
         anchors.fill: parent
         z: 100
         onClicked: achart.clicked()
+    }
+
+    QtControls.CheckBox {
+        id: checkBox
+        x: View.defaultLayout? 0 : parent.width - width
+        z: 110
+        checked: true
+
+        MouseArea {
+            anchors.fill: parent
+            visible: !TgChartsGlobals.premium
+            onClicked: premiumReqDialog.open()
+        }
     }
 }
