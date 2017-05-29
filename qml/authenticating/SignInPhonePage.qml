@@ -2,6 +2,7 @@ import QtQuick 2.0
 import AsemanTools 1.1
 import QtQuick.Controls 2.0
 import QtQuick.Layouts 1.3 as QtLayouts
+import "../globals"
 
 Item {
     property variant engine
@@ -28,7 +29,7 @@ Item {
         Item { width: 1; height: 10*Devices.density }
 
         Label {
-            text: qsTr("Telegram Stats")
+            text: qsTr("Telegram Stats") + TgChartsGlobals.translator.refresher
             font.pixelSize: 15*Devices.fontDensity
             anchors.horizontalCenter: parent.horizontalCenter
         }
@@ -36,7 +37,7 @@ Item {
         Item { width: 1; height: 20*Devices.density }
 
         Label {
-            text: qsTr("Please enter your phone number below")
+            text: qsTr("Please enter your phone number below") + TgChartsGlobals.translator.refresher
             font.pixelSize: 9*Devices.fontDensity
             width: parent.width
             wrapMode: Text.WrapAtWordBoundaryOrAnywhere
@@ -66,7 +67,7 @@ Item {
                 width: parent.width
                 inputMethodHints: Qt.ImhDigitsOnly
                 validator: RegExpValidator { regExp: /\d+/g }
-                placeholderText: qsTr("Phone number")
+                placeholderText: qsTr("Phone number") + TgChartsGlobals.translator.refresher
                 QtLayouts.Layout.fillWidth: true
                 onAccepted: signIn()
             }
@@ -74,7 +75,7 @@ Item {
 
         Button {
             width: parent.width
-            text: qsTr("Sign-in")
+            text: qsTr("Sign-in") + TgChartsGlobals.translator.refresher
             highlighted: true
             onClicked: signIn()
         }
@@ -84,7 +85,7 @@ Item {
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.bottom: parent.bottom
         anchors.bottomMargin: 20*Devices.density
-        text: qsTr("Powered by <a href=\"http://aseman.co\">Aseman Team</a>")
+        text: qsTr("Powered by <a href=\"http://aseman.co\">Aseman Team</a>") + TgChartsGlobals.translator.refresher
         font.pixelSize: 8*Devices.fontDensity
         onLinkActivated: Qt.openUrlExternally(link)
     }

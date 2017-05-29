@@ -79,8 +79,9 @@ QtControls.Page {
 
             Tools.jsDelayCall(1000, function(){
                 if(grabber.toUser) {
+                    var msg = qsTr("Hi\nIt's our telegram stats. take a look at it.")
                     grabber.waitObj.text = qsTr("Sending photo...")
-                    mmodel.sendFile(Enums.SendFileTypeDocument, Devices.localFilesPrePath + dest, null, null, function(){
+                    mmodel.sendFile(Enums.SendFileTypeDocument, Devices.localFilesPrePath + dest, null, null, msg, function(){
                         grabber.waitObj.destroy()
                         stickeritem.visible = true
                         Tools.deleteFile(dest)
