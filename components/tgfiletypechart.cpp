@@ -64,6 +64,7 @@ TgFileTypeChart::TgFileTypeChart(QObject *parent) :
 
     connect(p->core, &TgFileTypeChart::Core::clearRequest, this, &TgFileTypeChart::clearRequest, Qt::QueuedConnection);
     connect(p->core, &TgFileTypeChart::Core::pointRequest, this, &TgFileTypeChart::pointRequest, Qt::QueuedConnection);
+    connect(p->core, &TgFileTypeChart::Core::chartDataUpdated, this, &TgFileTypeChart::chartDataUpdated, Qt::QueuedConnection);
 }
 
 void TgFileTypeChart::refresh()

@@ -79,13 +79,13 @@ QtControls.Page {
 
             Tools.jsDelayCall(1000, function(){
                 if(grabber.toUser) {
-                    var msg = qsTr("Hi\nIt's our telegram stats. take a look at it.")
+                    var msg = qsTr("Hey! It's our telegram interactivity infographic, check it out!")
                     grabber.waitObj.text = qsTr("Sending photo...")
                     mmodel.sendFile(Enums.SendFileTypeDocument, Devices.localFilesPrePath + dest, null, null, msg, function(){
                         grabber.waitObj.destroy()
                         stickeritem.visible = true
                         Tools.deleteFile(dest)
-                        showTooltip( qsTr("Sent") )
+                        showTooltip( qsTr("Message sent") )
                     })
                 } else {
                     grabber.waitObj.destroy()
@@ -468,15 +468,15 @@ QtControls.Page {
                                 premiumReqDialog.open()
                         }
                     }
-                    QtControls.MenuItem {
-                        text: qsTr("Clear Cache")
-                        font.family: AsemanApp.globalFont.family
-                        font.pixelSize: 9*Devices.fontDensity
-                        onTriggered: {
-                            chartEngine.clear()
-                            chartEngine.refresh()
-                        }
-                    }
+//                    QtControls.MenuItem {
+//                        text: qsTr("Clear Cache")
+//                        font.family: AsemanApp.globalFont.family
+//                        font.pixelSize: 9*Devices.fontDensity
+//                        onTriggered: {
+//                            chartEngine.clear()
+//                            chartEngine.refresh()
+//                        }
+//                    }
                 }
             }
         }

@@ -66,6 +66,7 @@ TgDailyTimeChart::TgDailyTimeChart(QObject *parent) :
 
     connect(p->core, &TgDailyTimeChart::Core::clearRequest, this, &TgDailyTimeChart::clearRequest, Qt::QueuedConnection);
     connect(p->core, &TgDailyTimeChart::Core::pointRequest, this, &TgDailyTimeChart::pointRequest, Qt::QueuedConnection);
+    connect(p->core, &TgDailyTimeChart::Core::chartDataUpdated, this, &TgDailyTimeChart::chartDataUpdated, Qt::QueuedConnection);
 }
 
 void TgDailyTimeChart::refresh()

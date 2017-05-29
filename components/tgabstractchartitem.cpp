@@ -2,11 +2,13 @@
 #include "tgchartengine.h"
 
 #include <QPointer>
+#include <QDebug>
 
 class TgAbstractChartItem::Private
 {
 public:
     QPointer<TgChartEngine> engine;
+    QVariant chartData;
 };
 
 TgAbstractChartItem::TgAbstractChartItem(QObject *parent) :
@@ -35,10 +37,21 @@ void TgAbstractChartItem::setEngine(TgChartEngine *engine)
     Q_EMIT engineChanged();
 }
 
+QVariant TgAbstractChartItem::chartData() const
+{
+    return p->chartData;
+}
+
 void TgAbstractChartItem::discardEngine(TgChartEngine *engine)
 {
     if(p->engine == engine)
         setEngine(Q_NULLPTR);
+}
+
+void TgAbstractChartItem::chartDataUpdated(const QVariant &chartData)
+{
+    p->chartData = chartData;
+    Q_EMIT chartDataChanged();
 }
 
 TgAbstractChartItem::~TgAbstractChartItem()

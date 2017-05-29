@@ -146,6 +146,7 @@ TgTimeDiaryChart::TgTimeDiaryChart(QObject *parent) :
         else
             Q_EMIT pointRequest(value);
     }, Qt::QueuedConnection);
+    connect(p->core, &TgTimeDiaryChart::Core::chartDataUpdated, this, &TgTimeDiaryChart::chartDataUpdated, Qt::QueuedConnection);
 }
 
 void TgTimeDiaryChart::refresh()

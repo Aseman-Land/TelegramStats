@@ -22,6 +22,8 @@ public:
             db.setDatabaseName(source);
             db.open();
 
+            QVariantMap dataMap;
+
             QSqlQuery query(db);
             query.prepare("SELECT count(*) as cnt, emoji FROM emojis WHERE peerId=:peerId AND fromId=:peerId GROUP By emoji ORDER BY cnt DESC LIMIT 5");
             query.bindValue(":peerId", peerId);
@@ -37,6 +39,8 @@ public:
                 map["emoji"] = emoji;
                 map["count"] = cnt;
                 map["out"] = false;
+
+                dataMap[emoji] = dataMap[emoji].toInt() + cnt;
 
                 Q_EMIT pointRequest(map);
             }
@@ -56,8 +60,12 @@ public:
                 map["count"] = cnt;
                 map["out"] = true;
 
+                dataMap[emoji] = dataMap[emoji].toInt() + cnt;
+
                 Q_EMIT pointRequest(map);
             }
+
+            Q_EMIT chartDataUpdated(dataMap);
         }
         QSqlDatabase::removeDatabase(connection);
     }
@@ -83,6 +91,7 @@ TgChartsEmojisDiary::TgChartsEmojisDiary(QObject *parent) :
 
     connect(p->core, &TgChartsEmojisDiary::Core::clearRequest, this, &TgChartsEmojisDiary::clearRequest, Qt::QueuedConnection);
     connect(p->core, &TgChartsEmojisDiary::Core::pointRequest, this, &TgChartsEmojisDiary::pointRequest, Qt::QueuedConnection);
+    connect(p->core, &TgChartsEmojisDiary::Core::chartDataUpdated, this, &TgChartsEmojisDiary::chartDataUpdated, Qt::QueuedConnection);
 }
 
 void TgChartsEmojisDiary::refresh()

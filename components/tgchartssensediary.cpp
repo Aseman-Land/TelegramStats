@@ -71,6 +71,7 @@ TgChartsSenseDiary::TgChartsSenseDiary(QObject *parent) :
 
     connect(p->core, &TgChartsSenseDiary::Core::clearRequest, this, &TgChartsSenseDiary::clearRequest, Qt::QueuedConnection);
     connect(p->core, &TgChartsSenseDiary::Core::pointRequest, this, &TgChartsSenseDiary::pointRequest, Qt::QueuedConnection);
+    connect(p->core, &TgChartsSenseDiary::Core::chartDataUpdated, this, &TgChartsSenseDiary::chartDataUpdated, Qt::QueuedConnection);
 }
 
 void TgChartsSenseDiary::refresh()

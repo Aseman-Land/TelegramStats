@@ -5,6 +5,8 @@ import QtGraphicalEffects 1.0
 import "../globals"
 
 Item {
+    id: profileImage
+
     property alias source: avatar_img.source
     property alias engine: avatar_img.engine
     property alias color: back.color
@@ -12,14 +14,14 @@ Item {
     property alias downloaded: avatar_img.downloaded
     property alias downloading: avatar_img.downloading
     property alias destination: avatar_img.destination
-    property alias radius: avatar_mask.radius
+    property real radius: width/2
 
     readonly property bool disabled: radius == 0
 
     Rectangle {
         id: avatar_mask
         anchors.fill: avatar_img
-        radius: parent.width
+        radius: profileImage.radius*2
         visible: false
     }
 
@@ -28,6 +30,7 @@ Item {
         width: disabled? parent.width : parent.width*2
         height: disabled? parent.height : parent.height*2
         sourceSize: Qt.size(width, height)
+        fillMode: Image.PreserveAspectCrop
         visible: disabled
         asynchronous: true
         cache: false

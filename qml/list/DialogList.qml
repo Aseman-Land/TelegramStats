@@ -99,32 +99,39 @@ QtControls.Page {
             Rectangle {
                 id: back
                 anchors.fill: parent
-                anchors.margins: 2*Devices.density
-                radius: 5*Devices.density
+                anchors.margins: 3*Devices.density
                 color: TgChartsGlobals.backgroundAlternativeColor
+                radius: 5*Devices.density
+                border.width: 1*Devices.density
+                border.color: TgChartsGlobals.darkMode? "#555555" : "#eeeeee"
 
                 Rectangle {
                     anchors.fill: parent
-                    color: TgChartsGlobals.masterColor
+                    anchors.margins: 1*Devices.density
                     radius: 5*Devices.density
-                    opacity: marea.pressed? 0.2 : 0
+                    color: TgChartsGlobals.masterColor
+                    opacity: marea.pressed? 0.3 : 0
+
+                    Behavior on opacity {
+                        NumberAnimation { easing.type: Easing.OutCubic; duration: 300 }
+                    }
                 }
 
                 Item {
                     y: x
                     anchors.horizontalCenter: parent.horizontalCenter
-                    width: parent.width - 16*Devices.density
-                    height: parent.height - 16*Devices.density
+                    width: parent.width - 10*Devices.density
+                    height: parent.height - 10*Devices.density
 
                     Toolkit.ProfileImage {
                         width: parent.width
                         height: width
-                        radius: 0
+                        radius: 5*Devices.density
                         engine: dmodel.engine
                         source: model.peer
                     }
 
-                    Text {
+                    QtControls.Label {
                         width: parent.width
                         text: model.title
                         anchors.bottom: parent.bottom

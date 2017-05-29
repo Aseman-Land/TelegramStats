@@ -64,6 +64,7 @@ TgChartSenderRatioChart::TgChartSenderRatioChart(QObject *parent) :
 
     connect(p->core, &TgChartSenderRatioChart::Core::clearRequest, this, &TgChartSenderRatioChart::clearRequest, Qt::QueuedConnection);
     connect(p->core, &TgChartSenderRatioChart::Core::pointRequest, this, &TgChartSenderRatioChart::pointRequest, Qt::QueuedConnection);
+    connect(p->core, &TgChartSenderRatioChart::Core::chartDataUpdated, this, &TgChartSenderRatioChart::chartDataUpdated, Qt::QueuedConnection);
 }
 
 void TgChartSenderRatioChart::refresh()

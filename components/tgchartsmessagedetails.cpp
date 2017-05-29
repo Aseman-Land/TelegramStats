@@ -131,6 +131,7 @@ TgChartsMessageDetails::TgChartsMessageDetails(QObject *parent) :
 
     connect(p->core, &TgChartsMessageDetails::Core::clearRequest, this, &TgChartsMessageDetails::clearRequest, Qt::QueuedConnection);
     connect(p->core, &TgChartsMessageDetails::Core::pointRequest, this, &TgChartsMessageDetails::pointRequest, Qt::QueuedConnection);
+    connect(p->core, &TgChartsMessageDetails::Core::chartDataUpdated, this, &TgChartsMessageDetails::chartDataUpdated, Qt::QueuedConnection);
 }
 
 void TgChartsMessageDetails::refresh()
