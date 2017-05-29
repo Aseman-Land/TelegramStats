@@ -21,7 +21,12 @@ AbstractChart {
         var list = new Array
         var counter = 0
         var total = 0
-        var limit = dataMap.length - 6
+
+        var dataMapLength = 0
+        for(var dt in dataMap)
+            dataMapLength++
+
+        var limit = dataMapLength - 6
         for(var value in dataMap) {
             counter++
             if(counter < limit)

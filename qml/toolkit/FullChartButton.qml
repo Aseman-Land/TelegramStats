@@ -61,7 +61,7 @@ Item {
         QtControls.Dialog {
             id: dialog
             title: qsTr("Your top active chats")
-            standardButtons: QtControls.Dialog.Cancel
+            standardButtons: QtControls.Dialog.Close
             contentHeight: callChart.height
             contentWidth: callChart.width
             x: parent.width/2 - width/2
