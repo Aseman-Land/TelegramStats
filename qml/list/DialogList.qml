@@ -44,7 +44,7 @@ QtControls.Page {
         height: 48*Devices.density
         width: height
         transformOrigin: Item.Center
-        running: dmodel.refreshing && dmodel.count == 0
+        running: (dmodel.refreshing && dmodel.count == 0) || !dlist.visible
     }
 
     AsemanGridView {
@@ -54,6 +54,7 @@ QtControls.Page {
         anchors.bottom: parent.bottom
         model: dmodel
         layoutDirection: View.layoutDirection
+        visible: engine.state != Telegram.Engine.AuthFetchingOurDetails
 
         cellWidth: parent.width/Math.floor(dlist.width/(128*Devices.density))
         cellHeight: cellWidth + 25*Devices.density
@@ -99,7 +100,7 @@ QtControls.Page {
             Rectangle {
                 id: back
                 anchors.fill: parent
-                anchors.margins: 3*Devices.density
+                anchors.margins: 2*Devices.density
                 color: TgChartsGlobals.backgroundAlternativeColor
                 radius: 5*Devices.density
                 border.width: 1*Devices.density

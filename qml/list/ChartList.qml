@@ -404,7 +404,18 @@ QtControls.Page {
     Header {
         id: header
         width: parent.width
-        color: TgChartsGlobals.masterColor
+        color: {
+            if(colorAnalizer.color == "#000000")
+                return TgChartsGlobals.masterColor
+            else
+                return colorAnalizer.color
+        }
+
+        ImageColorAnalizor {
+            id: colorAnalizer
+            source: blackProfilePic.currentImage
+            method: ImageColorAnalizor.MoreSaturation
+        }
 
         Item {
             width: parent.width

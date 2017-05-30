@@ -5,7 +5,7 @@ import "../globals"
 
 Telegram.Engine {
     id: tgEngine
-    logLevel: Telegram.Engine.LogLevelUseful
+    logLevel: Telegram.Engine.LogLevelClean
     configDirectory: TgChartsGlobals.profilePath
     tempPath: configDirectory + "/" + phoneNumber + "/temp"
 

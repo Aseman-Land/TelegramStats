@@ -290,13 +290,11 @@ QtControls.Page {
 
         Column {
             id: premiumDialogColumn
-            width: configure.width - 80*Devices.density
 
             QtControls.Label {
                 id: label
                 font.pixelSize: 9*Devices.fontDensity
                 wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-                width: parent.width
                 text: qsTr("To active premium, enter the code below:")
             }
 

@@ -74,7 +74,12 @@ Item {
 
         AsemanListView {
             id: listv
-            width: stickeritem.width - 60*Devices.density
+            width: {
+                var res = stickeritem.width - 60*Devices.density
+                if(res > 500*Devices.density)
+                    res = 500*Devices.density
+                return res
+            }
             height: View.root.height/2
             model: Tools.filesOf(":/toolkit/stickers/")
             clip: true

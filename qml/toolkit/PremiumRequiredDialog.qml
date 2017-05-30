@@ -63,7 +63,12 @@ Item {
                 id: label
                 font.pixelSize: 9*Devices.fontDensity
                 wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-                width: premiumReqDialog.width - 80*Devices.density
+                width: {
+                    var res = premiumReqDialog.width - 80*Devices.density
+                    if(res > 500*Devices.density)
+                        res = 500*Devices.density
+                    return res
+                }
                 text: qsTr("This feature needs premium account. Do you want to active it?")
             }
         }

@@ -15,11 +15,6 @@ Page {
     readonly property variant sidebar: spManager.mainItem.sidebar
     readonly property bool search: spManager.currentItem && spManager.currentItem.searchVisible? spManager.currentItem.searchVisible : false
 
-    Rectangle {
-        anchors.fill: parent
-        color: TgChartsGlobals.masterColor
-    }
-
     SlidePageManager {
         id: spManager
         anchors.fill: parent
@@ -28,7 +23,7 @@ Page {
             id: dialogList
             engine: accPage.engine
             anchors.fill: parent
-            visible: engine.state == Telegram.Engine.AuthLoggedIn
+            visible: engine.state >= Telegram.Engine.AuthFetchingOurDetails
 
             property alias sidebar: _sidebar
 

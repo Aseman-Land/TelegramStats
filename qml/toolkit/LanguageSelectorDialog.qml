@@ -44,7 +44,12 @@ Item {
 
             AsemanListView {
                 id: listv
-                width: 200*Devices.density
+                width: {
+                    var res = languageSelector.width - 60*Devices.density
+                    if(res > 300*Devices.density)
+                        res = 300*Devices.density
+                    return res
+                }
                 height: 300*Devices.density
                 model: ListModel {}
                 clip: true

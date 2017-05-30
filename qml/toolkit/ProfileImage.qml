@@ -14,6 +14,7 @@ Item {
     property alias downloaded: avatar_img.downloaded
     property alias downloading: avatar_img.downloading
     property alias destination: avatar_img.destination
+    property alias currentImage: avatar_img.currentImage
     property real radius: width/2
 
     readonly property bool disabled: radius == 0
