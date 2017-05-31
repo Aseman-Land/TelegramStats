@@ -54,4 +54,6 @@ AsemanWindow {
             })
         }
     }
+
+    Component.onCompleted: AsemanServices.init()
 }

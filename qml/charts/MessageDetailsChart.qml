@@ -15,6 +15,8 @@ AbstractChart {
     property variant telegramEngine
     property variant telegramPeer
 
+    property alias chartData: senderRatio.chartData
+
     property string sentVoice: "N/A"
     property string receivedVoice: "N/A"
     property string sentChars: "N/A"

@@ -11,6 +11,15 @@
 #include "components/tgchartsmessagedetails.h"
 #include "components/tgchartssensediary.h"
 #include "components/tgchartusermessagecounter.h"
+#include "components/tgchartssensedailydiary.h"
+
+#ifdef ASEMAN_FALCON_SERVER
+#include "asemanclientsocket.h"
+#else
+#include "asemanabstractclientsocket.h"
+#endif
+
+#include "services/tgstats1.h"
 
 #include <QApplication>
 #include <QQmlApplicationEngine>
@@ -18,6 +27,13 @@
 
 int main(int argc, char *argv[])
 {
+#ifdef ASEMANCLIENTSOCKET_H
+    qmlRegisterType<AsemanClientSocket>("AsemanServer", 1, 0, "ClientSocket");
+#else
+    qmlRegisterType<AsemanAbstractClientSocket>("AsemanServer", 1, 0, "ClientSocket");
+#endif
+    qmlRegisterType<Tgstats1>("AsemanServer", 1, 0, "Tgstats");
+
     qmlRegisterType<TgChartEngine>("TgChart", 1, 0, "Engine");
     qmlRegisterType<TgChartUserMessageCounter>("TgChart", 1, 0, "UserMessageCounter");
     qmlRegisterUncreatableType<TgAbstractChartItem>("TgChart", 1, 0, "AbstractChartItem", "");
@@ -28,6 +44,7 @@ int main(int argc, char *argv[])
     qmlRegisterType<TgChartsEmojisDiary>("TgChart", 1, 0, "EmojisDiary");
     qmlRegisterType<TgChartsMessageDetails>("TgChart", 1, 0, "MessageDetailsChart");
     qmlRegisterType<TgChartsSenseDiary>("TgChart", 1, 0, "SenseDiary");
+    qmlRegisterType<TgChartsSenseDailyDiary>("TgChart", 1, 0, "SenseDailyDiary");
 
     AsemanApplication app(argc, argv, AsemanApplication::WidgetApplication);
 

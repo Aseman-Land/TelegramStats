@@ -15,11 +15,11 @@ AbstractChart {
     property string lovenesString: "☺️😊😇😍😘🤗😚👍👌💋👄🌷🌹🌺🌸🌼🌻💐❤️💛💚💙💜🖤💘💖💗💓💞💕❣️♥️"
     property string violenceString: "😡😠😤👿☠️💀👹👺👊🖕⚒🛠⛏🔧🔨🔫⚔️🗡🔪💣🛡💉"
 
-    TgChart.SenseDiary {
+    TgChart.SenseDailyDiary {
         id: timeDiary
         engine: chart? page.engine : null
         onPointRequest: {
-            var x = value.date
+            var x = value.hour
             var emoji = value.emoji
             var y = value.count
 
@@ -69,10 +69,15 @@ AbstractChart {
         }
 
         function pushCache() {
-            seriesHappy.append(currentDate, 100*happinesCache/sumCache)
-            seriesSad.append(currentDate, 100*sadnesCache/sumCache)
-            seriesLove.append(currentDate, 100*lovenesCache/sumCache)
-            seriesViolance.append(currentDate, 100*violanceCache/sumCache)
+            if(happinesCache > yAxis.max) yAxis.max = happinesCache
+            if(sadnesCache > yAxis.max) yAxis.max = sadnesCache
+            if(lovenesCache > yAxis.max) yAxis.max = lovenesCache
+            if(violanceCache > yAxis.max) yAxis.max = violanceCache
+
+            seriesHappy.append(currentDate, happinesCache)
+            seriesSad.append(currentDate, sadnesCache)
+            seriesLove.append(currentDate, lovenesCache)
+            seriesViolance.append(currentDate, violanceCache)
 
             happinesCache = 0
             sadnesCache = 0
@@ -105,35 +110,11 @@ AbstractChart {
         }
     }
 
-    DateTimeAxis {
+    ValueAxis {
         id: xAxis
-        labelsFont.pixelSize: 7*Devices.fontDensity
-        min: {
-            var today = new Date
-            var mnth = today.getMonth()
-            var year = today.getFullYear()
-            mnth--
-            if(mnth < 1) {
-                mnth = 12
-                year--
-            }
-
-            return new Date(year, mnth, 1)
-        }
-        max: {
-            var today = new Date
-            var mnth = today.getMonth()
-            var year = today.getFullYear()
-            mnth++
-            if(mnth > 12) {
-                mnth = 1
-                year++
-            }
-
-            return new Date(year, mnth, 1)
-        }
-        tickCount: 5
-        format: "yyyy/MM"
+        min: 0; max: 24
+        tickCount: 25
+        labelsFont.pixelSize: 6*Devices.fontDensity
         color: TgChartsGlobals.foregroundColor
         labelsColor: TgChartsGlobals.foregroundColor
     }
@@ -149,7 +130,7 @@ AbstractChart {
 
     Component {
         id: chart_component
-        ChartView {
+        PolarChartView {
             id: chart
             anchors.fill: parent
             margins.left: 0
@@ -157,9 +138,10 @@ AbstractChart {
             margins.bottom: 0
             margins.top: 0
             antialiasing: true
-            title: qsTr("Your senses based on the month")
             legend.font.pixelSize: 7*Devices.fontDensity
+            legend.visible: false
             titleFont.pixelSize: 11*Devices.fontDensity
+            title: qsTr("Senses daily interaction")
             legend.labelColor: TgChartsGlobals.foregroundColor
             backgroundColor: TgChartsGlobals.backgroundColor
             titleColor: TgChartsGlobals.foregroundColor

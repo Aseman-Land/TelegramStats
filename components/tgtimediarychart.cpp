@@ -22,6 +22,8 @@ public:
             db.setDatabaseName(source);
             db.open();
 
+            QVariantList dataList;
+
             QString dateStr;
             if(_day)
                 dateStr = "%m-%Y-%d";
@@ -104,12 +106,17 @@ public:
 
                 Q_EMIT pointRequest(map);
                 lastDate = date;
+
+                dataList << map;
             }
 
             qreal days = minimumDate.daysTo(maximumDate);
             QVariantMap map;
             map["average"] = (messagesCount/days)*(_day? 1 : 30);
             Q_EMIT pointRequest(map);
+
+            map["list"] = dataList;
+            Q_EMIT chartDataUpdated(map);
         }
         QSqlDatabase::removeDatabase(connection);
     }

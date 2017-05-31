@@ -7,6 +7,8 @@ import "../globals"
 AbstractChart {
     id: page
 
+    property alias chartData: senderRatio.chartData
+
     property variant catArray: new Array
     property variant sumArray: new Array
 

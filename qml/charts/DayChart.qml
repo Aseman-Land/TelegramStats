@@ -10,6 +10,7 @@ AbstractChart {
     id: page
 
     property alias average: timeDiary.average
+    property alias chartData: timeDiary.chartData
 
 //    onClicked: pageManager.append(page_component)
 

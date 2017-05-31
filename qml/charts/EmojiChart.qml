@@ -13,6 +13,8 @@ AbstractChart {
     property variant telegramEngine
     property variant telegramPeer
 
+    property alias chartData: senderRatio.chartData
+
     TgChart.EmojisDiary {
         id: senderRatio
         onPointRequest: {

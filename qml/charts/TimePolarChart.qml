@@ -7,6 +7,8 @@ import "../globals"
 AbstractChart {
     id: page
 
+    property alias chartData: senderRatio.chartData
+
     property int slice: 3
 
     TgChart.DailyTimeChart {

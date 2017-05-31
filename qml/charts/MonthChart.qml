@@ -9,6 +9,7 @@ AbstractChart {
     id: page
 
     property alias average: timeDiary.average
+    property alias chartData: timeDiary.chartData
 
     TgChart.TimeDiaryChart {
         id: timeDiary

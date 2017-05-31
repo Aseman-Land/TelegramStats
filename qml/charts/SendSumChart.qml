@@ -7,6 +7,8 @@ import "../globals"
 AbstractChart {
     id: page
 
+    property alias chartData: senderRatio.chartData
+
     TgChart.SenderRatioChart {
         id: senderRatio
         engine: chart? page.engine : null

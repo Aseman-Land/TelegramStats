@@ -22,6 +22,8 @@ public:
             db.setDatabaseName(source);
             db.open();
 
+            QVariantList dataList;
+
             QSqlQuery query(db);
             query.prepare("SELECT count(*) as cnt, strftime(\"%H\", date) as hur, sum(out) as outSum FROM messages WHERE peerId=:peerId GROUP BY hur ORDER BY hur");
             query.bindValue(":peerId", peerId);
@@ -40,7 +42,11 @@ public:
                 map["count"] = cnt;
 
                 Q_EMIT pointRequest(map);
+
+                dataList << map;
             }
+
+            Q_EMIT chartDataUpdated(dataList);
         }
         QSqlDatabase::removeDatabase(connection);
     }

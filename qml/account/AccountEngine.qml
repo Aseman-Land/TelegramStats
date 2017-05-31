@@ -18,4 +18,7 @@ Telegram.Engine {
 
     cache.path: configDirectory + "/" + phoneNumber + "/cache"
     cache.cacheMessages: false
+
+    readonly property bool loggedIn: state > Telegram.Engine.AuthFetchingOurDetails
+    onLoggedInChanged: if(loggedIn) AsemanServices.activeSession(our.user.id)
 }

@@ -70,6 +70,26 @@ QtControls.Page {
         Component.onCompleted: restart()
     }
 
+    HashObject {
+        id: dataHash
+
+        function insertUnique(key, value) {
+            remove(key)
+            insert(key, value)
+            hashWriter_timer.restart()
+        }
+    }
+
+    Timer {
+        id: hashWriter_timer
+        interval: 2000
+        repeat: false
+        onTriggered: {
+            var path = engine.cache.path + "/charts/" + Tools.md5(peer.userId)
+            Tools.writeFile(path , dataHash.toMap(), true)
+        }
+    }
+
     ItemGrabber {
         id: grabber
         item: chartBack
@@ -270,6 +290,7 @@ QtControls.Page {
                             engine: chartEngine
                             peerName: page.title
                             checkBox.visible: !takingImage
+                            onChartDataChanged: dataHash.insertUnique("dayChart", chartData)
                         }
                     }
 
@@ -288,6 +309,7 @@ QtControls.Page {
                             telegramEngine: page.engine
                             telegramPeer: page.peer
                             checkBox.visible: !takingImage
+                            onChartDataChanged: dataHash.insertUnique("emojiChart", chartData)
                         }
                     }
 
@@ -304,6 +326,24 @@ QtControls.Page {
                             engine: chartEngine
                             peerName: page.title
                             checkBox.visible: !takingImage
+                            onChartDataChanged: dataHash.insertUnique("senseChart", chartData)
+                        }
+                    }
+
+                    MaterialFrame {
+                        width: grid.cellWidth
+                        height: width*3/4
+                        color: TgChartsGlobals.backgroundColor
+                        shadowColor: TgChartsGlobals.foregroundColor
+                        visible: false
+
+                        Charts.SenseDailyDiaryChart {
+                            id: senseDailyChart
+                            anchors.fill: parent
+                            engine: chartEngine
+                            peerName: page.title
+                            checkBox.visible: !takingImage
+                            onChartDataChanged: dataHash.insertUnique("senseDailyChart", chartData)
                         }
                     }
 
@@ -320,6 +360,7 @@ QtControls.Page {
                             engine: chartEngine
                             peerName: page.title
                             checkBox.visible: !takingImage
+                            onChartDataChanged: dataHash.insertUnique("monthChart", chartData)
                         }
                     }
 
@@ -336,6 +377,7 @@ QtControls.Page {
                             engine: chartEngine
                             peerName: page.title
                             checkBox.visible: !takingImage
+                            onChartDataChanged: dataHash.insertUnique("fileChart", chartData)
                         }
                     }
 
@@ -354,6 +396,7 @@ QtControls.Page {
                             telegramEngine: page.engine
                             telegramPeer: page.peer
                             checkBox.visible: !takingImage
+                            onChartDataChanged: dataHash.insertUnique("detailsChart", chartData)
                         }
                     }
 
@@ -370,6 +413,7 @@ QtControls.Page {
                             engine: chartEngine
                             peerName: page.title
                             checkBox.visible: !takingImage
+                            onChartDataChanged: dataHash.insertUnique("timeChart", chartData)
                         }
                     }
                 }
@@ -413,7 +457,7 @@ QtControls.Page {
 
         ImageColorAnalizor {
             id: colorAnalizer
-            source: blackProfilePic.currentImage
+//            source: blackProfilePic.currentImage
             method: ImageColorAnalizor.MoreSaturation
         }
 

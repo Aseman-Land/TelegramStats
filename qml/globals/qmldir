@@ -1,3 +1,4 @@
 singleton TgChartsGlobals 1.0 TgChartsGlobals.qml
 singleton CutegramEmojis 1.0 CutegramEmojis.qml
 singleton TgChartsStore 1.0 TgChartsStore.qml
+singleton AsemanServices 1.0 AsemanServices.qml

@@ -22,6 +22,8 @@ public:
             db.setDatabaseName(source);
             db.open();
 
+            QVariantList dataList;
+
             QSqlQuery query(db);
             query.prepare("SELECT sum(messageLength) as length, fromId, type FROM messages WHERE peerId=:peerId GROUP BY type, fromId");
             query.bindValue(":peerId", peerId);
@@ -48,6 +50,7 @@ public:
                     continue;
 
                 Q_EMIT pointRequest(map);
+                dataList << map;
             }
 
             query.prepare("SELECT sum(mediaSize) as mediaSize, fromId FROM messages WHERE peerId=:peerId GROUP BY fromId");
@@ -67,6 +70,7 @@ public:
                 map["type"] = static_cast<qint32>(TgChartsMessageDetails::TypeMediaSize);
 
                 Q_EMIT pointRequest(map);
+                dataList << map;
             }
 
             query.prepare("SELECT count(emoji) as cnt, fromId FROM emojis WHERE peerId=:peerId GROUP BY fromId");
@@ -86,6 +90,7 @@ public:
                 map["type"] = static_cast<qint32>(TgChartsMessageDetails::TypeEmojisCount);
 
                 Q_EMIT pointRequest(map);
+                dataList << map;
             }
 
             query.prepare("SELECT count(*) as cnt, fromId FROM messages WHERE peerId=:peerId GROUP BY fromId");
@@ -105,7 +110,10 @@ public:
                 map["type"] = static_cast<qint32>(TgChartsMessageDetails::TypeMessagesCount);
 
                 Q_EMIT pointRequest(map);
+                dataList << map;
             }
+
+            Q_EMIT chartDataUpdated(dataList);
         }
         QSqlDatabase::removeDatabase(connection);
     }

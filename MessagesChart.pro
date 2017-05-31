@@ -16,6 +16,7 @@ LIBS += -lqtelegram-ae
 INCLUDEPATH += $$[QT_INSTALL_HEADERS]/libqtelegram-ae
 
 include(asemantools/asemantools.pri)
+include(AsemanClientLib/AsemanClientLib.pri)
 include(qmake/qtcAddDeployment.pri)
 qtcAddDeployment()
 
@@ -29,7 +30,9 @@ HEADERS += \
     components/tgchartsemojisdiary.h \
     components/tgchartsmessagedetails.h \
     components/tgchartssensediary.h \
-    components/tgchartusermessagecounter.h
+    components/tgchartusermessagecounter.h \
+    components/tgchartssensedailydiary.h \
+    services/tgstats1.h
 
 SOURCES += main.cpp \
     components/tgchartengine.cpp \
@@ -41,7 +44,8 @@ SOURCES += main.cpp \
     components/tgchartsemojisdiary.cpp \
     components/tgchartsmessagedetails.cpp \
     components/tgchartssensediary.cpp \
-    components/tgchartusermessagecounter.cpp
+    components/tgchartusermessagecounter.cpp \
+    components/tgchartssensedailydiary.cpp
 
 RESOURCES += qml/qml.qrc \
     resource.qrc \
@@ -60,3 +64,8 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 DISTFILES += \
     android/AndroidManifest.xml
+
+contains(ANDROID_TARGET_ARCH,armeabi-v7a) {
+    exists($$PWD/libs/libcrypto.so): ANDROID_EXTRA_LIBS += $$PWD/libs/libcrypto.so
+    exists($$PWD/libs/libssl.so): ANDROID_EXTRA_LIBS += $$PWD/libs/libssl.so
+}

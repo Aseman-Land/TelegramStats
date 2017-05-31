@@ -1,4 +1,4 @@
-#include "tgchartssensediary.h"
+#include "tgchartssensedailydiary.h"
 #include "tgchartengine.h"
 
 #include <QThread>
@@ -8,7 +8,7 @@
 #include <QSqlRecord>
 #include <QDateTime>
 
-class TgChartsSenseDiary::Core: public TgAbstractChartItem::Core
+class TgChartsSenseDailyDiary::Core: public TgAbstractChartItem::Core
 {
 public:
     Core(QObject *parent = Q_NULLPTR): TgAbstractChartItem::Core(parent) {}
@@ -25,7 +25,7 @@ public:
             QVariantList dataList;
 
             QSqlQuery query(db);
-            query.prepare("SELECT count(*) as cnt, a.emoji as emoji, strftime(\"%m-%Y\", b.date) as dt, b.date as fullDate FROM emojis as a, (SELECT * FROM messages) as b WHERE a.msgId=b.msgId AND a.peerId=:peerId GROUP BY dt, emoji ORDER BY fullDate DESC");
+            query.prepare("SELECT count(*) as cnt, a.emoji as emoji, strftime(\"%H\", b.date) as dt, b.date as fullDate FROM emojis as a, (SELECT * FROM messages) as b WHERE a.msgId=b.msgId AND a.peerId=:peerId GROUP BY dt, emoji ORDER BY dt DESC");
             query.bindValue(":peerId", peerId);
             query.exec();
 
@@ -34,18 +34,12 @@ public:
                 QSqlRecord record = query.record();
                 qint32 cnt = record.value("cnt").toInt();
                 QString emoji = record.value("emoji").toString();
-                QDateTime fullDate = record.value("fullDate").toDateTime();
-                QDate date = QDate(fullDate.date().year(), fullDate.date().month(), 28);
-                if(QDate::currentDate().year() == date.year() && QDate::currentDate().month() == date.month())
-                    date = QDate(date.year(), date.month(), QDate::currentDate().day());
-
-                qint64 dateValue = QDateTime(date, QTime(0,0,0)).toMSecsSinceEpoch();
+                qint32 hour = record.value("dt").toInt();
 
                 QVariantMap map;
                 map["emoji"] = emoji;
                 map["count"] = cnt;
-                map["date"] = dateValue;
-                map["dateOnly"] = date;
+                map["hour"] = hour;
 
                 Q_EMIT pointRequest(map);
 
@@ -58,14 +52,14 @@ public:
     }
 };
 
-class TgChartsSenseDiary::Private
+class TgChartsSenseDailyDiary::Private
 {
 public:
-    TgChartsSenseDiary::Core *core;
+    TgChartsSenseDailyDiary::Core *core;
     QThread *thread;
 };
 
-TgChartsSenseDiary::TgChartsSenseDiary(QObject *parent) :
+TgChartsSenseDailyDiary::TgChartsSenseDailyDiary(QObject *parent) :
     TgAbstractChartItem(parent)
 {
     p = new Private;
@@ -76,12 +70,12 @@ TgChartsSenseDiary::TgChartsSenseDiary(QObject *parent) :
     p->core = new Core();
     p->core->moveToThread(p->thread);
 
-    connect(p->core, &TgChartsSenseDiary::Core::clearRequest, this, &TgChartsSenseDiary::clearRequest, Qt::QueuedConnection);
-    connect(p->core, &TgChartsSenseDiary::Core::pointRequest, this, &TgChartsSenseDiary::pointRequest, Qt::QueuedConnection);
-    connect(p->core, &TgChartsSenseDiary::Core::chartDataUpdated, this, &TgChartsSenseDiary::chartDataUpdated, Qt::QueuedConnection);
+    connect(p->core, &TgChartsSenseDailyDiary::Core::clearRequest, this, &TgChartsSenseDailyDiary::clearRequest, Qt::QueuedConnection);
+    connect(p->core, &TgChartsSenseDailyDiary::Core::pointRequest, this, &TgChartsSenseDailyDiary::pointRequest, Qt::QueuedConnection);
+    connect(p->core, &TgChartsSenseDailyDiary::Core::chartDataUpdated, this, &TgChartsSenseDailyDiary::chartDataUpdated, Qt::QueuedConnection);
 }
 
-void TgChartsSenseDiary::refresh()
+void TgChartsSenseDailyDiary::refresh()
 {
     if(!engine() || !engine()->peer()) return;
     QString source = engine()->dataDirectory();
@@ -90,7 +84,7 @@ void TgChartsSenseDiary::refresh()
     QMetaObject::invokeMethod(p->core, "start", Qt::QueuedConnection, Q_ARG(QString, source), Q_ARG(qint32, peerId));
 }
 
-TgChartsSenseDiary::~TgChartsSenseDiary()
+TgChartsSenseDailyDiary::~TgChartsSenseDailyDiary()
 {
     p->core->deleteLater();
     p->thread->quit();
