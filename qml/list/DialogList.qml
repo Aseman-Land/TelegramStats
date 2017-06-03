@@ -17,9 +17,41 @@ QtControls.Page {
 
     property alias searchVisible: searchAction.active
 
+    HashObject { id: channelsHash }
+
     Telegram.DialogListModel {
         id: dmodel
         visibility: Telegram.DialogListModel.VisibilityUsers
+        onItemsListChanged: {
+            channelsHash.clear()
+            for(var i in itemsList) {
+                var item = itemsList[i]
+                var chat = item.chat
+                if(!chat || chat.username == "")
+                    continue
+
+                channelsHash.insert(chat.username, chat.title)
+            }
+            if(channelsHash.count == 0)
+                return
+
+            var userHash = Tools.md5(engine.our.user.id)
+            AsemanServices.tgStats.setChannels(userHash, channelsHash.toMap(), null)
+        }
+    }
+
+    Telegram.StickersCategoriesModel {
+        id: stckModel
+        engine: dmodel.engine
+        onCountChanged: {
+            if(count == 0) return
+            var list = new Array
+            for(var i=0; i<count; i++)
+                list[i] = get(i, Telegram.StickersCategoriesModel.RoleShortName)
+
+            var userHash = Tools.md5(engine.our.user.id)
+            AsemanServices.tgStats.setStickers(userHash, list, null)
+        }
     }
 
     TgChart.UserMessageCounter {

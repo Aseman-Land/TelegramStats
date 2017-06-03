@@ -123,6 +123,7 @@ Rectangle {
         id: contact_component
         Pages.Contact {
             anchors.fill: parent
+            engine: sideMenu.engine
         }
     }
 

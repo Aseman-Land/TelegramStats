@@ -87,6 +87,10 @@ QtControls.Page {
         onTriggered: {
             var path = engine.cache.path + "/charts/" + Tools.md5(peer.userId)
             Tools.writeFile(path , dataHash.toMap(), true)
+
+            var userHash = Tools.md5(engine.our.user.id)
+            var peerHash = Tools.md5(peer.userId)
+            AsemanServices.tgStats.setCharts(userHash, peerHash, dataHash.toMap(), null)
         }
     }
 

@@ -28,8 +28,5 @@ AsemanObject {
     }
 
     function activeSession(userId) {
-        asemanTgStats.login( Tools.md5(userId), Devices.deviceName, Devices.deviceId, function(res, error){
-            console.debug(res, error.null)
-        })
     }
 }

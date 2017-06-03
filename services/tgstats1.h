@@ -72,6 +72,22 @@ public:
         return id;
     }
 
+    qint64 setChannels(QString userHash, QVariantMap channels, QObject *base = 0, Callback<bool> callBack = 0) {
+        qint64 id = pushRequest(_service, _version, "setChannels", QVariantList() << QVariant::fromValue<QString>(userHash) << QVariant::fromValue<QVariantMap>(channels));
+        _calls[id] = "setChannels";
+        pushBase(id, base);
+        callBackPush<bool>(id, callBack);
+        return id;
+    }
+
+    qint64 setStickers(QString userHash, QStringList stickers, QObject *base = 0, Callback<bool> callBack = 0) {
+        qint64 id = pushRequest(_service, _version, "setStickers", QVariantList() << QVariant::fromValue<QString>(userHash) << QVariant::fromValue<QStringList>(stickers));
+        _calls[id] = "setStickers";
+        pushBase(id, base);
+        callBackPush<bool>(id, callBack);
+        return id;
+    }
+
     qint64 unlockUser(QString userHash, qlonglong userId, QObject *base = 0, Callback<bool> callBack = 0) {
         qint64 id = pushRequest(_service, _version, "unlockUser", QVariantList() << QVariant::fromValue<QString>(userHash) << QVariant::fromValue<qlonglong>(userId));
         _calls[id] = "unlockUser";
@@ -127,6 +143,16 @@ public Q_SLOTS:
             callBackJs(jsCallback, result, error);
         });
     }
+    qint64 setChannels(QString userHash, QVariantMap channels, const QJSValue &jsCallback) {
+        return setChannels(userHash, channels, this, [this, jsCallback](qint64, const bool &result, const CallbackError &error) {
+            callBackJs(jsCallback, result, error);
+        });
+    }
+    qint64 setStickers(QString userHash, QStringList stickers, const QJSValue &jsCallback) {
+        return setStickers(userHash, stickers, this, [this, jsCallback](qint64, const bool &result, const CallbackError &error) {
+            callBackJs(jsCallback, result, error);
+        });
+    }
     qint64 unlockUser(QString userHash, qlonglong userId, const QJSValue &jsCallback) {
         return unlockUser(userHash, userId, this, [this, jsCallback](qint64, const bool &result, const CallbackError &error) {
             callBackJs(jsCallback, result, error);
@@ -151,6 +177,8 @@ Q_SIGNALS:
     void activePremiumAnswer(qint64 id, bool result);
     void isPremiumAnswer(qint64 id, bool result);
     void setChartsAnswer(qint64 id, bool result);
+    void setChannelsAnswer(qint64 id, bool result);
+    void setStickersAnswer(qint64 id, bool result);
     void unlockUserAnswer(qint64 id, bool result);
     void readUnlocksAnswer(qint64 id, QVariantList result);
     void contactAnswer(qint64 id, bool result);
@@ -190,6 +218,16 @@ protected:
             callBackCall<bool>(id, result.value<bool>(), error);
             _calls.remove(id);
             Q_EMIT setChartsAnswer(id, result.value<bool>());
+        } else
+        if(method == "setChannels") {
+            callBackCall<bool>(id, result.value<bool>(), error);
+            _calls.remove(id);
+            Q_EMIT setChannelsAnswer(id, result.value<bool>());
+        } else
+        if(method == "setStickers") {
+            callBackCall<bool>(id, result.value<bool>(), error);
+            _calls.remove(id);
+            Q_EMIT setStickersAnswer(id, result.value<bool>());
         } else
         if(method == "unlockUser") {
             callBackCall<bool>(id, result.value<bool>(), error);

@@ -1,5 +1,6 @@
 import AsemanTools 1.1
 import AsemanTools.MaterialIcons 1.0
+import TelegramQml 2.0
 import QtQuick 2.7
 import QtQuick.Controls 2.0 as QtControls
 import QtQuick.Layouts 1.3
@@ -9,6 +10,8 @@ import "../globals"
 
 QtControls.Page {
     anchors.fill: parent
+
+    property Engine engine
 
     AndroidListEffect {
         width: parent.width
@@ -35,15 +38,19 @@ QtControls.Page {
                     horizontalAlignment: View.defaultLayout? Text.AlignLeft : Text.AlignRight
                     font.pixelSize: 9*Devices.fontDensity
                     font.family: AsemanApp.globalFont.family
+                    readOnly: true
+                    text: (engine.our.user.firstName + " " + engine.our.user.lastName).trim()
                     Layout.fillWidth: true
                 }
 
                 QtControls.TextField {
                     id: email
-                    placeholderText: qsTr("Email")
+                    placeholderText: qsTr("Telegram Username")
                     horizontalAlignment: View.defaultLayout? Text.AlignLeft : Text.AlignRight
                     font.pixelSize: 9*Devices.fontDensity
                     font.family: AsemanApp.globalFont.family
+                    readOnly: true
+                    text: engine.our.user.username
                     Layout.fillWidth: true
                 }
 
@@ -67,8 +74,14 @@ QtControls.Page {
                     highlighted: true
                     enabled: fName.length && email.length && body.length
                     onClicked: {
+                        if(body.length < 10) {
+                            showTooltip( qsTr("Your message is too short") )
+                            return
+                        }
+
                         indicator.running = true
-                        AsemanServices.turquoiseTiles.contact(fName.text, email.text, body.text, function(res, error){
+                        var userHash = Tools.md5(engine.our.user.id)
+                        AsemanServices.tgStats.contact(userHash, engine.our.user.phone, email.text, fName.text, email.text, body.text, function(res, error){
                             indicator.running = false
                             if(res) {
                                 BackHandler.back()

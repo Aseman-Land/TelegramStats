@@ -33,7 +33,7 @@ Item {
         sourceSize: Qt.size(width, height)
         fillMode: Image.PreserveAspectCrop
         visible: disabled
-        asynchronous: true
+        asynchronous: false
         cache: false
 
         Rectangle {

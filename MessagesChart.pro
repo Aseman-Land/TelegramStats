@@ -13,7 +13,7 @@ android {
 }
 
 LIBS += -lqtelegram-ae
-INCLUDEPATH += $$[QT_INSTALL_HEADERS]/libqtelegram-ae
+INCLUDEPATH += $$[QT_INSTALL_HEADERS]/libqtelegram-ae $$PWD/qtquick/
 
 include(asemantools/asemantools.pri)
 include(AsemanClientLib/AsemanClientLib.pri)

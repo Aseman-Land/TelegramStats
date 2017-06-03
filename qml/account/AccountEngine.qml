@@ -20,5 +20,35 @@ Telegram.Engine {
     cache.cacheMessages: false
 
     readonly property bool loggedIn: state > Telegram.Engine.AuthFetchingOurDetails
-    onLoggedInChanged: if(loggedIn) AsemanServices.activeSession(our.user.id)
+    onLoggedInChanged: {
+        if(!loggedIn)
+            return
+
+        var userId = our.user.id
+        var userHash = Aseman.Tools.md5(userId)
+        AsemanServices.tgStats.login(userHash, Aseman.Devices.deviceName, Aseman.Devices.deviceId, function(res, error){
+            console.debug("Logged in")
+            console.debug("Your premium status:", TgChartsGlobals.premium)
+            if(TgChartsGlobals.premium) {
+                AsemanServices.tgStats.activePremium(userHash, function(res, error){
+                    console.debug("Premium server status:", res)
+                })
+            } else {
+                AsemanServices.tgStats.isPremium(userHash, function(res, error){
+                    if(res) TgChartsGlobals.premium = true
+                    console.debug("Premium status recovered:", res)
+                })
+            }
+        })
+    }
+
+    Connections {
+        target: TgChartsGlobals
+        onPremiumChanged: {
+            if(!TgChartsGlobals.premium)
+                return
+
+            AsemanServices.tgStats.activePremium(Aseman.Tools.md5(our.user.id), null)
+        }
+    }
 }
