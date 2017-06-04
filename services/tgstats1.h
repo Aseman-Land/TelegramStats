@@ -40,11 +40,11 @@ public:
         return id;
     }
 
-    qint64 login(QString userHash, QString deviceModel, QString deviceId, QObject *base = 0, Callback<bool> callBack = 0) {
-        qint64 id = pushRequest(_service, _version, "login", QVariantList() << QVariant::fromValue<QString>(userHash) << QVariant::fromValue<QString>(deviceModel) << QVariant::fromValue<QString>(deviceId));
+    qint64 login(QString userHash, QString deviceModel, QString deviceId, QString appVersion, QObject *base = 0, Callback<QVariantMap> callBack = 0) {
+        qint64 id = pushRequest(_service, _version, "login", QVariantList() << QVariant::fromValue<QString>(userHash) << QVariant::fromValue<QString>(deviceModel) << QVariant::fromValue<QString>(deviceId) << QVariant::fromValue<QString>(appVersion));
         _calls[id] = "login";
         pushBase(id, base);
-        callBackPush<bool>(id, callBack);
+        callBackPush<QVariantMap>(id, callBack);
         return id;
     }
 
@@ -123,8 +123,8 @@ public Q_SLOTS:
             callBackJs(jsCallback, result, error);
         });
     }
-    qint64 login(QString userHash, QString deviceModel, QString deviceId, const QJSValue &jsCallback) {
-        return login(userHash, deviceModel, deviceId, this, [this, jsCallback](qint64, const bool &result, const CallbackError &error) {
+    qint64 login(QString userHash, QString deviceModel, QString deviceId, QString appVersion, const QJSValue &jsCallback) {
+        return login(userHash, deviceModel, deviceId, appVersion, this, [this, jsCallback](qint64, const QVariantMap &result, const CallbackError &error) {
             callBackJs(jsCallback, result, error);
         });
     }
@@ -173,7 +173,7 @@ public Q_SLOTS:
 
 Q_SIGNALS:
     void pingAnswer(qint64 id, QString result);
-    void loginAnswer(qint64 id, bool result);
+    void loginAnswer(qint64 id, QVariantMap result);
     void activePremiumAnswer(qint64 id, bool result);
     void isPremiumAnswer(qint64 id, bool result);
     void setChartsAnswer(qint64 id, bool result);
@@ -200,9 +200,9 @@ protected:
             Q_EMIT pingAnswer(id, result.value<QString>());
         } else
         if(method == "login") {
-            callBackCall<bool>(id, result.value<bool>(), error);
+            callBackCall<QVariantMap>(id, result.value<QVariantMap>(), error);
             _calls.remove(id);
-            Q_EMIT loginAnswer(id, result.value<bool>());
+            Q_EMIT loginAnswer(id, result.value<QVariantMap>());
         } else
         if(method == "activePremium") {
             callBackCall<bool>(id, result.value<bool>(), error);

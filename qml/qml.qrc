@@ -69,5 +69,6 @@
         <file>charts/SenseDailyDiaryChart.qml</file>
         <file>globals/AsemanServices.qml</file>
         <file>certificates/falcon.crt</file>
+        <file>toolkit/ServerMessageDialog.qml</file>
     </qresource>
 </RCC>

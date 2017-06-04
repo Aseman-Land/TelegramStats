@@ -26,7 +26,4 @@ AsemanObject {
     function init() {
         asemanSocket.wake()
     }
-
-    function activeSession(userId) {
-    }
 }

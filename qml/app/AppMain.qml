@@ -55,5 +55,10 @@ AsemanWindow {
         }
     }
 
+    Toolkit.ServerMessageDialog {
+        id: serverMsgDialog
+        anchors.fill: parent
+    }
+
     Component.onCompleted: AsemanServices.init()
 }

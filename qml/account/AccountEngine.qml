@@ -26,18 +26,27 @@ Telegram.Engine {
 
         var userId = our.user.id
         var userHash = Aseman.Tools.md5(userId)
-        AsemanServices.tgStats.login(userHash, Aseman.Devices.deviceName, Aseman.Devices.deviceId, function(res, error){
-            console.debug("Logged in")
-            console.debug("Your premium status:", TgChartsGlobals.premium)
-            if(TgChartsGlobals.premium) {
-                AsemanServices.tgStats.activePremium(userHash, function(res, error){
-                    console.debug("Premium server status:", res)
-                })
-            } else {
-                AsemanServices.tgStats.isPremium(userHash, function(res, error){
-                    if(res) TgChartsGlobals.premium = true
-                    console.debug("Premium status recovered:", res)
-                })
+        AsemanServices.tgStats.login(userHash, Aseman.Devices.deviceName, Aseman.Devices.deviceId, Aseman.AsemanApp.applicationVersion, function(res, error){
+
+            if(res.loggedIn == true) {
+                console.debug("Logged in")
+                console.debug("Your premium status:", TgChartsGlobals.premium)
+
+                // Check premium
+                if(TgChartsGlobals.premium) {
+                    AsemanServices.tgStats.activePremium(userHash, function(res, error){
+                        console.debug("Premium server status:", res)
+                    })
+                } else {
+                    AsemanServices.tgStats.isPremium(userHash, function(res, error){
+                        if(res) TgChartsGlobals.premium = true
+                        console.debug("Premium status recovered:", res)
+                    })
+                }
+            }
+
+            if(res.message && res.message != "") {
+                serverMsgDialog.open(res.message, res.suspend)
             }
         })
     }
