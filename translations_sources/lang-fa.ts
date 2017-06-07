@@ -2,6 +2,33 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="fa_IR">
 <context>
+    <name>About</name>
+    <message>
+        <source>Telegram Stats</source>
+        <translation>آمار تلگرام</translation>
+    </message>
+    <message>
+        <source>Telegram Stats is a telegram client, connect to your telegram and create amazing charts from your telegram history.&lt;br /&gt;It&apos;s an open-source application, created and designed by &lt;a href=&quot;http://aseman.co&quot;&gt;Aseman Team&lt;/a&gt; and released under the GPLv3 license.</source>
+        <translation>اپلیکیشن آمار تلگرام یک کلاینت تلگرام است که به اکانت تلگرام شما متصل می‌شود و نمودارهای جذاب و هیجان‌انگیزی از تاریخچه تعاملات شما با دوستانتان رسم می‌کند.&lt;br /&gt;این اپلیکیشن اُپن سورس است و توسط &lt;a href=&quot;http://aseman.co&quot;&gt;تیم آسمان&lt;/a&gt; ارائه شده و تحت مجوز GPLv3 می‌باشد.</translation>
+    </message>
+    <message>
+        <source>Home page</source>
+        <translation>صفحه خانگی</translation>
+    </message>
+    <message>
+        <source>Application</source>
+        <translation>اپلیکیشن</translation>
+    </message>
+    <message>
+        <source>Open-source</source>
+        <translation>اُپن سورس</translation>
+    </message>
+    <message>
+        <source>About</source>
+        <translation>درباره ما</translation>
+    </message>
+</context>
+<context>
     <name>AboutPageAseman</name>
     <message>
         <source>Aseman</source>
@@ -175,11 +202,11 @@
     </message>
     <message>
         <source>Share</source>
-        <translation>اشتراک‌گذاری</translation>
+        <translation type="vanished">اشتراک‌گذاری</translation>
     </message>
     <message>
         <source>Clear Cache</source>
-        <translation>پاک‌کردن مخزن</translation>
+        <translation type="vanished">پاک‌کردن مخزن</translation>
     </message>
     <message>
         <source>%1 messages</source>
@@ -195,15 +222,27 @@
     </message>
     <message>
         <source>Sending photo...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Sent</source>
-        <translation type="unfinished"></translation>
+        <translation>در حال ارسال عکس...</translation>
     </message>
     <message>
         <source>Share with %1</source>
-        <translation type="unfinished"></translation>
+        <translation>فرستادن برای دوستم</translation>
+    </message>
+    <message>
+        <source>Hey! It&apos;s our telegram interactivity infographic, check it out!</source>
+        <translation>این فایل آمار نموداری تعاملمون با هم تو تلگرامه، یه نگاهی بهش بنداز. با اپلیکیشن آمار تلگرام گرفتمش!</translation>
+    </message>
+    <message>
+        <source>Message sent</source>
+        <translation>پیام ارسال شد</translation>
+    </message>
+    <message>
+        <source>Save</source>
+        <translation>ذخیره</translation>
+    </message>
+    <message>
+        <source>Your telegram stats</source>
+        <translation>آمار تلگرامت</translation>
     </message>
 </context>
 <context>
@@ -238,6 +277,73 @@
     <message>
         <source>Languages</source>
         <translation>زبان</translation>
+    </message>
+    <message>
+        <source>Active premium using code</source>
+        <translation>فعال‌سازی پکیج حرفه‌ای با کُد</translation>
+    </message>
+    <message>
+        <source>Active Premium</source>
+        <translation>فعال‌سازی پکیج حرفه‌ای</translation>
+    </message>
+    <message>
+        <source>Active</source>
+        <translation>فعال‌سازی</translation>
+    </message>
+    <message>
+        <source>Premium activated :)</source>
+        <translation>اکانت پریمیوم فعال شد</translation>
+    </message>
+    <message>
+        <source>Wrong code :/</source>
+        <translation>داداچ داری اشتباه می‌زنی :))</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation>کَنسل</translation>
+    </message>
+    <message>
+        <source>To active premium, enter the code below:</source>
+        <translation>برای فعال‌سازی کُد ارسالی رو این پایین وارد کن:</translation>
+    </message>
+    <message>
+        <source>Active code</source>
+        <translation>کُد فعال‌سازی</translation>
+    </message>
+</context>
+<context>
+    <name>Contact</name>
+    <message>
+        <source>Full name</source>
+        <translation>نام کامل</translation>
+    </message>
+    <message>
+        <source>Telegram Username</source>
+        <translation>نام کاربری تلگرام</translation>
+    </message>
+    <message>
+        <source>Your Message</source>
+        <translation>پیام</translation>
+    </message>
+    <message>
+        <source>Send</source>
+        <translation>بفرست</translation>
+    </message>
+    <message>
+        <source>Your message is too short</source>
+        <translation>پیامی که میخوای بفرستی خیلی کوتاهه</translation>
+    </message>
+    <message>
+        <source>Your message sent</source>
+        <translation>پیامت رو دریافت کردیم</translation>
+    </message>
+    <message>
+        <source>Can&apos;t send your message</source>
+        <translation>پیامت ارسال نمیشه :(</translation>
+    </message>
+    <message>
+        <source>Contact</source>
+        <translation>تماس با ما</translation>
     </message>
 </context>
 <context>
@@ -794,6 +900,13 @@ To download to memory, use destination property.</source>
     </message>
 </context>
 <context>
+    <name>OpenSourceProjects</name>
+    <message>
+        <source>List of other opensource projects used in Telegram Stats.</source>
+        <translation>لیست پروژه‌های اُپن سورسی که در آمار تلگرام استفاده شده است.</translation>
+    </message>
+</context>
+<context>
     <name>PasteButton</name>
     <message>
         <source>Paste</source>
@@ -824,7 +937,7 @@ To download to memory, use destination property.</source>
     </message>
     <message>
         <source>Send message to %1</source>
-        <translation>برای %1 پیام بفرست</translation>
+        <translation>برای دوستم پیام بفرست</translation>
     </message>
     <message>
         <source>Buy Premium package</source>
@@ -851,12 +964,31 @@ aseman.co/tgstats</source>
 </translation>
     </message>
     <message>
-        <source>Senging message...</source>
+        <source>Sending message...</source>
         <translation>در حال فرستادن پیام</translation>
     </message>
     <message>
         <source>Message sent</source>
         <translation>پیام ارسال شد</translation>
+    </message>
+</context>
+<context>
+    <name>PremiumRequiredDialog</name>
+    <message>
+        <source>Active Premium</source>
+        <translation>فعال‌سازی پکیج حرفه‌ای</translation>
+    </message>
+    <message>
+        <source>Active</source>
+        <translation>فعال‌سازی</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation>کَنسل</translation>
+    </message>
+    <message>
+        <source>This feature needs premium account. Do you want to active it?</source>
+        <translation>این قابلیت نیاز به اکانت حرفه‌ای داره. میخوای فعالش کنی؟</translation>
     </message>
 </context>
 <context>
@@ -912,6 +1044,29 @@ aseman.co/tgstats</source>
     </message>
 </context>
 <context>
+    <name>SenseDailyDiaryChart</name>
+    <message>
+        <source>Love</source>
+        <translation>عشق</translation>
+    </message>
+    <message>
+        <source>Happiness</source>
+        <translation>شادمانی</translation>
+    </message>
+    <message>
+        <source>Sadness</source>
+        <translation>ناراحتی</translation>
+    </message>
+    <message>
+        <source>Violence</source>
+        <translation>خشم</translation>
+    </message>
+    <message>
+        <source>Senses daily interaction</source>
+        <translation>تعامل روزانه احساسات</translation>
+    </message>
+</context>
+<context>
     <name>SenseDiaryChart</name>
     <message>
         <source>Love</source>
@@ -932,6 +1087,13 @@ aseman.co/tgstats</source>
     <message>
         <source>Your senses based on the month</source>
         <translation>نمودار احساساتت بر اساس ماه</translation>
+    </message>
+</context>
+<context>
+    <name>ServerMessageDialog</name>
+    <message>
+        <source>Server message</source>
+        <translation>پیام سرور</translation>
     </message>
 </context>
 <context>
@@ -986,11 +1148,11 @@ aseman.co/tgstats</source>
     </message>
     <message>
         <source>Code Request...</source>
-        <translation type="unfinished"></translation>
+        <translation>درخواست کد...</translation>
     </message>
     <message>
         <source>We&apos;ll send you a code. Please enter the code below</source>
-        <translation type="unfinished"></translation>
+        <translation>ما یه کُد برات میفرستیم. کُد ارسالی رو این پایین وارد کن</translation>
     </message>
 </context>
 <context>
@@ -1020,19 +1182,19 @@ aseman.co/tgstats</source>
     <name>SignInPasswordPage</name>
     <message>
         <source>Password</source>
-        <translation type="unfinished"></translation>
+        <translation>رمز</translation>
     </message>
     <message>
         <source>Login</source>
-        <translation type="unfinished">ورود</translation>
+        <translation>ورود</translation>
     </message>
     <message>
         <source>2-Step Authenticate...</source>
-        <translation type="unfinished"></translation>
+        <translation>ورود دو مرحله‌ای...</translation>
     </message>
     <message>
         <source>Your account protected using a password. Please enter your password to login.</source>
-        <translation type="unfinished"></translation>
+        <translation>اکانت تلگرامت یه رمز هم داره (ورود دو مرحله‌ای). برای ورود نیاز داری رمزت رو وارد کنی.</translation>
     </message>
 </context>
 <context>
@@ -1047,19 +1209,19 @@ aseman.co/tgstats</source>
     </message>
     <message>
         <source>Telegram Stats</source>
-        <translation type="unfinished">آمار تلگرام</translation>
+        <translation>آمار تلگرام</translation>
     </message>
     <message>
         <source>Please enter your phone number below</source>
-        <translation type="unfinished"></translation>
+        <translation>شماره موبایلت رو وارد کن</translation>
     </message>
     <message>
         <source>Powered by &lt;a href=&quot;http://aseman.co&quot;&gt;Aseman Team&lt;/a&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>ارائه شده توسط &lt;a href=&quot;http://aseman.co&quot;&gt;تیم آسمان&lt;/a&gt;</translation>
     </message>
     <message>
         <source>Phone number length is too low</source>
-        <translation type="unfinished"></translation>
+        <translation>شماره‌ای که وارد کردی رقماش کمه</translation>
     </message>
 </context>
 <context>

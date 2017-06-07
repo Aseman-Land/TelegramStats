@@ -251,7 +251,7 @@ QtControls.Page {
 
     QtControls.Dialog {
         id: premiumDialog
-        title: qsTr("Active Premium")
+        title: qsTr("Active Premium") + TgChartsGlobals.translator.refresher
         contentHeight: premiumDialogColumn.height
         contentWidth: premiumDialogColumn.width
         x: parent.width/2 - width/2
@@ -269,7 +269,7 @@ QtControls.Page {
 
         footer: QtControls.DialogButtonBox {
             QtControls.Button {
-                text: qsTr("Active")
+                text: qsTr("Active") + TgChartsGlobals.translator.refresher
                 flat: true
                 onClicked: {
                     var res = TgChartsStore.activePremiumUsingCode(codeField.text)
@@ -282,7 +282,7 @@ QtControls.Page {
                 }
             }
             QtControls.Button {
-                text: qsTr("Cancel")
+                text: qsTr("Cancel") + TgChartsGlobals.translator.refresher
                 flat: true
                 onClicked: premiumDialog.close()
             }
@@ -295,13 +295,13 @@ QtControls.Page {
                 id: label
                 font.pixelSize: 9*Devices.fontDensity
                 wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-                text: qsTr("To active premium, enter the code below:")
+                text: qsTr("To active premium, enter the code below:") + TgChartsGlobals.translator.refresher
             }
 
             QtControls.TextField {
                 id: codeField
                 width: parent.width
-                placeholderText: qsTr("Active code")
+                placeholderText: qsTr("Active code") + TgChartsGlobals.translator.refresher
                 inputMethodHints: Qt.ImhNoPredictiveText
             }
         }

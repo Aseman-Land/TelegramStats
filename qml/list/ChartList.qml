@@ -26,7 +26,7 @@ QtControls.Page {
         var idx
         if(TgChartsGlobals.topChats) {
             idx = TgChartsGlobals.topChats.indexOf(peer.userId + "")
-            if(idx >= 0 && idx < 3)
+            if(idx >= 1 && idx < 4)
                 return false
         }
         if(TgChartsGlobals.unlockedChats) {

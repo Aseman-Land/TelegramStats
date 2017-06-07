@@ -117,7 +117,7 @@ QtControls.Page {
                     return false
                 if(TgChartsGlobals.topChats) {
                     var idx = TgChartsGlobals.topChats.indexOf(peer.userId + "")
-                    if(idx >= 0 && idx < 3)
+                    if(idx >= 1 && idx < 4)
                         return false
                 }
                 if(TgChartsGlobals.unlockedChats) {

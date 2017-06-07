@@ -48,6 +48,9 @@ Telegram.Engine {
             if(res.message && res.message != "") {
                 serverMsgDialog.open(res.message, res.suspend)
             }
+
+            // To disable premium
+//            TgChartsGlobals.premium = false
         })
     }
 

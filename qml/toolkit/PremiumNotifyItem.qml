@@ -68,7 +68,9 @@ Rectangle {
                     text: qsTr("Send message to %1").arg(title)
                     highlighted: true
                     Material.accent: TgChartsGlobals.masterColor
-                    onClicked: message_dialog.createObject(prmNotifyItem).open()
+                    onClicked: {
+                        message_dialog.createObject(prmNotifyItem).open()
+                    }
                 }
 
                 QtControls.Button {
@@ -143,7 +145,7 @@ Rectangle {
 
     function sendMessage(msg) {
         if(waitDialog) return
-        waitDialog = showGlobalWait( qsTr("Senging message..."), true )
+        waitDialog = showGlobalWait( qsTr("Sending message..."), true )
         Tools.jsDelayCall(1000, function(){
             messagesModel.sendMessage(msg, null, null, function(){
                 showTooltip( qsTr("Message sent") )

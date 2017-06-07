@@ -2,6 +2,33 @@
 <!DOCTYPE TS>
 <TS version="2.1">
 <context>
+    <name>About</name>
+    <message>
+        <source>Telegram Stats</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Telegram Stats is a telegram client, connect to your telegram and create amazing charts from your telegram history.&lt;br /&gt;It&apos;s an open-source application, created and designed by &lt;a href=&quot;http://aseman.co&quot;&gt;Aseman Team&lt;/a&gt; and released under the GPLv3 license.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Home page</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Application</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open-source</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>About</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>AboutPageAseman</name>
     <message>
         <source>Aseman</source>
@@ -167,14 +194,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Share</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Clear Cache</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>%1 messages</source>
         <translation type="unfinished"></translation>
     </message>
@@ -191,11 +210,23 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Sent</source>
+        <source>Share with %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Share with %1</source>
+        <source>Hey! It&apos;s our telegram interactivity infographic, check it out!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Message sent</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Save</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Your telegram stats</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -230,6 +261,73 @@
     </message>
     <message>
         <source>Languages</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Active premium using code</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Active Premium</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Active</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Premium activated :)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Wrong code :/</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>To active premium, enter the code below:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Active code</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>Contact</name>
+    <message>
+        <source>Full name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Telegram Username</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Your Message</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Send</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Your message is too short</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Your message sent</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Can&apos;t send your message</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Contact</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -752,6 +850,13 @@ To download to memory, use destination property.</source>
     </message>
 </context>
 <context>
+    <name>OpenSourceProjects</name>
+    <message>
+        <source>List of other opensource projects used in Telegram Stats.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>PasteButton</name>
     <message>
         <source>Paste</source>
@@ -810,6 +915,25 @@ aseman.co/tgstats</source>
     </message>
 </context>
 <context>
+    <name>PremiumRequiredDialog</name>
+    <message>
+        <source>Active Premium</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Active</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This feature needs premium account. Do you want to active it?</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>QmlControls</name>
     <message>
         <source>Switch</source>
@@ -844,6 +968,29 @@ aseman.co/tgstats</source>
     </message>
 </context>
 <context>
+    <name>SenseDailyDiaryChart</name>
+    <message>
+        <source>Love</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Happiness</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Sadness</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Violence</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Senses daily interaction</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>SenseDiaryChart</name>
     <message>
         <source>Love</source>
@@ -863,6 +1010,13 @@ aseman.co/tgstats</source>
     </message>
     <message>
         <source>Your senses based on the month</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>ServerMessageDialog</name>
+    <message>
+        <source>Server message</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
