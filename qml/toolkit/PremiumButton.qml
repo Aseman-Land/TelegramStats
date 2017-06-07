@@ -7,22 +7,31 @@ import "../globals"
 
 Item {
     id: premiumBtn
-    height: 120*Devices.density
+    height: scene.height
 
     signal clicked()
 
     Item {
         id: scene
-        anchors.fill: parent
+        width: parent.width
+        height: activeButtonRect.height + 8*Devices.density
 
         Rectangle {
-            anchors.fill: parent
-            anchors.bottomMargin: 0
-            anchors.margins: 8*Devices.density
+            id: activeButtonRect
+            y: 8*Devices.density
+            anchors.horizontalCenter: parent.horizontalCenter
+            width: parent.width - 2*y
+            height: {
+                var res = activeButtonColumn.height + 20*Devices.density
+                if(res < 120*Devices.density)
+                    res = 120*Devices.density
+                return res
+            }
             radius: 5*Devices.density
             color: Material.color(Material.Orange)
 
             Column {
+                id: activeButtonColumn
                 anchors.centerIn: parent
                 width: parent.width - 20*Devices.density
                 spacing: 4*Devices.density
