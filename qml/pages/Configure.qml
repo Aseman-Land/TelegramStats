@@ -151,6 +151,7 @@ QtControls.Page {
                 font.family: Awesome.family
                 font.pixelSize: 12*Devices.fontDensity
                 text: Awesome.fa_ellipsis_v
+                hoverEnabled: false
                 flat: true
                 Material.theme: Material.Dark
                 onClicked: optionsMenu.open()

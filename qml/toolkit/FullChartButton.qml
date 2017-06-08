@@ -61,11 +61,10 @@ Item {
         QtControls.Dialog {
             id: dialog
             title: qsTr("Your top active chats")
-            standardButtons: QtControls.Dialog.Close
-            contentHeight: callChart.height
-            contentWidth: callChart.width
+            contentHeight: backColumn.height + 20*Devices.density
+            contentWidth: backColumn.width
             x: parent.width/2 - width/2
-            y: 0
+            y: -100*Devices.density
             modal: true
             dim: true
             closePolicy: QtControls.Popup.CloseOnPressOutside
@@ -83,16 +82,66 @@ Item {
                 }
             }
 
-            Charts.CompareAllChart {
-                id: callChart
+            footer: QtControls.DialogButtonBox {
+                QtControls.Button {
+                    text: qsTr("Share") + TgChartsGlobals.translator.refresher
+                    flat: true
+                    onClicked: {
+                        swipe.currentItem.share().shareCompleted.connect(dialog.close)
+                    }
+                }
+                QtControls.Button {
+                    text: qsTr("Close") + TgChartsGlobals.translator.refresher
+                    flat: true
+                    onClicked: dialog.close()
+                }
+            }
+
+            Column {
+                id: backColumn
                 width: {
                     var res = fchartBtn.width - 20*Devices.density
                     if(res > 500*Devices.density)
                         res = 500*Devices.density
                     return res
                 }
-                height: width*4/5
-                dataMap: fchartBtn.dataMap
+
+                TabBar {
+                    id: tabbar
+                    width: parent.width
+                    model: [qsTr("Challenge"), qsTr("Full Chart")]
+                    highlightColor: TgChartsGlobals.masterColor
+                    color: TgChartsGlobals.backgroundAlternativeColor
+                    textColor: TgChartsGlobals.foregroundColor
+                    fontSize: 10*Devices.fontDensity
+                    currentIndex: 0
+                    onCurrentIndexChanged: if(swipe) swipe.currentIndex = currentIndex
+                }
+
+                QtControls.SwipeView {
+                    id: swipe
+                    width: parent.width
+                    height: width*4/5
+                    clip: true
+                    onCurrentIndexChanged: tabbar.currentIndex = currentIndex
+
+                    LayoutMirroring.enabled: View.reverseLayout
+                    LayoutMirroring.childrenInherit: true
+
+                    Charts.CupChart {
+                        width: swipe.width
+                        height: swipe.height
+                        dataMap: fchartBtn.dataMap
+                        LayoutMirroring.childrenInherit: false
+                    }
+
+                    Charts.CompareAllChart {
+                        width: swipe.width
+                        height: swipe.height
+                        dataMap: fchartBtn.dataMap
+                        LayoutMirroring.childrenInherit: false
+                    }
+                }
             }
 
             onRejected: close()

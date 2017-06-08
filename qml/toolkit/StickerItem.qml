@@ -51,6 +51,7 @@ Item {
 
     QtControls.ItemDelegate {
         anchors.fill: parent
+        hoverEnabled: false
         onClicked: dialog.open()
     }
 

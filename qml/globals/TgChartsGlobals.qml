@@ -22,6 +22,7 @@ AsemanObject {
     property alias topChats: settings.topChats
     property alias unlockedChats: settings.unlockedChats
     property alias premium: settings.premium
+    property alias execCount: settings.execCount
 
     property alias translator: translationManager
 
@@ -47,6 +48,7 @@ AsemanObject {
         property bool premium: false
         property variant topChats
         property variant unlockedChats
+        property int execCount: 0
     }
 
     TranslationManager {

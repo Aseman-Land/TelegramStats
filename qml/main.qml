@@ -9,7 +9,7 @@ AsemanApplication {
     applicationVersion: "0.1.0"
     applicationId: "fab2c9df-1af2-48bd-ab0c-4a5f4e2167dd"
     organizationName: "Aseman Team"
-    organizationDomain: "land.aseman"
+    organizationDomain: "co.aseman"
 
     property variant appMain
 

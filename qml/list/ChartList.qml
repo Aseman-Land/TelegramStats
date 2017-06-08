@@ -492,6 +492,7 @@ QtControls.Page {
                 font.family: Awesome.family
                 font.pixelSize: 12*Devices.fontDensity
                 text: Awesome.fa_ellipsis_v
+                hoverEnabled: false
                 visible: !indicator.running && !page.locked
                 flat: true
                 Material.theme: Material.Dark

@@ -8,6 +8,7 @@ import "../globals"
 
 AbstractChart {
     id: page
+    shareName: "compare charts"
 
     checkBox.visible: false
 
@@ -65,6 +66,11 @@ AbstractChart {
         labelsColor: TgChartsGlobals.foregroundColor
     }
 
+    Rectangle {
+        anchors.fill: parent
+        color: TgChartsGlobals.backgroundAlternativeColor
+    }
+
     ChartView {
         id: chart
         anchors.fill: parent
@@ -78,8 +84,8 @@ AbstractChart {
         titleFont.pixelSize: 11*Devices.fontDensity
         legend.labelColor: TgChartsGlobals.foregroundColor
         legend.visible: true
-        backgroundColor: TgChartsGlobals.backgroundColor
+        backgroundColor: TgChartsGlobals.backgroundAlternativeColor
         titleColor: TgChartsGlobals.foregroundColor
-        plotAreaColor: TgChartsGlobals.backgroundColor
+        plotAreaColor: TgChartsGlobals.backgroundAlternativeColor
     }
 }

@@ -23,7 +23,16 @@ AsemanWindow {
     Telegram.ProfileManagerModel {
         id: profiles_model
         source: TgChartsGlobals.profilePath + "/profiles.sqlite"
-        engineDelegate: Account.AccountEngine {}
+        engineDelegate: Account.AccountEngine {
+            onLoggedInChanged: {
+                if(!loggedIn) return
+
+                TgChartsGlobals.execCount++
+                if(TgChartsGlobals.execCount == 2)
+                    rateDialog.open()
+            }
+        }
+
         Component.onCompleted: if(count == 0) addNew()
         onCountChanged: {
             if(count) return
@@ -57,6 +66,11 @@ AsemanWindow {
 
     Toolkit.ServerMessageDialog {
         id: serverMsgDialog
+        anchors.fill: parent
+    }
+
+    Toolkit.RateDialog {
+        id: rateDialog
         anchors.fill: parent
     }
 

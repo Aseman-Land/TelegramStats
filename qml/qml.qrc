@@ -70,5 +70,8 @@
         <file>globals/AsemanServices.qml</file>
         <file>certificates/falcon.crt</file>
         <file>toolkit/ServerMessageDialog.qml</file>
+        <file>toolkit/RateDialog.qml</file>
+        <file>files/cup.png</file>
+        <file>charts/CupChart.qml</file>
     </qresource>
 </RCC>
