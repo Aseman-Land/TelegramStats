@@ -17,31 +17,29 @@ Item {
         id: scene
         anchors.fill: parent
 
-        Rectangle {
+        QtControls.Button {
             anchors.fill: parent
             anchors.topMargin: 8*Devices.density
             anchors.bottomMargin: 4*Devices.density
             anchors.margins: 8*Devices.density
-            radius: 5*Devices.density
-            color: TgChartsGlobals.masterColor
+            highlighted: true
+            hoverEnabled: false
+
+            Material.accent: TgChartsGlobals.masterColor // "#FF5722"
+
+            onClicked: {
+                if(indicator.running)
+                    return
+                var dlg = selector_component.createObject(fchartBtn)
+                dlg.open()
+            }
 
             QtControls.Label {
                 anchors.centerIn: parent
-                text: qsTr("Compare all active chats") + TgChartsGlobals.translator.refresher
+                text: qsTr("Challenge") + TgChartsGlobals.translator.refresher
                 font.pixelSize: 11*Devices.fontDensity
                 color: "#ffffff"
                 visible: !indicator.running
-            }
-
-            QtControls.ItemDelegate {
-                anchors.fill: parent
-                hoverEnabled: false
-                onClicked: {
-                    if(indicator.running)
-                        return
-                    var dlg = selector_component.createObject(fchartBtn)
-                    dlg.open()
-                }
             }
 
             QtControls.BusyIndicator {
@@ -56,15 +54,20 @@ Item {
         }
     }
 
+    PointMapListener {
+        id: pntListener
+        source: fchartBtn
+    }
+
     Component {
         id: selector_component
         QtControls.Dialog {
             id: dialog
-            title: qsTr("Your top active chats")
+//            title: qsTr("Your top active chats")
             contentHeight: backColumn.height + 20*Devices.density
             contentWidth: backColumn.width
             x: parent.width/2 - width/2
-            y: -100*Devices.density
+            y: View.root.height/2 - height/2 - pntListener.result.y
             modal: true
             dim: true
             closePolicy: QtControls.Popup.CloseOnPressOutside

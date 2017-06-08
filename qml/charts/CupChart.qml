@@ -64,8 +64,8 @@ AbstractChart {
 
             Column {
                 id: column
-                width: parent.width
-                onHeightChanged: console.debug(height)
+                anchors.horizontalCenter: parent.horizontalCenter
+//                width: parent.width
 
                 Item { width: 1; height: 10*Devices.density }
 
@@ -78,93 +78,89 @@ AbstractChart {
 
                 Repeater {
                     model: lmodel
-                    Item {
-                        width: column.width - 20*Devices.density
+
+                    Row {
                         anchors.horizontalCenter: parent.horizontalCenter
                         height: 80*Devices.density
+                        layoutDirection: View.layoutDirection
+                        spacing: 20*Devices.density
 
-                        Row {
-                            anchors.fill: parent
-                            anchors.margins: 10*Devices.density
-                            layoutDirection: View.layoutDirection
-                            spacing: 20*Devices.density
+                        Item {
+                            height: parent.height - 20*Devices.density
+                            anchors.verticalCenter: parent.verticalCenter
+                            width: height
 
-                            Item {
-                                height: parent.height
-                                width: height
+                            Image {
+                                id: cupImage
+                                anchors.fill: parent
+                                source: "../files/cup.png"
+                                sourceSize: Qt.size(2*width, 2*height)
+                                visible: index == 0
 
-                                Image {
-                                    id: cupImage
-                                    anchors.fill: parent
-                                    source: "../files/cup.png"
-                                    sourceSize: Qt.size(2*width, 2*height)
-                                    visible: index == 0
-
-                                    Text {
-                                        anchors.horizontalCenter: parent.horizontalCenter
-                                        height: parent.height*0.4
-                                        text: index
-                                        color: "#ffffff"
-                                        verticalAlignment: Text.AlignVCenter
-                                        font.pixelSize: 12*Devices.fontDensity
-                                    }
-                                }
-
-                                Colorize {
-                                    anchors.fill: source
-                                    source: cupImage
-                                    visible: index != 0
-                                    hue: {
-                                        switch(index) {
-                                        case 1:
-                                            return 0
-                                        case 2:
-                                            return 30/255
-                                        }
-                                        return 0
-                                    }
-                                    saturation: {
-                                        switch(index) {
-                                        case 1:
-                                            return 0
-                                        case 2:
-                                            return 0.2
-                                        }
-                                        return 0
-                                    }
-                                    lightness: {
-                                        switch(index) {
-                                        case 1:
-                                            return 0.5
-                                        case 2:
-                                            return 0
-                                        }
-                                        return 0
-                                    }
+                                Text {
+                                    anchors.horizontalCenter: parent.horizontalCenter
+                                    height: parent.height*0.4
+                                    text: index+1
+                                    color: "#ffffff"
+                                    verticalAlignment: Text.AlignVCenter
+                                    font.pixelSize: 12*Devices.fontDensity
                                 }
                             }
 
-                            Column {
-                                anchors.verticalCenter: parent.verticalCenter
-
-                                QtControls.Label {
-                                    font.pixelSize: 12*Devices.fontDensity
-                                    text: model.name
+                            Colorize {
+                                anchors.fill: source
+                                source: cupImage
+                                visible: index != 0
+                                hue: {
+                                    switch(index) {
+                                    case 1:
+                                        return 0
+                                    case 2:
+                                        return 30/255
+                                    }
+                                    return 0
                                 }
-
-                                QtControls.Label {
-                                    font.pixelSize: 9*Devices.fontDensity
-                                    text: "%1 messages".arg(model.value)
-                                    opacity: 0.8
+                                saturation: {
+                                    switch(index) {
+                                    case 1:
+                                        return 0
+                                    case 2:
+                                        return 0.2
+                                    }
+                                    return 0
                                 }
+                                lightness: {
+                                    switch(index) {
+                                    case 1:
+                                        return 0.5
+                                    case 2:
+                                        return 0
+                                    }
+                                    return 0
+                                }
+                            }
+                        }
+
+                        Column {
+                            anchors.verticalCenter: parent.verticalCenter
+
+                            QtControls.Label {
+                                font.pixelSize: 14*Devices.fontDensity
+                                text: model.name
                             }
 
                             QtControls.Label {
-                                anchors.verticalCenter: parent.verticalCenter
-                                font.pixelSize: 30*Devices.fontDensity
-                                text: model.percent + "%"
-                                color: TgChartsGlobals.masterColor
+                                font.pixelSize: 9*Devices.fontDensity
+                                text: "%1 messages".arg(model.value)
+                                opacity: 0.8
                             }
+                        }
+
+                        QtControls.Label {
+                            anchors.verticalCenter: parent.verticalCenter
+                            font.pixelSize: 30*Devices.fontDensity
+                            text: model.percent + "%"
+                            color: TgChartsGlobals.masterColor
                         }
                     }
                 }

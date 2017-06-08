@@ -14,9 +14,9 @@ Item {
     Item {
         id: scene
         width: parent.width
-        height: activeButtonRect.height + 8*Devices.density
+        height: activeButtonRect.height
 
-        Rectangle {
+        QtControls.Button {
             id: activeButtonRect
             y: 8*Devices.density
             anchors.horizontalCenter: parent.horizontalCenter
@@ -27,8 +27,11 @@ Item {
                     res = 120*Devices.density
                 return res
             }
-            radius: 5*Devices.density
-            color: Material.color(Material.Orange)
+            Material.accent: Material.color(Material.Orange)
+            hoverEnabled: false
+            highlighted: true
+
+            onClicked: premiumBtn.clicked()
 
             Column {
                 id: activeButtonColumn
@@ -51,12 +54,6 @@ Item {
                     font.pixelSize: 9*Devices.fontDensity
                     color: "#ffffff"
                 }
-            }
-
-            QtControls.ItemDelegate {
-                anchors.fill: parent
-                hoverEnabled: false
-                onClicked: premiumBtn.clicked()
             }
         }
     }

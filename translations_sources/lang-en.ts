@@ -52,6 +52,13 @@
     </message>
 </context>
 <context>
+    <name>AbstractChart</name>
+    <message>
+        <source>Please Wait</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>ActivePremiumPage</name>
     <message>
         <source>Active Premium</source>
@@ -343,6 +350,13 @@
     </message>
 </context>
 <context>
+    <name>CupChart</name>
+    <message>
+        <source>Challenge</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>CursorPicker</name>
     <message>
         <source>Copy</source>
@@ -562,11 +576,19 @@ To download to memory, use destination property.</source>
 <context>
     <name>FullChartButton</name>
     <message>
-        <source>Compare all active chats</source>
+        <source>Share</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Your top active chats</source>
+        <source>Close</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Challenge</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Full Chart</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -906,11 +928,11 @@ aseman.co/tgstats</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Senging message...</source>
+        <source>Message sent</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Message sent</source>
+        <source>Sending message...</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -949,6 +971,17 @@ aseman.co/tgstats</source>
     </message>
     <message>
         <source>Press Me 2</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>RateDialog</name>
+    <message>
+        <source>Rate this app</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>If you enjoy using this app, would you mind taking a moment to rate it? It won&apos;t take more than a minute. Thank you for your support!</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

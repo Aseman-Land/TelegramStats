@@ -52,6 +52,13 @@
     </message>
 </context>
 <context>
+    <name>AbstractChart</name>
+    <message>
+        <source>Please Wait</source>
+        <translation>یه کم صبر کن</translation>
+    </message>
+</context>
+<context>
     <name>ActivePremiumPage</name>
     <message>
         <source>Active Premium</source>
@@ -358,6 +365,13 @@
     </message>
 </context>
 <context>
+    <name>CupChart</name>
+    <message>
+        <source>Challenge</source>
+        <translation>چالش دوست برتر</translation>
+    </message>
+</context>
+<context>
     <name>CursorPicker</name>
     <message>
         <source>Copy</source>
@@ -583,11 +597,27 @@ To download to memory, use destination property.</source>
     <name>FullChartButton</name>
     <message>
         <source>Compare all active chats</source>
-        <translation>مقایسه همه چت‌های فعال</translation>
+        <translation type="vanished">مقایسه همه چت‌های فعال</translation>
     </message>
     <message>
         <source>Your top active chats</source>
-        <translation>چت‌های با بیشترین فعالیت</translation>
+        <translation type="vanished">چت‌های با بیشترین فعالیت</translation>
+    </message>
+    <message>
+        <source>Share</source>
+        <translation>اشتراک‌گذاری</translation>
+    </message>
+    <message>
+        <source>Close</source>
+        <translation>بستن</translation>
+    </message>
+    <message>
+        <source>Challenge</source>
+        <translation>چالش دوست برتر</translation>
+    </message>
+    <message>
+        <source>Full Chart</source>
+        <translation>همه نمودارها</translation>
     </message>
 </context>
 <context>
@@ -965,7 +995,7 @@ aseman.co/tgstats</source>
     </message>
     <message>
         <source>Sending message...</source>
-        <translation>در حال فرستادن پیام</translation>
+        <translation>در حال فرستادن پیام...</translation>
     </message>
     <message>
         <source>Message sent</source>
@@ -1019,6 +1049,17 @@ aseman.co/tgstats</source>
     <message>
         <source>Press Me 2</source>
         <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>RateDialog</name>
+    <message>
+        <source>Rate this app</source>
+        <translation>امتیاز به آمار تلگرام</translation>
+    </message>
+    <message>
+        <source>If you enjoy using this app, would you mind taking a moment to rate it? It won&apos;t take more than a minute. Thank you for your support!</source>
+        <translation>اگر از اَپلیکیشن آمار تلگرام خوشت اومد، ممنون میشیم بهش امتیاز بدی. ما به حمایتت نیاز داریم.</translation>
     </message>
 </context>
 <context>
