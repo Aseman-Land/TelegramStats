@@ -6,6 +6,7 @@ import TelegramQml 2.0 as Telegram
 import QtQuick.Controls.Material 2.0
 import "../account" as Account
 import "../toolkit" as Toolkit
+import "../authenticating" as Auth
 import "../globals"
 
 AsemanWindow {
@@ -42,8 +43,16 @@ AsemanWindow {
         }
     }
 
+    Auth.LoggingInSplash {
+        anchors.fill: parent
+        busy: visible
+        visible: profiles_model.count == 0
+    }
+
     QtControls.SwipeView {
         anchors.fill: parent
+        interactive: false
+
         Repeater {
             model: profiles_model
             Account.AccountPage {

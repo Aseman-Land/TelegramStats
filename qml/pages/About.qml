@@ -87,6 +87,14 @@ QtControls.Page {
                     highlighted: true
                     onClicked: Qt.openUrlExternally("http://aseman.co/tgstats")
                 }
+
+                QtControls.Label {
+                    anchors.right: parent.right
+                    anchors.bottom: parent.bottom
+                    anchors.margins: 10*Devices.density
+                    font.pixelSize: 8*Devices.fontDensity
+                    text: AsemanApp.applicationVersion
+                }
             }
         }
 

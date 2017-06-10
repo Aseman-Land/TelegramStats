@@ -159,6 +159,8 @@ Rectangle {
         var chats = TgChartsGlobals.unlockedChats
         if(!chats)
             chats = new Array
+        else
+            chats = Tools.toStringList(chats)
 
         chats[chats.length] = messagesModel.currentPeer.userId + ""
         TgChartsGlobals.unlockedChats = Tools.toStringList(chats)

@@ -36,7 +36,7 @@ Item {
 
             QtControls.Label {
                 anchors.centerIn: parent
-                text: qsTr("Challenge") + TgChartsGlobals.translator.refresher
+                text: qsTr("Best friends Challenge") + TgChartsGlobals.translator.refresher
                 font.pixelSize: 11*Devices.fontDensity
                 color: "#ffffff"
                 visible: !indicator.running

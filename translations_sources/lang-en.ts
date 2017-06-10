@@ -352,7 +352,7 @@
 <context>
     <name>CupChart</name>
     <message>
-        <source>Challenge</source>
+        <source>Best friends Challenge</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -589,6 +589,10 @@ To download to memory, use destination property.</source>
     </message>
     <message>
         <source>Full Chart</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Best friends Challenge</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

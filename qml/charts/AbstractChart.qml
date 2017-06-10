@@ -12,7 +12,6 @@ Item {
     property string peerName
 
     property alias checkBox: checkBox
-    property bool takingImage: false
 
     property alias chartBack: grabber.item
     property string shareName: "telegram Stats"
@@ -28,7 +27,6 @@ Item {
         item: achart
         suffix: "png"
         onSaved: {
-            takingImage = false
             Tools.jsDelayCall(1000, function(){
                 grabber.waitObj.destroy()
                 Qt.openUrlExternally( Devices.localFilesPrePath + dest)
@@ -60,8 +58,6 @@ Item {
     function share() {
         if(grabber.waitObj)
             return null
-
-        takingImage = true
 
         grabber.waitObj = showGlobalWait( qsTr("Please Wait"), true )
         grabber.waitObj.color = TgChartsGlobals.backgroundColor

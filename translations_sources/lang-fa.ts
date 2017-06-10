@@ -367,7 +367,7 @@
 <context>
     <name>CupChart</name>
     <message>
-        <source>Challenge</source>
+        <source>Best friends Challenge</source>
         <translation>چالش دوست برتر</translation>
     </message>
 </context>
@@ -612,12 +612,16 @@ To download to memory, use destination property.</source>
         <translation>بستن</translation>
     </message>
     <message>
-        <source>Challenge</source>
+        <source>Best friends Challenge</source>
         <translation>چالش دوست برتر</translation>
     </message>
     <message>
         <source>Full Chart</source>
         <translation>همه نمودارها</translation>
+    </message>
+    <message>
+        <source>Challenge</source>
+        <translation>چالش دوست برتر</translation>
     </message>
 </context>
 <context>
@@ -991,7 +995,7 @@ aseman.co/tgstats</source>
 بعد میذاره عکس اون آماری که میده رو هم برای رفیقت بفرستی
 
 خودتم می‌تونی ببینی البته، این لینکش:
-</translation>
+aseman.co/tgstats</translation>
     </message>
     <message>
         <source>Sending message...</source>

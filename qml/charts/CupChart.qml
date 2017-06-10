@@ -71,10 +71,12 @@ AbstractChart {
 
                 QtControls.Label {
                     anchors.horizontalCenter: parent.horizontalCenter
-                    font.pixelSize: 30*Devices.fontDensity
-                    text: qsTr("Challenge")
+                    font.pixelSize: 20*Devices.fontDensity
+                    text: qsTr("Best friends Challenge")
                     color: TgChartsGlobals.masterColor
                 }
+
+                Item { width: 1; height: 10*Devices.density }
 
                 Repeater {
                     model: lmodel
