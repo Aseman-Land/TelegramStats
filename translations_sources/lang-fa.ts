@@ -368,7 +368,7 @@
     <name>CupChart</name>
     <message>
         <source>Best friends Challenge</source>
-        <translation>چالش دوست برتر</translation>
+        <translation>چالش دوستان برتر</translation>
     </message>
 </context>
 <context>
@@ -521,7 +521,7 @@ To download to memory, use destination property.</source>
     <name>EmojiChart</name>
     <message>
         <source>Your senses</source>
-        <translation>نمودار احساسات</translation>
+        <translation>بیشترین شکلک‌ها</translation>
     </message>
 </context>
 <context>
@@ -617,7 +617,7 @@ To download to memory, use destination property.</source>
     </message>
     <message>
         <source>Full Chart</source>
-        <translation>همه نمودارها</translation>
+        <translation>نمودار دوستان</translation>
     </message>
     <message>
         <source>Challenge</source>
@@ -955,7 +955,7 @@ To download to memory, use destination property.</source>
     </message>
     <message>
         <source>You can active premium free or payment</source>
-        <translation>با خرید پکیج حرفه‌ای آمار تلگرام یک بار برای همیشه، می‌تونی از تمام امکانات برنامه استفاده کنی، چه اونایی که الان هست، چه اونایی که در آینده اضافه میشه</translation>
+        <translation>با خرید پکیج حرفه‌ای آمار تلگرام، می‌تونی از تمام امکانات برنامه استفاده کنی</translation>
     </message>
 </context>
 <context>

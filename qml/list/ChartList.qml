@@ -580,7 +580,7 @@ QtControls.Page {
             anchors.verticalCenter: parent.verticalCenter
             horizontalAlignment: Text.AlignLeft
             color: "#ffffff"
-            text: !chartEngine.refreshing || chartEngine.count? qsTr("%1 messages").arg(chartEngine.count) : qsTr("Loading...")
+            text: !chartEngine.refreshing || chartEngine.count? qsTr("%1 messages").arg( Tools.trNums(chartEngine.count) ) : qsTr("Loading...")
             font.pixelSize: 9*Devices.fontDensity
             wrapMode: Text.WrapAnywhere
             visible: !page.locked
@@ -619,10 +619,13 @@ QtControls.Page {
             var resHeight = chartBack.height*ratio
 
             var path = Devices.picturesLocation + "/Telegram Stats"
-            if(toUser)
-                path = AsemanApp.homePath + "/temp"
+            grabber.fileName = page.title + " - " + Tools.dateToMSec(new Date)
 
-            grabber.fileName = qsTr("Your telegram stats") + " - " + Tools.dateToMSec(new Date)
+            if(toUser) {
+                path = AsemanApp.homePath + "/temp"
+                grabber.fileName = qsTr("Your telegram stats")
+            }
+
             grabber.save(path, Qt.size(resWidth, resHeight))
         })
     }

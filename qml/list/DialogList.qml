@@ -134,14 +134,14 @@ QtControls.Page {
                 anchors.fill: parent
                 anchors.margins: 2*Devices.density
                 color: TgChartsGlobals.backgroundAlternativeColor
-                radius: 5*Devices.density
+                radius: 2*Devices.density
                 border.width: 1*Devices.density
                 border.color: TgChartsGlobals.darkMode? "#555555" : "#eeeeee"
 
                 Rectangle {
                     anchors.fill: parent
                     anchors.margins: 1*Devices.density
-                    radius: 5*Devices.density
+                    radius: back.radius
                     color: TgChartsGlobals.masterColor
                     opacity: marea.pressed? 0.3 : 0
 
@@ -159,7 +159,7 @@ QtControls.Page {
                     Toolkit.ProfileImage {
                         width: parent.width
                         height: width
-                        radius: 5*Devices.density
+                        radius: back.radius
                         engine: dmodel.engine
                         source: model.peer
                     }
