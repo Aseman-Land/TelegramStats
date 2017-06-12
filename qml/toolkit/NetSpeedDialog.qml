@@ -39,11 +39,32 @@ Item {
             dialog.destroy()
     }
 
+    function restart() {
+        timer.restart()
+    }
+
+    function stop() {
+        timer.stop()
+    }
+
+    Timer {
+        id: timer
+        interval: 30000
+        repeat: false
+        onTriggered: {
+            if(showedOnce) return
+            open()
+            showedOnce = true
+        }
+
+        property bool showedOnce: false
+    }
+
     Component {
         id: dialog_component
         QtControls.Dialog {
             id: dialog
-            title: qsTr("Rate this app")
+            title: qsTr("Low connection")
             contentHeight: label.height
             contentWidth: label.width
             x: parent.width/2 - width/2
@@ -51,7 +72,7 @@ Item {
             modal: true
             dim: true
             closePolicy: QtControls.Popup.CloseOnPressOutside
-            standardButtons: QtControls.Dialog.Yes | QtControls.Dialog.No
+            standardButtons: QtControls.Dialog.Ok
 
             onVisibleChanged: {
                 if(visible)
@@ -61,8 +82,6 @@ Item {
                     Tools.jsDelayCall(400, dialog.destroy)
                 }
             }
-
-            onAccepted: Qt.openUrlExternally("market://details?id=co.aseman.TgStats")
 
             QtControls.Label {
                 id: label
@@ -74,7 +93,7 @@ Item {
                         res = 500*Devices.density
                     return res
                 }
-                text: qsTr("If you enjoy using this app, would you mind taking a moment to rate it? It won't take more than a minute. Thank you for your support!")
+                text: qsTr("Your internet connection is to low. It would probably can't load data or loading data very slowly.")
             }
         }
     }

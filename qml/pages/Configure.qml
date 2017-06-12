@@ -1,3 +1,21 @@
+/*
+    Copyright (C) 2017 Aseman Team
+    http://aseman.co
+
+    TelegramStats is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    TelegramStats is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
+
 import QtQuick 2.0
 import AsemanTools 1.1
 import AsemanTools.Awesome 1.0
@@ -5,12 +23,14 @@ import QtQuick.Controls 2.1 as QtControls
 import QtQuick.Layouts 1.3 as QtLayouts
 import TelegramQml 2.0 as Telegram
 import QtQuick.Controls.Material 2.0
+import QtGraphicalEffects 1.0
 import "../toolkit" as Toolkit
 import "../globals"
 
 QtControls.Page {
     id: configure
 
+    readonly property bool configurePage: true
     property alias engine: profilePic.engine
 
     AsemanFlickable {
@@ -131,6 +151,29 @@ QtControls.Page {
         height: 170*Devices.density + Devices.statusBarHeight
         color: TgChartsGlobals.masterColor
 
+        Toolkit.ProfileImage {
+            id: backImg
+            anchors.fill: parent
+            anchors.margins: -1*Devices.density
+            radius: 0
+            source: engine.our.user
+            engine: profilePic.engine
+            visible: false
+        }
+
+        FastBlur {
+            source: backImg
+            anchors.fill: backImg
+            radius: 64*Devices.density
+            cached: true
+
+            Rectangle {
+                color: TgChartsGlobals.backgroundColor
+                opacity: 0.3
+                anchors.fill: parent
+            }
+        }
+
         Item {
             width: parent.width
             y: Devices.statusBarHeight
@@ -139,7 +182,7 @@ QtControls.Page {
             QtControls.Label {
                 anchors.centerIn: parent
                 font.pixelSize: 11*Devices.fontDensity
-                color: TgChartsGlobals.headerTextsColor
+                color: TgChartsGlobals.foregroundColor
                 text: qsTr("Settings") + TgChartsGlobals.translator.refresher
             }
 
@@ -153,7 +196,7 @@ QtControls.Page {
                 text: Awesome.fa_ellipsis_v
                 hoverEnabled: false
                 flat: true
-                Material.theme: Material.Dark
+                Material.theme: TgChartsGlobals.darkMode? Material.Dark : Material.Light
                 onClicked: optionsMenu.open()
 
                 QtControls.Menu {
@@ -199,13 +242,13 @@ QtControls.Page {
                 anchors.verticalCenter: parent.verticalCenter
 
                 QtControls.Label {
-                    color: "#ffffff"
+                    color: TgChartsGlobals.foregroundColor
                     font.pixelSize: 10*Devices.fontDensity
                     text: engine.our.user.firstName + " " + engine.our.user.lastName
                 }
 
                 QtControls.Label {
-                    color: "#ffffff"
+                    color: TgChartsGlobals.foregroundColor
                     font.pixelSize: 9*Devices.fontDensity
                     font.bold: true
                     text: engine.phoneNumber

@@ -905,6 +905,17 @@ To download to memory, use destination property.</source>
     </message>
 </context>
 <context>
+    <name>NetSpeedDialog</name>
+    <message>
+        <source>Low connection</source>
+        <translation>سرعت اینترنت ضعیف</translation>
+    </message>
+    <message>
+        <source>Your internet connection is to low. It would probably can&apos;t load data or loading data very slowly.</source>
+        <translation>سرعت اینترنتت در حال حاضر خیلی پایینه. ممکنه که برنامه نتونه اطلاعاتو دریافت کنه یا خیلی طول بکشه.</translation>
+    </message>
+</context>
+<context>
     <name>NetworkSleepManagerExample</name>
     <message>
         <source>NetworkSleepManager</source>

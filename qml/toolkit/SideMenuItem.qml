@@ -1,8 +1,27 @@
+/*
+    Copyright (C) 2017 Aseman Team
+    http://aseman.co
+
+    TelegramStats is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    TelegramStats is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
+
 import QtQuick 2.0
 import AsemanTools 1.1
 import AsemanTools.Awesome 1.0
 import TelegramQml 2.0 as Telegram
 import QtQuick.Controls 2.0 as QtControls
+import QtGraphicalEffects 1.0
 import "../authenticating" as Auth
 import "../toolkit" as Toolkit
 import "../pages" as Pages
@@ -10,6 +29,7 @@ import "../globals"
 
 Rectangle {
     id: sideMenu
+    clip: true
 
     property alias engine: profilePic.engine
 
@@ -18,6 +38,29 @@ Rectangle {
         width: parent.width
         height: 2*width/3
         color: TgChartsGlobals.masterColor
+
+        Toolkit.ProfileImage {
+            id: backImg
+            anchors.fill: parent
+            anchors.margins: -1*Devices.density
+            radius: 0
+            source: engine.our.user
+            engine: profilePic.engine
+            visible: false
+        }
+
+        FastBlur {
+            source: backImg
+            anchors.fill: backImg
+            radius: 64*Devices.density
+            cached: true
+
+            Rectangle {
+                color: TgChartsGlobals.backgroundColor
+                opacity: 0.3
+                anchors.fill: parent
+            }
+        }
 
         Column {
             anchors.left: parent.left
@@ -36,13 +79,13 @@ Rectangle {
             Item { width: 2; height: 6*Devices.density }
 
             QtControls.Label {
-                color: "#ffffff"
+                color: TgChartsGlobals.foregroundColor
                 font.pixelSize: 10*Devices.fontDensity
                 text: engine.our.user.firstName + " " + engine.our.user.lastName
             }
 
             QtControls.Label {
-                color: "#ffffff"
+                color: TgChartsGlobals.foregroundColor
                 font.pixelSize: 9*Devices.fontDensity
                 font.bold: true
                 text: engine.phoneNumber

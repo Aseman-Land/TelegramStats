@@ -8,3 +8,4 @@ PremiumRequiredDialog 1.0 PremiumRequiredDialog.qml
 OpenSourceProjects 1.0 OpenSourceProjects.qml
 ServerMessageDialog 1.0 ServerMessageDialog.qml
 RateDialog 1.0 RateDialog.qml
+NetSpeedDialog 1.0 NetSpeedDialog.qml

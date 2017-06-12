@@ -73,5 +73,6 @@
         <file>toolkit/RateDialog.qml</file>
         <file>files/cup.png</file>
         <file>charts/CupChart.qml</file>
+        <file>toolkit/NetSpeedDialog.qml</file>
     </qresource>
 </RCC>
