@@ -29,10 +29,10 @@ AsemanObject {
     property color masterColor: "#249ac0"
     property color headerTextsColor: "#ffffff"
     property color alternativeColor: Material.color(Material.Cyan)
-    property color backgroundColor: "#fefefe"
-    property color backgroundAlternativeColor: Qt.lighter("#fefefe")
-    property color foregroundColor: "#333333"
-    property color foregroundAlternativeColor: darkMode? "#ff0000" : Qt.lighter("#333333", 1.5)
+    property color backgroundColor: darkMode? "#303030" : "#fafafa"
+    property color backgroundAlternativeColor: Qt.lighter(backgroundColor)
+    property color foregroundColor: darkMode? "#ffffff" : "#dd000000"
+    property color foregroundAlternativeColor: darkMode? "#ff0000" : Qt.lighter(foregroundColor, 1.5)
 
     property alias darkMode: settings.darMode
     property alias localeName: settings.localeName
