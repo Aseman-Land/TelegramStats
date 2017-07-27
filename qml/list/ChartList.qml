@@ -19,11 +19,11 @@
 import AsemanTools 1.1
 import AsemanTools.Awesome 1.0
 import TelegramQml 2.0
-import QtQuick 2.7
+import QtQuick 2.5
 import TgChart 1.0 as TgChart
-import QtQuick.Controls 2.0 as QtControls
-import QtQuick.Controls.Material 2.0
-import QtCharts 2.1
+import Qt.labs.controls 1.0 as QtControls
+import Qt.labs.controls.material 1.0
+import QtCharts 2.0
 import "../authenticating" as Auth
 import "../charts" as Charts
 import "../globals"
@@ -285,10 +285,10 @@ QtControls.Page {
                     }
                     spacing: 8*Devices.density
                     layoutDirection: View.layoutDirection
-                    leftPadding: spacing
-                    rightPadding: leftPadding
-                    topPadding: leftPadding
-                    bottomPadding: leftPadding
+//                    leftPadding: spacing
+//                    rightPadding: leftPadding
+//                    topPadding: leftPadding
+//                    bottomPadding: leftPadding
                     flow: Flow.TopToBottom
                     property int columns: {
                         var res = Math.floor(flick.width/(350*Devices.density))
@@ -510,9 +510,9 @@ QtControls.Page {
                 font.family: Awesome.family
                 font.pixelSize: 12*Devices.fontDensity
                 text: Awesome.fa_ellipsis_v
-                hoverEnabled: false
+//                hoverEnabled: false
                 visible: !indicator.running && !page.locked
-                flat: true
+//                flat: true
                 Material.theme: Material.Dark
                 onClicked: optionsMenu.open()
 

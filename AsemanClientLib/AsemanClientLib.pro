@@ -5,7 +5,6 @@
 #-------------------------------------------------
 
 DESTDIR = ../build/lib
-QT += network gui qml
 
 TARGET = asemanclient
 TEMPLATE = lib

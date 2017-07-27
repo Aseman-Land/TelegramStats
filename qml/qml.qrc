@@ -6,6 +6,7 @@
         <file>globals/TgChartsGlobals.qml</file>
         <file>account/qmldir</file>
         <file>qtquickcontrols2.conf</file>
+        <file>qtlabscontrols.conf</file>
         <file>account/AccountPage.qml</file>
         <file>authenticating/SignInPhonePage.qml</file>
         <file>authenticating/qmldir</file>

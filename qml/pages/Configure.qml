@@ -19,10 +19,10 @@
 import QtQuick 2.0
 import AsemanTools 1.1
 import AsemanTools.Awesome 1.0
-import QtQuick.Controls 2.1 as QtControls
+import Qt.labs.controls 1.0 as QtControls
 import QtQuick.Layouts 1.3 as QtLayouts
 import TelegramQml 2.0 as Telegram
-import QtQuick.Controls.Material 2.0
+import Qt.labs.controls.material 1.0
 import QtGraphicalEffects 1.0
 import "../toolkit" as Toolkit
 import "../globals"
@@ -51,7 +51,7 @@ QtControls.Page {
             QtControls.ItemDelegate {
                 width: parent.width
                 height: 56*Devices.density
-                hoverEnabled: false
+//                hoverEnabled: false
                 onClicked: TgChartsGlobals.darkMode = !TgChartsGlobals.darkMode
 
                 QtLayouts.RowLayout {
@@ -119,7 +119,7 @@ QtControls.Page {
             QtControls.ItemDelegate {
                 width: parent.width
                 height: 56*Devices.density
-                hoverEnabled: false
+//                hoverEnabled: false
                 visible: !TgChartsGlobals.premium
                 onClicked: premiumDialog.open()
 
@@ -194,8 +194,8 @@ QtControls.Page {
                 font.family: Awesome.family
                 font.pixelSize: 12*Devices.fontDensity
                 text: Awesome.fa_ellipsis_v
-                hoverEnabled: false
-                flat: true
+//                hoverEnabled: false
+//                flat: true
                 Material.theme: TgChartsGlobals.darkMode? Material.Dark : Material.Light
                 onClicked: optionsMenu.open()
 
@@ -257,97 +257,97 @@ QtControls.Page {
         }
     }
 
-    QtControls.Dialog {
-        id: dialog
-        title: qsTr("Logout") + TgChartsGlobals.translator.refresher
-        standardButtons: QtControls.Dialog.Ok | QtControls.Dialog.Cancel
-        x: parent.width/2 - width/2
-        y: parent.height/2 - height/2
-        modal: true
-        dim: true
-        closePolicy: QtControls.Popup.CloseOnPressOutside
+//    QtControls.Dialog {
+//        id: dialog
+//        title: qsTr("Logout") + TgChartsGlobals.translator.refresher
+//        standardButtons: QtControls.Dialog.Ok | QtControls.Dialog.Cancel
+//        x: parent.width/2 - width/2
+//        y: parent.height/2 - height/2
+//        modal: true
+//        dim: true
+//        closePolicy: QtControls.Popup.CloseOnPressOutside
 
-        onVisibleChanged: {
-            if(visible)
-                BackHandler.pushHandler(this, function(){visible = false})
-            else
-                BackHandler.removeHandler(this)
-        }
+//        onVisibleChanged: {
+//            if(visible)
+//                BackHandler.pushHandler(this, function(){visible = false})
+//            else
+//                BackHandler.removeHandler(this)
+//        }
 
-        QtControls.Label {
-            font.pixelSize: 9*Devices.fontDensity
-            text: qsTr("Do you realy want to logout?") + TgChartsGlobals.translator.refresher
-        }
+//        QtControls.Label {
+//            font.pixelSize: 9*Devices.fontDensity
+//            text: qsTr("Do you realy want to logout?") + TgChartsGlobals.translator.refresher
+//        }
 
-        onAccepted: {
-            var obj = showGlobalWait( qsTr("Please Wait"), true )
-            obj.color = TgChartsGlobals.backgroundColor
+//        onAccepted: {
+//            var obj = showGlobalWait( qsTr("Please Wait"), true )
+//            obj.color = TgChartsGlobals.backgroundColor
 
-            configure.engine.logout()
-            configure.engine.authLoggedOut.connect(function(){
-                obj.destroy()
-            })
-            close()
-        }
+//            configure.engine.logout()
+//            configure.engine.authLoggedOut.connect(function(){
+//                obj.destroy()
+//            })
+//            close()
+//        }
 
-        onRejected: close()
-    }
+//        onRejected: close()
+//    }
 
-    QtControls.Dialog {
-        id: premiumDialog
-        title: qsTr("Active Premium") + TgChartsGlobals.translator.refresher
-        contentHeight: premiumDialogColumn.height
-        contentWidth: premiumDialogColumn.width
-        x: parent.width/2 - width/2
-        y: parent.height/2 - height/2
-        modal: true
-        dim: true
-        closePolicy: QtControls.Popup.CloseOnPressOutside
+//    QtControls.Dialog {
+//        id: premiumDialog
+//        title: qsTr("Active Premium") + TgChartsGlobals.translator.refresher
+//        contentHeight: premiumDialogColumn.height
+//        contentWidth: premiumDialogColumn.width
+//        x: parent.width/2 - width/2
+//        y: parent.height/2 - height/2
+//        modal: true
+//        dim: true
+//        closePolicy: QtControls.Popup.CloseOnPressOutside
 
-        onVisibleChanged: {
-            if(visible)
-                BackHandler.pushHandler(this, function(){visible = false})
-            else
-                BackHandler.removeHandler(this)
-        }
+//        onVisibleChanged: {
+//            if(visible)
+//                BackHandler.pushHandler(this, function(){visible = false})
+//            else
+//                BackHandler.removeHandler(this)
+//        }
 
-        footer: QtControls.DialogButtonBox {
-            QtControls.Button {
-                text: qsTr("Active") + TgChartsGlobals.translator.refresher
-                flat: true
-                onClicked: {
-                    var res = TgChartsStore.activePremiumUsingCode(codeField.text)
-                    if(res) {
-                        premiumDialog.close()
-                        showTooltip( qsTr("Premium activated :)") )
-                    } else {
-                        showTooltip( qsTr("Wrong code :/") )
-                    }
-                }
-            }
-            QtControls.Button {
-                text: qsTr("Cancel") + TgChartsGlobals.translator.refresher
-                flat: true
-                onClicked: premiumDialog.close()
-            }
-        }
+//        footer: QtControls.DialogButtonBox {
+//            QtControls.Button {
+//                text: qsTr("Active") + TgChartsGlobals.translator.refresher
+//                flat: true
+//                onClicked: {
+//                    var res = TgChartsStore.activePremiumUsingCode(codeField.text)
+//                    if(res) {
+//                        premiumDialog.close()
+//                        showTooltip( qsTr("Premium activated :)") )
+//                    } else {
+//                        showTooltip( qsTr("Wrong code :/") )
+//                    }
+//                }
+//            }
+//            QtControls.Button {
+//                text: qsTr("Cancel") + TgChartsGlobals.translator.refresher
+//                flat: true
+//                onClicked: premiumDialog.close()
+//            }
+//        }
 
-        Column {
-            id: premiumDialogColumn
+//        Column {
+//            id: premiumDialogColumn
 
-            QtControls.Label {
-                id: label
-                font.pixelSize: 9*Devices.fontDensity
-                wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-                text: qsTr("To active premium, enter the code below:") + TgChartsGlobals.translator.refresher
-            }
+//            QtControls.Label {
+//                id: label
+//                font.pixelSize: 9*Devices.fontDensity
+//                wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+//                text: qsTr("To active premium, enter the code below:") + TgChartsGlobals.translator.refresher
+//            }
 
-            QtControls.TextField {
-                id: codeField
-                width: parent.width
-                placeholderText: qsTr("Active code") + TgChartsGlobals.translator.refresher
-                inputMethodHints: Qt.ImhNoPredictiveText
-            }
-        }
-    }
+//            QtControls.TextField {
+//                id: codeField
+//                width: parent.width
+//                placeholderText: qsTr("Active code") + TgChartsGlobals.translator.refresher
+//                inputMethodHints: Qt.ImhNoPredictiveText
+//            }
+//        }
+//    }
 }

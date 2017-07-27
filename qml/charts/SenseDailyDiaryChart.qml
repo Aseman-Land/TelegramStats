@@ -19,8 +19,8 @@
 import QtQuick 2.0
 import AsemanTools 1.1
 import TgChart 1.0 as TgChart
-import QtQuick.Controls 2.1 as QtControls
-import QtCharts 2.1
+import Qt.labs.controls 1.0 as QtControls
+import QtCharts 2.0
 import "../globals"
 
 AbstractChart {

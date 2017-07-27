@@ -21,8 +21,8 @@ import AsemanTools 1.1
 import AsemanTools.Awesome 1.0
 import TelegramQml 2.0 as Telegram
 import TgChart 1.0 as TgChart
-import QtQuick.Controls 2.0 as QtControls
-import QtQuick.Controls.Material 2.0
+import Qt.labs.controls 1.0 as QtControls
+import Qt.labs.controls.material 1.0
 import "../authenticating" as Auth
 import "../globals"
 import "../toolkit" as Toolkit
@@ -75,7 +75,7 @@ QtControls.Page {
     TgChart.UserMessageCounter {
         id: msgCounter
         telegram: engine.telegramObject
-        limit: 20
+        limit: 40
         onRefreshingChanged: {
             if(refreshing) {
                 if(!waitObj && !TgChartsGlobals.topChats) waitObj = showGlobalWait( qsTr("Please wait..."), true )

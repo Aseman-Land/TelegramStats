@@ -16,12 +16,12 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-import QtQuick 2.7
+import QtQuick 2.5
 import QtQuick.Window 2.2
-import QtQuick.Controls 2.0 as QtControls
+import Qt.labs.controls 1.0 as QtControls
 import AsemanTools 1.1
 import TelegramQml 2.0 as Telegram
-import QtQuick.Controls.Material 2.0
+import Qt.labs.controls.material 1.0
 import "../account" as Account
 import "../toolkit" as Toolkit
 import "../authenticating" as Auth
@@ -69,7 +69,7 @@ AsemanWindow {
 
     QtControls.SwipeView {
         anchors.fill: parent
-        interactive: false
+//        interactive: false
 
         Repeater {
             model: profiles_model

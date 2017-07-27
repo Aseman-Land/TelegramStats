@@ -20,7 +20,7 @@ import QtQuick 2.0
 import AsemanTools 1.1
 import AsemanTools.Awesome 1.0
 import TelegramQml 2.0 as Telegram
-import QtQuick.Controls 2.0 as QtControls
+import Qt.labs.controls 1.0 as QtControls
 import QtGraphicalEffects 1.0
 import "../authenticating" as Auth
 import "../toolkit" as Toolkit
@@ -103,7 +103,7 @@ Rectangle {
         delegate: QtControls.ItemDelegate {
             width: listv.width
             height: 48*Devices.density
-            hoverEnabled: false
+//            hoverEnabled: false
 
             Row {
                 anchors.left: parent.left

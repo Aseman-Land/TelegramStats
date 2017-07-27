@@ -133,6 +133,12 @@ public:
 
     bool autoTrust() const { return _autoTrust; }
 
+    void setTrustingSystem(bool enable) {
+        _trustingSystem = enable;
+    }
+
+    bool trustingSystem() const { return _trustingSystem; }
+
 Q_SIGNALS:
     void hostAddressChanged();
     void certificateChanged();
@@ -166,6 +172,7 @@ private:
     bool _ssl;
     qint32 _port;
     bool _autoTrust;
+    bool _trustingSystem;
 };
 
 #endif // ASEMANABSTRACTCLIENTSOCKET_H

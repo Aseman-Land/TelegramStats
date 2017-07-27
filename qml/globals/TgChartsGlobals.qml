@@ -19,7 +19,7 @@
 pragma Singleton
 import QtQuick 2.4
 import AsemanTools 1.1
-import QtQuick.Controls.Material 2.0
+import Qt.labs.controls.material 1.0
 
 AsemanObject {
     Material.theme: darkMode? Material.Dark : Material.Light
@@ -29,10 +29,10 @@ AsemanObject {
     property color masterColor: "#249ac0"
     property color headerTextsColor: "#ffffff"
     property color alternativeColor: Material.color(Material.Cyan)
-    property color backgroundColor: Material.background
-    property color backgroundAlternativeColor: Qt.lighter(Material.background)
-    property color foregroundColor: Material.foreground
-    property color foregroundAlternativeColor: darkMode? "#ff0000" : Qt.lighter(Material.foreground, 1.5)
+    property color backgroundColor: "#fefefe"
+    property color backgroundAlternativeColor: Qt.lighter("#fefefe")
+    property color foregroundColor: "#333333"
+    property color foregroundAlternativeColor: darkMode? "#ff0000" : Qt.lighter("#333333", 1.5)
 
     property alias darkMode: settings.darMode
     property alias localeName: settings.localeName

@@ -19,10 +19,10 @@
 import AsemanTools 1.1
 import AsemanTools.MaterialIcons 1.0
 import TelegramQml 2.0
-import QtQuick 2.7
-import QtQuick.Controls 2.0 as QtControls
+import QtQuick 2.5
+import Qt.labs.controls 1.0 as QtControls
 import QtQuick.Layouts 1.3
-import QtQuick.Controls.Material 2.0
+import Qt.labs.controls.material 1.0
 import "."
 import "../globals"
 

@@ -19,7 +19,7 @@
 import QtQuick 2.0
 import AsemanTools 1.1
 import TelegramQml 2.0 as Telegram
-import QtQuick.Controls 2.0
+import Qt.labs.controls 1.0
 import "../authenticating" as Auth
 import "../list" as List
 import "../toolkit" as Toolkit

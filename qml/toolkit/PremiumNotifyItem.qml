@@ -19,10 +19,10 @@
 import QtQuick 2.0
 import AsemanTools 1.1
 import AsemanTools.Awesome 1.0
-import QtQuick.Controls 2.1 as QtControls
+import Qt.labs.controls 1.0 as QtControls
 import QtQuick.Layouts 1.3 as QtLayouts
 import TelegramQml 2.0 as Telegram
-import QtQuick.Controls.Material 2.0
+import Qt.labs.controls.material 1.0
 import "../toolkit" as Toolkit
 import "../globals"
 
@@ -103,63 +103,63 @@ Rectangle {
         }
     }
 
-    Component {
-        id: message_dialog
-        QtControls.Dialog {
-            id: dialog
-            title: qsTr("Send message to %1").arg(page.title)
-            contentHeight: label.height
-            contentWidth: label.width
-            x: parent.width/2 - width/2
-            y: parent.height/2 - height/2
-            modal: true
-            dim: true
-            closePolicy: QtControls.Popup.CloseOnPressOutside
+//    Component {
+//        id: message_dialog
+//        QtControls.Dialog {
+//            id: dialog
+//            title: qsTr("Send message to %1").arg(page.title)
+//            contentHeight: label.height
+//            contentWidth: label.width
+//            x: parent.width/2 - width/2
+//            y: parent.height/2 - height/2
+//            modal: true
+//            dim: true
+//            closePolicy: QtControls.Popup.CloseOnPressOutside
 
-            onVisibleChanged: {
-                if(visible)
-                    BackHandler.pushHandler(this, function(){visible = false})
-                else {
-                    BackHandler.removeHandler(this)
-                    Tools.jsDelayCall(400, dialog.destroy)
-                }
-            }
+//            onVisibleChanged: {
+//                if(visible)
+//                    BackHandler.pushHandler(this, function(){visible = false})
+//                else {
+//                    BackHandler.removeHandler(this)
+//                    Tools.jsDelayCall(400, dialog.destroy)
+//                }
+//            }
 
-            footer: QtControls.DialogButtonBox {
-                QtControls.Button {
-                    text: qsTr("Send")
-                    flat: true
-                    onClicked: {
-                        sendMessage(label.text)
-                        dialog.close()
-                    }
-                }
-                QtControls.Button {
-                    text: qsTr("Cancel")
-                    flat: true
-                    onClicked: dialog.close()
-                }
-            }
+//            footer: QtControls.DialogButtonBox {
+//                QtControls.Button {
+//                    text: qsTr("Send")
+//                    flat: true
+//                    onClicked: {
+//                        sendMessage(label.text)
+//                        dialog.close()
+//                    }
+//                }
+//                QtControls.Button {
+//                    text: qsTr("Cancel")
+//                    flat: true
+//                    onClicked: dialog.close()
+//                }
+//            }
 
-            QtControls.Label {
-                id: label
-                font.pixelSize: 9*Devices.fontDensity
-                wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-                width: prmNotifyItem.width - 80*Devices.density
-                text: qsTr("Hey, take a look what I found.\n" +
-                           "It's an application to create stats from your telegram chats.\n" +
-                           "It will create awesome charts from your telegram history. Install it :)\n" +
-                           "aseman.co/tgstats")
+//            QtControls.Label {
+//                id: label
+//                font.pixelSize: 9*Devices.fontDensity
+//                wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+//                width: prmNotifyItem.width - 80*Devices.density
+//                text: qsTr("Hey, take a look what I found.\n" +
+//                           "It's an application to create stats from your telegram chats.\n" +
+//                           "It will create awesome charts from your telegram history. Install it :)\n" +
+//                           "aseman.co/tgstats")
 
-                Rectangle {
-                    anchors.fill: parent
-                    anchors.margins: -10*Devices.density
-                    z: -10
-                    color: Qt.darker(TgChartsGlobals.backgroundColor, 1.1)
-                }
-            }
-        }
-    }
+//                Rectangle {
+//                    anchors.fill: parent
+//                    anchors.margins: -10*Devices.density
+//                    z: -10
+//                    color: Qt.darker(TgChartsGlobals.backgroundColor, 1.1)
+//                }
+//            }
+//        }
+//    }
 
     function sendMessage(msg) {
         if(waitDialog) return

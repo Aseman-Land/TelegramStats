@@ -20,7 +20,7 @@ pragma Singleton
 
 import QtQuick 2.0
 import AsemanServer 1.0 as Server
-import QtQuick 2.7
+import QtQuick 2.5
 import AsemanTools 1.0
 
 AsemanObject {

@@ -266,6 +266,7 @@ void TgChartEngine::setLoadedCount(int loadedCount)
 
 void TgChartEngine::refresh()
 {
+    p->telegram->wake();
     if(!p->telegram || !p->telegram->isLoggedIn())
         return;
     if(!p->peer || p->dataDirectory.isEmpty())

@@ -19,7 +19,7 @@
 import QtQuick 2.0
 import AsemanTools 1.1
 import AsemanTools.Awesome 1.0
-import QtQuick.Controls 2.1 as QtControls
+import Qt.labs.controls 1.0 as QtControls
 import "../globals"
 
 Item {
@@ -60,41 +60,41 @@ Item {
         property bool showedOnce: false
     }
 
-    Component {
-        id: dialog_component
-        QtControls.Dialog {
-            id: dialog
-            title: qsTr("Low connection")
-            contentHeight: label.height
-            contentWidth: label.width
-            x: parent.width/2 - width/2
-            y: parent.height/2 - height/2
-            modal: true
-            dim: true
-            closePolicy: QtControls.Popup.CloseOnPressOutside
-            standardButtons: QtControls.Dialog.Ok
+//    Component {
+//        id: dialog_component
+//        QtControls.Dialog {
+//            id: dialog
+//            title: qsTr("Low connection")
+//            contentHeight: label.height
+//            contentWidth: label.width
+//            x: parent.width/2 - width/2
+//            y: parent.height/2 - height/2
+//            modal: true
+//            dim: true
+//            closePolicy: QtControls.Popup.CloseOnPressOutside
+//            standardButtons: QtControls.Dialog.Ok
 
-            onVisibleChanged: {
-                if(visible)
-                    BackHandler.pushHandler(this, function(){visible = false})
-                else {
-                    BackHandler.removeHandler(this)
-                    Tools.jsDelayCall(400, dialog.destroy)
-                }
-            }
+//            onVisibleChanged: {
+//                if(visible)
+//                    BackHandler.pushHandler(this, function(){visible = false})
+//                else {
+//                    BackHandler.removeHandler(this)
+//                    Tools.jsDelayCall(400, dialog.destroy)
+//                }
+//            }
 
-            QtControls.Label {
-                id: label
-                font.pixelSize: 9*Devices.fontDensity
-                wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-                width: {
-                    var res = rateDialog.width - 80*Devices.density
-                    if(res > 500*Devices.density)
-                        res = 500*Devices.density
-                    return res
-                }
-                text: qsTr("Your internet connection is to low. It would probably can't load data or loading data very slowly.")
-            }
-        }
-    }
+//            QtControls.Label {
+//                id: label
+//                font.pixelSize: 9*Devices.fontDensity
+//                wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+//                width: {
+//                    var res = rateDialog.width - 80*Devices.density
+//                    if(res > 500*Devices.density)
+//                        res = 500*Devices.density
+//                    return res
+//                }
+//                text: qsTr("Your internet connection is to low. It would probably can't load data or loading data very slowly.")
+//            }
+//        }
+//    }
 }

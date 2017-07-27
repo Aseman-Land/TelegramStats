@@ -22,7 +22,8 @@ AsemanAbstractClientSocket::AsemanAbstractClientSocket(QObject *parent) :
     QObject(parent),
     _ssl(true),
     _port(0),
-    _autoTrust(false)
+    _autoTrust(false),
+    _trustingSystem(true)
 {
 
 }

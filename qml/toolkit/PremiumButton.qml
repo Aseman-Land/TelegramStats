@@ -19,8 +19,8 @@
 import QtQuick 2.0
 import AsemanTools 1.1
 import AsemanTools.Awesome 1.0
-import QtQuick.Controls 2.0 as QtControls
-import QtQuick.Controls.Material 2.1
+import Qt.labs.controls 1.0 as QtControls
+import Qt.labs.controls.material 1.0
 import "../globals"
 
 Item {
@@ -46,7 +46,7 @@ Item {
                 return res
             }
             Material.accent: Material.color(Material.Orange)
-            hoverEnabled: false
+//            hoverEnabled: false
             highlighted: true
 
             onClicked: premiumBtn.clicked()

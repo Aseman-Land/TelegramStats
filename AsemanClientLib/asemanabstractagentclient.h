@@ -22,7 +22,9 @@
 #include "asemanabstractclientsocket.h"
 #include "asemanclientlib_global.h"
 
+#ifdef QT_QML_LIB
 #include <QJSEngine>
+#endif //#ifdef QT_QML_LIB
 
 class AsemanAbstractAgentClientPrivate;
 class ASEMANCLIENTLIBSHARED_EXPORT AsemanAbstractAgentClient : public QObject

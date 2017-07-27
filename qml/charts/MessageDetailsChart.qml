@@ -16,13 +16,13 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-import QtQuick 2.7
+import QtQuick 2.5
 import AsemanTools 1.1
 import AsemanTools.Awesome 1.0
 import TelegramQml 2.0 as Telegram
 import TgChart 1.0 as TgChart
-import QtQuick.Controls 2.1 as QtControls
-import QtCharts 2.1
+import Qt.labs.controls 1.0 as QtControls
+import QtCharts 2.0
 import "../globals"
 import "../toolkit" as Toolkit
 
