@@ -73,88 +73,86 @@ Item {
         onClicked: dialog.open()
     }
 
-//    QtControls.Dialog {
-//        id: dialog
-//        title: qsTr("Select Sticker")
-//        standardButtons: QtControls.Dialog.Cancel
-//        contentHeight: listv.height
-//        contentWidth: listv.width
-//        x: parent.width/2 - width/2
-//        modal: true
-//        dim: true
-//        closePolicy: QtControls.Popup.CloseOnPressOutside
+    Dialog {
+        id: dialog
+        title: qsTr("Select Sticker")
+        margins: 30*Devices.density
+        z: 100000000
+        color: TgChartsGlobals.backgroundAlternativeColor
+        textColor: TgChartsGlobals.foregroundColor
+        parent: page
 
-//        onVisibleChanged: {
-//            if(visible)
-//                BackHandler.pushHandler(this, function(){visible = false})
-//            else
-//                BackHandler.removeHandler(this)
-//        }
+        onVisibleChanged: {
+            if(visible)
+                BackHandler.pushHandler(this, function(){visible = false})
+            else
+                BackHandler.removeHandler(this)
+        }
 
-//        AsemanListView {
-//            id: listv
-//            width: {
-//                var res = stickeritem.width - 60*Devices.density
-//                if(res > 500*Devices.density)
-//                    res = 500*Devices.density
-//                return res
-//            }
-//            height: View.root.height/2
-//            model: Tools.filesOf(":/toolkit/stickers/")
-//            clip: true
-//            header: Item {
-//                width: listv.width
-//                height: width/stickeritem.ratio
+        buttons: [qsTr("Cancel")]
 
-//                Rectangle {
-//                    anchors.fill: parent
-//                    anchors.margins: 8*Devices.density
-//                    border.width: 2*Devices.density
-//                    border.color: TgChartsGlobals.masterColor
-//                    radius: 5*Devices.density
-//                    color: "#00000000"
-//                    opacity: 0.5
+        onButtonClicked: close()
 
-//                    QtControls.Label {
-//                        anchors.centerIn: parent
-//                        font.pixelSize: 11*Devices.fontDensity
-//                        text: qsTr("Null")
-//                        color: TgChartsGlobals.masterColor
-//                    }
-//                }
+        delegate: AsemanListView {
+            id: listv
+            width: {
+                var res = stickeritem.width - 60*Devices.density
+                if(res > 500*Devices.density)
+                    res = 500*Devices.density
+                return res
+            }
+            height: View.root.height/2
+            model: Tools.filesOf(":/toolkit/stickers/")
+            clip: true
+            header: Item {
+                width: listv.width
+                height: width/stickeritem.ratio
 
-//                QtControls.ItemDelegate {
-//                    anchors.fill: parent
-//                    hoverEnabled: false
-//                    onClicked: {
-//                        img.source = ""
-//                        dialog.close()
-//                    }
-//                }
-//            }
+                Rectangle {
+                    anchors.fill: parent
+                    anchors.margins: 8*Devices.density
+                    border.width: 2*Devices.density
+                    border.color: TgChartsGlobals.masterColor
+                    radius: 5*Devices.density
+                    color: "#00000000"
+                    opacity: 0.5
 
-//            delegate: Item {
-//                width: listv.width
-//                height: width/stickeritem.ratio
+                    QtControls.Label {
+                        anchors.centerIn: parent
+                        font.pixelSize: 11*Devices.fontDensity
+                        text: qsTr("Null")
+                        color: TgChartsGlobals.masterColor
+                    }
+                }
 
-//                Image {
-//                    anchors.fill: parent
-//                    source: "stickers/" + listv.model[index]
-//                    asynchronous: true
-//                    sourceSize: Qt.size(1.2*width, 1.2*height)
-//                }
+                QtControls.ItemDelegate {
+                    anchors.fill: parent
+                    onClicked: {
+                        img.source = ""
+                        dialog.close()
+                    }
+                }
+            }
 
-//                QtControls.ItemDelegate {
-//                    anchors.fill: parent
-//                    hoverEnabled: false
-//                    onClicked: {
-//                        img.source = "stickers/" + listv.model[index]
-//                        dialog.close()
-//                    }
-//                }
-//            }
-//        }
+            delegate: Item {
+                width: listv.width
+                height: width/stickeritem.ratio
 
-//        onRejected: close()
-//    }
+                Image {
+                    anchors.fill: parent
+                    source: "stickers/" + listv.model[index]
+                    asynchronous: true
+                    sourceSize: Qt.size(1.2*width, 1.2*height)
+                }
+
+                QtControls.ItemDelegate {
+                    anchors.fill: parent
+                    onClicked: {
+                        img.source = "stickers/" + listv.model[index]
+                        dialog.close()
+                    }
+                }
+            }
+        }
+    }
 }

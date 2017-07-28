@@ -29,7 +29,7 @@ Item {
 
     function open() {
         if(!dialog)
-            dialog = selector_component.createObject(languageSelector)
+            dialog = selector_component.createObject(View.root)
 
         dialog.open()
     }
@@ -39,68 +39,65 @@ Item {
             dialog.destroy()
     }
 
-//    Component {
-//        id: selector_component
-//        QtControls.Dialog {
-//            id: dialog
-//            title: qsTr("Select Language")
-//            standardButtons: QtControls.Dialog.Cancel
-//            contentHeight: listv.height
-//            contentWidth: listv.width
-//            x: parent.width/2 - width/2
-//            y: parent.height/2 - height/2
-//            modal: true
-//            dim: true
-//            closePolicy: QtControls.Popup.CloseOnPressOutside
+    Component {
+        id: selector_component
+        Dialog {
+            id: dialog
+            z: 100000000
+            title: qsTr("Select Language")
+            margins: 30*Devices.density
+            color: TgChartsGlobals.backgroundAlternativeColor
+            textColor: TgChartsGlobals.foregroundColor
 
-//            onVisibleChanged: {
-//                if(visible)
-//                    BackHandler.pushHandler(this, function(){visible = false})
-//                else
-//                    BackHandler.removeHandler(this)
-//            }
+            onVisibleChanged: {
+                if(visible)
+                    BackHandler.pushHandler(this, function(){visible = false})
+                else
+                    BackHandler.removeHandler(this)
+            }
 
-//            AsemanListView {
-//                id: listv
-//                width: {
-//                    var res = languageSelector.width - 60*Devices.density
-//                    if(res > 300*Devices.density)
-//                        res = 300*Devices.density
-//                    return res
-//                }
-//                height: 300*Devices.density
-//                model: ListModel {}
-//                clip: true
-//                delegate: Item {
-//                    width: listv.width
-//                    height: 52*Devices.density
+            buttons: [qsTr("Cancel")]
 
-//                    QtControls.Label {
-//                        anchors.centerIn: parent
-//                        font.pixelSize: 10*Devices.fontDensity
-//                        text: model.languageName
-//                    }
+            onButtonClicked: close()
 
-//                    QtControls.ItemDelegate {
-//                        anchors.fill: parent
-//                        hoverEnabled: false
-//                        onClicked: {
-//                            TgChartsGlobals.localeName = model.localeName
-//                            dialog.close()
-//                            Tools.jsDelayCall(400, languageSelector.close)
-//                        }
-//                    }
-//                }
+            delegate: AsemanListView {
+                id: listv
+                width: {
+                    var res = languageSelector.width - 60*Devices.density
+                    if(res > 300*Devices.density)
+                        res = 300*Devices.density
+                    return res
+                }
+                height: 300*Devices.density
+                model: ListModel {}
+                clip: true
+                delegate: Item {
+                    width: listv.width
+                    height: 52*Devices.density
 
-//                Component.onCompleted: {
-//                    model.clear()
-//                    var map = TgChartsGlobals.translator.translations
-//                    for(var i in map)
-//                        model.append({"localeName": i, "languageName": map[i]})
-//                }
-//            }
+                    QtControls.Label {
+                        anchors.centerIn: parent
+                        font.pixelSize: 10*Devices.fontDensity
+                        text: model.languageName
+                    }
 
-//            onRejected: close()
-//        }
-//    }
+                    QtControls.ItemDelegate {
+                        anchors.fill: parent
+                        onClicked: {
+                            TgChartsGlobals.localeName = model.localeName
+                            dialog.close()
+                            Tools.jsDelayCall(400, languageSelector.close)
+                        }
+                    }
+                }
+
+                Component.onCompleted: {
+                    model.clear()
+                    var map = TgChartsGlobals.translator.translations
+                    for(var i in map)
+                        model.append({"localeName": i, "languageName": map[i]})
+                }
+            }
+        }
+    }
 }

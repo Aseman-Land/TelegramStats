@@ -29,7 +29,7 @@ Item {
 
     function open() {
         if(!dialog)
-            dialog = dialog_component.createObject(premiumReqDialog)
+            dialog = dialog_component.createObject(View.root)
 
         dialog.open()
     }
@@ -39,56 +39,54 @@ Item {
             dialog.destroy()
     }
 
-//    Component {
-//        id: dialog_component
-//        QtControls.Dialog {
-//            id: dialog
-//            title: qsTr("Active Premium")
-//            contentHeight: label.height
-//            contentWidth: label.width
-//            x: parent.width/2 - width/2
-//            y: parent.height/2 - height/2
-//            modal: true
-//            dim: true
-//            closePolicy: QtControls.Popup.CloseOnPressOutside
+    Component {
+        id: dialog_component
+        Dialog {
+            id: dialog
+            title: qsTr("Active Premium")
+            margins: 30*Devices.density
+            z: 100000000
+            color: TgChartsGlobals.backgroundAlternativeColor
+            textColor: TgChartsGlobals.foregroundColor
 
-//            onVisibleChanged: {
-//                if(visible)
-//                    BackHandler.pushHandler(this, function(){visible = false})
-//                else {
-//                    BackHandler.removeHandler(this)
-//                    Tools.jsDelayCall(400, dialog.destroy)
-//                }
-//            }
+            onVisibleChanged: {
+                if(visible)
+                    BackHandler.pushHandler(this, function(){visible = false})
+                else {
+                    BackHandler.removeHandler(this)
+                    Tools.jsDelayCall(400, dialog.destroy)
+                }
+            }
 
-//            footer: QtControls.DialogButtonBox {
-//                QtControls.Button {
-//                    text: qsTr("Active")
-//                    flat: true
-//                    onClicked: {
-//                        TgChartsStore.activePremium()
-//                        dialog.close()
-//                    }
-//                }
-//                QtControls.Button {
-//                    text: qsTr("Cancel")
-//                    flat: true
-//                    onClicked: dialog.close()
-//                }
-//            }
+            buttons: [qsTr("Active") + TgChartsGlobals.translator.refresher, qsTr("Cancel") + TgChartsGlobals.translator.refresher]
 
-//            QtControls.Label {
-//                id: label
-//                font.pixelSize: 9*Devices.fontDensity
-//                wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-//                width: {
-//                    var res = premiumReqDialog.width - 80*Devices.density
-//                    if(res > 500*Devices.density)
-//                        res = 500*Devices.density
-//                    return res
-//                }
-//                text: qsTr("This feature needs premium account. Do you want to active it?")
-//            }
-//        }
-//    }
+            onButtonClicked: {
+                switch(index) {
+                case 0: {
+                    TgChartsStore.activePremium()
+                    dialog.close()
+                }
+                break
+
+                case 1: {
+                    dialog.close()
+                }
+                break
+                }
+            }
+
+            delegate: QtControls.Label {
+                id: label
+                font.pixelSize: 9*Devices.fontDensity
+                wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+                width: {
+                    var res = premiumReqDialog.width - 80*Devices.density
+                    if(res > 500*Devices.density)
+                        res = 500*Devices.density
+                    return res
+                }
+                text: qsTr("This feature needs premium account. Do you want to active it?")
+            }
+        }
+    }
 }

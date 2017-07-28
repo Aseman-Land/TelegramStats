@@ -48,7 +48,7 @@ Item {
             onClicked: {
                 if(indicator.running)
                     return
-                var dlg = selector_component.createObject(fchartBtn)
+                var dlg = selector_component.createObject(View.root)
                 dlg.open()
             }
 
@@ -77,95 +77,90 @@ Item {
         source: fchartBtn
     }
 
-//    Component {
-//        id: selector_component
-//        QtControls.Dialog {
-//            id: dialog
-////            title: qsTr("Your top active chats")
-//            contentHeight: backColumn.height + 20*Devices.density
-//            contentWidth: backColumn.width
-//            x: parent.width/2 - width/2
-//            y: View.root.height/2 - height/2 - pntListener.result.y
-//            modal: true
-//            dim: true
-//            closePolicy: QtControls.Popup.CloseOnPressOutside
-//            leftPadding: 0
-//            topPadding: 0
-//            rightPadding: 0
-//            bottomPadding: 0
+    Component {
+        id: selector_component
+        Dialog {
+            id: dialog
+            z: 100000000
+//            title: qsTr("Your top active chats")
+            color: TgChartsGlobals.backgroundAlternativeColor
+            textColor: TgChartsGlobals.foregroundColor
 
-//            onVisibleChanged: {
-//                if(visible)
-//                    BackHandler.pushHandler(this, function(){visible = false})
-//                else {
-//                    BackHandler.removeHandler(this)
-//                    Tools.jsDelayCall(400, dialog.destroy)
-//                }
-//            }
+            property variant swipe
 
-//            footer: QtControls.DialogButtonBox {
-//                QtControls.Button {
-//                    text: qsTr("Share") + TgChartsGlobals.translator.refresher
-//                    flat: true
-//                    onClicked: {
-//                        swipe.currentItem.share().shareCompleted.connect(dialog.close)
-//                    }
-//                }
-//                QtControls.Button {
-//                    text: qsTr("Close") + TgChartsGlobals.translator.refresher
-//                    flat: true
-//                    onClicked: dialog.close()
-//                }
-//            }
+            onVisibleChanged: {
+                if(visible)
+                    BackHandler.pushHandler(this, function(){visible = false})
+                else {
+                    BackHandler.removeHandler(this)
+                    Tools.jsDelayCall(400, dialog.destroy)
+                }
+            }
 
-//            Column {
-//                id: backColumn
-//                width: {
-//                    var res = fchartBtn.width - 20*Devices.density
-//                    if(res > 500*Devices.density)
-//                        res = 500*Devices.density
-//                    return res
-//                }
+            buttons: [qsTr("Share") + TgChartsGlobals.translator.refresher, qsTr("Close") + TgChartsGlobals.translator.refresher]
 
-//                TabBar {
-//                    id: tabbar
-//                    width: parent.width
-//                    model: [qsTr("Challenge"), qsTr("Full Chart")]
-//                    highlightColor: TgChartsGlobals.masterColor
-//                    color: TgChartsGlobals.backgroundAlternativeColor
-//                    textColor: TgChartsGlobals.foregroundColor
-//                    fontSize: 10*Devices.fontDensity
-//                    currentIndex: 0
-//                    onCurrentIndexChanged: if(swipe) swipe.currentIndex = currentIndex
-//                }
+            onButtonClicked: {
+                switch(index) {
+                case 0: {
+                    swipe.currentItem.share().shareCompleted.connect(dialog.close)
+                }
+                break
 
-//                QtControls.SwipeView {
-//                    id: swipe
-//                    width: parent.width
-//                    height: width*4/5
-//                    clip: true
-//                    onCurrentIndexChanged: tabbar.currentIndex = currentIndex
+                case 1: {
+                    dialog.close()
+                }
+                break
+                }
+            }
 
-//                    LayoutMirroring.enabled: View.reverseLayout
-//                    LayoutMirroring.childrenInherit: true
+            delegate: Column {
+                id: backColumn
+                width: {
+                    var res = fchartBtn.width - 40*Devices.density
+                    if(res > 500*Devices.density)
+                        res = 500*Devices.density
+                    return res
+                }
 
-//                    Charts.CupChart {
-//                        width: swipe.width
-//                        height: swipe.height
-//                        dataMap: fchartBtn.dataMap
-//                        LayoutMirroring.childrenInherit: false
-//                    }
+                TabBar {
+                    id: tabbar
+                    width: parent.width
+                    model: [qsTr("Challenge"), qsTr("Full Chart")]
+                    highlightColor: TgChartsGlobals.masterColor
+                    color: TgChartsGlobals.backgroundAlternativeColor
+                    textColor: TgChartsGlobals.foregroundColor
+                    fontSize: 10*Devices.fontDensity
+                    currentIndex: 0
+                    onCurrentIndexChanged: if(swipe) swipe.currentIndex = currentIndex
+                }
 
-//                    Charts.CompareAllChart {
-//                        width: swipe.width
-//                        height: swipe.height
-//                        dataMap: fchartBtn.dataMap
-//                        LayoutMirroring.childrenInherit: false
-//                    }
-//                }
-//            }
+                QtControls.SwipeView {
+                    id: swipe
+                    width: parent.width
+                    height: width*4/5
+                    clip: true
+                    onCurrentIndexChanged: tabbar.currentIndex = currentIndex
 
-//            onRejected: close()
-//        }
-//    }
+                    LayoutMirroring.enabled: View.reverseLayout
+                    LayoutMirroring.childrenInherit: true
+
+                    Charts.CupChart {
+                        width: swipe.width
+                        height: swipe.height
+                        dataMap: fchartBtn.dataMap
+                        LayoutMirroring.childrenInherit: false
+                    }
+
+                    Charts.CompareAllChart {
+                        width: swipe.width
+                        height: swipe.height
+                        dataMap: fchartBtn.dataMap
+                        LayoutMirroring.childrenInherit: false
+                    }
+                }
+
+                Component.onCompleted: dialog.swipe = swipe
+            }
+        }
+    }
 }

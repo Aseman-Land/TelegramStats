@@ -32,6 +32,8 @@ import "../toolkit" as Toolkit
 QtControls.Page {
     id: page
 
+    property string title
+
     property alias engine: profilePic.engine
     property InputPeer peer
 
@@ -238,7 +240,8 @@ QtControls.Page {
 
                 Flow {
                     id: grid
-                    width: column.width
+                    width: column.width - 2*spacing
+                    anchors.horizontalCenter: parent.horizontalCenter
                     height: {
                         var clmns = new Array
                         var sum = 0
@@ -285,10 +288,6 @@ QtControls.Page {
                     }
                     spacing: 8*Devices.density
                     layoutDirection: View.layoutDirection
-//                    leftPadding: spacing
-//                    rightPadding: leftPadding
-//                    topPadding: leftPadding
-//                    bottomPadding: leftPadding
                     flow: Flow.TopToBottom
                     property int columns: {
                         var res = Math.floor(flick.width/(350*Devices.density))
@@ -297,7 +296,7 @@ QtControls.Page {
                         return res
                     }
 
-                    property real cellWidth: (width - spacing)/columns - spacing
+                    property real cellWidth: width/columns
 
                     MaterialFrame {
                         width: grid.cellWidth
@@ -502,19 +501,22 @@ QtControls.Page {
                 Material.accent: "#ffffff"
             }
 
-            QtControls.Button {
+            QtControls.ItemDelegate {
                 width: height
                 height: parent.height
                 anchors.right: View.defaultLayout? parent.right : undefined
                 anchors.left: View.defaultLayout? undefined : parent.left
-                font.family: Awesome.family
-                font.pixelSize: 12*Devices.fontDensity
-                text: Awesome.fa_ellipsis_v
-//                hoverEnabled: false
                 visible: !indicator.running && !page.locked
 //                flat: true
                 Material.theme: Material.Dark
                 onClicked: optionsMenu.open()
+
+                QtControls.Label {
+                    anchors.centerIn: parent
+                    font.family: Awesome.family
+                    font.pixelSize: 12*Devices.fontDensity
+                    text: Awesome.fa_ellipsis_v
+                }
 
                 QtControls.Menu {
                     id: optionsMenu

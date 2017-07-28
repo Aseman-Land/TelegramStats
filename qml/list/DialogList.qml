@@ -201,6 +201,7 @@ QtControls.Page {
                     onClicked: {
                         if(currentList)
                             return
+
                         currentList = pageManager.append(chart_component, {"title": model.title, "peer": model.peer})
                         discardSearchFocus()
                     }

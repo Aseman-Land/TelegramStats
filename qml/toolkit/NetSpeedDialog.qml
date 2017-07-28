@@ -29,7 +29,7 @@ Item {
 
     function open() {
         if(!dialog)
-            dialog = dialog_component.createObject(rateDialog)
+            dialog = dialog_component.createObject(View.root)
 
         dialog.open()
     }
@@ -60,41 +60,41 @@ Item {
         property bool showedOnce: false
     }
 
-//    Component {
-//        id: dialog_component
-//        QtControls.Dialog {
-//            id: dialog
-//            title: qsTr("Low connection")
-//            contentHeight: label.height
-//            contentWidth: label.width
-//            x: parent.width/2 - width/2
-//            y: parent.height/2 - height/2
-//            modal: true
-//            dim: true
-//            closePolicy: QtControls.Popup.CloseOnPressOutside
-//            standardButtons: QtControls.Dialog.Ok
+    Component {
+        id: dialog_component
+        Dialog {
+            id: dialog
+            title: qsTr("Low connection")
+            margins: 30*Devices.density
+            z: 100000000
+            color: TgChartsGlobals.backgroundAlternativeColor
+            textColor: TgChartsGlobals.foregroundColor
 
-//            onVisibleChanged: {
-//                if(visible)
-//                    BackHandler.pushHandler(this, function(){visible = false})
-//                else {
-//                    BackHandler.removeHandler(this)
-//                    Tools.jsDelayCall(400, dialog.destroy)
-//                }
-//            }
+            buttons: [qsTr("Ok")]
 
-//            QtControls.Label {
-//                id: label
-//                font.pixelSize: 9*Devices.fontDensity
-//                wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-//                width: {
-//                    var res = rateDialog.width - 80*Devices.density
-//                    if(res > 500*Devices.density)
-//                        res = 500*Devices.density
-//                    return res
-//                }
-//                text: qsTr("Your internet connection is to low. It would probably can't load data or loading data very slowly.")
-//            }
-//        }
-//    }
+            onButtonClicked: close()
+
+            onVisibleChanged: {
+                if(visible)
+                    BackHandler.pushHandler(this, function(){visible = false})
+                else {
+                    BackHandler.removeHandler(this)
+                    Tools.jsDelayCall(400, dialog.destroy)
+                }
+            }
+
+            delegate: QtControls.Label {
+                id: label
+                font.pixelSize: 9*Devices.fontDensity
+                wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+                width: {
+                    var res = rateDialog.width - 80*Devices.density
+                    if(res > 500*Devices.density)
+                        res = 500*Devices.density
+                    return res
+                }
+                text: qsTr("Your internet connection is to low. It would probably can't load data or loading data very slowly.")
+            }
+        }
+    }
 }
