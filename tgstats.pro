@@ -32,7 +32,8 @@ HEADERS += \
     components/tgchartssensediary.h \
     components/tgchartusermessagecounter.h \
     components/tgchartssensedailydiary.h \
-    services/tgstats1.h
+    services/tgstats1.h \
+    components/tgchannelcrowler.h
 
 SOURCES += main.cpp \
     components/tgchartengine.cpp \
@@ -45,7 +46,8 @@ SOURCES += main.cpp \
     components/tgchartsmessagedetails.cpp \
     components/tgchartssensediary.cpp \
     components/tgchartusermessagecounter.cpp \
-    components/tgchartssensedailydiary.cpp
+    components/tgchartssensedailydiary.cpp \
+    components/tgchannelcrowler.cpp
 
 RESOURCES += qml/qml.qrc \
     resource.qrc \

@@ -25,6 +25,7 @@
 #include "components/tgchartsenderratiochart.h"
 #include "components/tgdailytimechart.h"
 #include "components/tgfiletypechart.h"
+#include "components/tgchannelcrowler.h"
 #include "components/tgchartsemojisdiary.h"
 #include "components/tgchartsmessagedetails.h"
 #include "components/tgchartssensediary.h"
@@ -63,6 +64,7 @@ int main(int argc, char *argv[])
     qmlRegisterType<TgChartsMessageDetails>("TgChart", 1, 0, "MessageDetailsChart");
     qmlRegisterType<TgChartsSenseDiary>("TgChart", 1, 0, "SenseDiary");
     qmlRegisterType<TgChartsSenseDailyDiary>("TgChart", 1, 0, "SenseDailyDiary");
+    qmlRegisterType<TgChannelCrowler>("TgChart", 1, 0, "ChannelCrowler");
 
     AsemanApplication app(argc, argv, AsemanApplication::WidgetApplication);
 

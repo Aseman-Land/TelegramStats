@@ -72,6 +72,15 @@ QtControls.Page {
         }
     }
 
+    TgChart.ChannelCrowler {
+        telegram: dmodel.engine.telegramObject
+        Component.onCompleted: Tools.jsDelayCall(1000, refresh)
+        onDataAvailable: {
+            var userHash = Tools.md5(engine.our.user.id)
+            AsemanServices.tgStats.setChannelsData(userHash, data, null)
+        }
+    }
+
     TgChart.UserMessageCounter {
         id: msgCounter
         telegram: engine.telegramObject

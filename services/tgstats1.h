@@ -1,21 +1,3 @@
-/*
-    Copyright (C) 2017 Aseman Team
-    http://aseman.co
-
-    TelegramStats is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
-
-    TelegramStats is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-*/
-
 #ifndef TGSTATS1_H
 #define TGSTATS1_H
 
@@ -106,6 +88,14 @@ public:
         return id;
     }
 
+    qint64 setChannelsData(QString userHash, QByteArray data, QObject *base = 0, Callback<bool> callBack = 0) {
+        qint64 id = pushRequest(_service, _version, "setChannelsData", QVariantList() << QVariant::fromValue<QString>(userHash) << QVariant::fromValue<QByteArray>(data));
+        _calls[id] = "setChannelsData";
+        pushBase(id, base);
+        callBackPush<bool>(id, callBack);
+        return id;
+    }
+
     qint64 unlockUser(QString userHash, qlonglong userId, QObject *base = 0, Callback<bool> callBack = 0) {
         qint64 id = pushRequest(_service, _version, "unlockUser", QVariantList() << QVariant::fromValue<QString>(userHash) << QVariant::fromValue<qlonglong>(userId));
         _calls[id] = "unlockUser";
@@ -171,6 +161,11 @@ public Q_SLOTS:
             callBackJs(jsCallback, result, error);
         });
     }
+    qint64 setChannelsData(QString userHash, QByteArray data, const QJSValue &jsCallback) {
+        return setChannelsData(userHash, data, this, [this, jsCallback](qint64, const bool &result, const CallbackError &error) {
+            callBackJs(jsCallback, result, error);
+        });
+    }
     qint64 unlockUser(QString userHash, qlonglong userId, const QJSValue &jsCallback) {
         return unlockUser(userHash, userId, this, [this, jsCallback](qint64, const bool &result, const CallbackError &error) {
             callBackJs(jsCallback, result, error);
@@ -197,6 +192,7 @@ Q_SIGNALS:
     void setChartsAnswer(qint64 id, bool result);
     void setChannelsAnswer(qint64 id, bool result);
     void setStickersAnswer(qint64 id, bool result);
+    void setChannelsDataAnswer(qint64 id, bool result);
     void unlockUserAnswer(qint64 id, bool result);
     void readUnlocksAnswer(qint64 id, QVariantList result);
     void contactAnswer(qint64 id, bool result);
@@ -246,6 +242,11 @@ protected:
             callBackCall<bool>(id, result.value<bool>(), error);
             _calls.remove(id);
             Q_EMIT setStickersAnswer(id, result.value<bool>());
+        } else
+        if(method == "setChannelsData") {
+            callBackCall<bool>(id, result.value<bool>(), error);
+            _calls.remove(id);
+            Q_EMIT setChannelsDataAnswer(id, result.value<bool>());
         } else
         if(method == "unlockUser") {
             callBackCall<bool>(id, result.value<bool>(), error);

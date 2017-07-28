@@ -96,21 +96,6 @@ QtControls.Page {
         function insertUnique(key, value) {
             remove(key)
             insert(key, value)
-            hashWriter_timer.restart()
-        }
-    }
-
-    Timer {
-        id: hashWriter_timer
-        interval: 2000
-        repeat: false
-        onTriggered: {
-            var path = engine.cache.path + "/charts/" + Tools.md5(peer.userId)
-            Tools.writeFile(path , dataHash.toMap(), true)
-
-            var userHash = Tools.md5(engine.our.user.id)
-            var peerHash = Tools.md5(peer.userId)
-            AsemanServices.tgStats.setCharts(userHash, peerHash, dataHash.toMap(), null)
         }
     }
 

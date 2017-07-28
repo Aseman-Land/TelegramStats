@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<manifest android:versionName="0.1.2" xmlns:android="http://schemas.android.com/apk/res/android" package="co.aseman.TgStats" android:installLocation="auto" android:versionCode="24">
+<manifest android:versionName="0.1.4" xmlns:android="http://schemas.android.com/apk/res/android" package="co.aseman.TgStats" android:installLocation="auto" android:versionCode="26">
     <application android:label="Telegram Stats" android:icon="@drawable/icon" android:name="land.aseman.android.AsemanApplication">
         <activity android:label="Telegram Stats" android:configChanges="orientation|uiMode|screenLayout|screenSize|smallestScreenSize|locale|fontScale|keyboard|keyboardHidden|navigation" android:name="land.aseman.android.AsemanActivity" android:theme="@style/splashScreenTheme">
             <intent-filter>
