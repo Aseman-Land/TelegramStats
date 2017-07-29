@@ -69,19 +69,11 @@ Item {
             z: 100000000
             color: TgChartsGlobals.backgroundAlternativeColor
             textColor: TgChartsGlobals.foregroundColor
+            autoDestroy: true
 
             buttons: [qsTr("Ok")]
 
             onButtonClicked: close()
-
-            onVisibleChanged: {
-                if(visible)
-                    BackHandler.pushHandler(this, function(){visible = false})
-                else {
-                    BackHandler.removeHandler(this)
-                    Tools.jsDelayCall(400, dialog.destroy)
-                }
-            }
 
             delegate: QtControls.Label {
                 id: label

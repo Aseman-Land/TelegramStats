@@ -48,15 +48,7 @@ Item {
             z: 100000000
             color: TgChartsGlobals.backgroundAlternativeColor
             textColor: TgChartsGlobals.foregroundColor
-
-            onVisibleChanged: {
-                if(visible)
-                    BackHandler.pushHandler(this, function(){visible = false})
-                else {
-                    BackHandler.removeHandler(this)
-                    Tools.jsDelayCall(400, dialog.destroy)
-                }
-            }
+            autoDestroy: true
 
             buttons: [qsTr("Active") + TgChartsGlobals.translator.refresher, qsTr("Cancel") + TgChartsGlobals.translator.refresher]
 

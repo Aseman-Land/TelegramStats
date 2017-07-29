@@ -85,17 +85,9 @@ Item {
 //            title: qsTr("Your top active chats")
             color: TgChartsGlobals.backgroundAlternativeColor
             textColor: TgChartsGlobals.foregroundColor
+            autoDestroy: true
 
             property variant swipe
-
-            onVisibleChanged: {
-                if(visible)
-                    BackHandler.pushHandler(this, function(){visible = false})
-                else {
-                    BackHandler.removeHandler(this)
-                    Tools.jsDelayCall(400, dialog.destroy)
-                }
-            }
 
             buttons: [qsTr("Share") + TgChartsGlobals.translator.refresher, qsTr("Close") + TgChartsGlobals.translator.refresher]
 

@@ -24,7 +24,7 @@ AsemanApplication {
     id: app
     applicationName: "TelegramStats"
     applicationDisplayName: "Telegram Stats"
-    applicationVersion: "0.1.3"
+    applicationVersion: "0.1.5"
     applicationId: "fab2c9df-1af2-48bd-ab0c-4a5f4e2167dd"
     organizationName: "Aseman Team"
     organizationDomain: "co.aseman"

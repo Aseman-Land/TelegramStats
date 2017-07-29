@@ -53,13 +53,10 @@ Item {
             z: 100000000
             color: TgChartsGlobals.backgroundAlternativeColor
             textColor: TgChartsGlobals.foregroundColor
+            autoDestroy: true
 
             onVisibleChanged: {
-                if(visible)
-                    BackHandler.pushHandler(this, function(){visible = false})
-                else {
-                    BackHandler.removeHandler(this)
-                    Tools.jsDelayCall(400, dialog.destroy)
+                if(!visible) {
                     if(serverMsgDialog.fatal)
                         AsemanApp.exit(0)
                 }

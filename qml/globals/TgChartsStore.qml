@@ -46,7 +46,7 @@ StoreManager {
     }
 
     function activePremiumUsingCode(code) {
-        if(code != Devices.deviceShortId && code != "02f8b255")
+        if(code != Devices.deviceShortId && code != "56c9ed8d8")
             return false
 
         TgChartsGlobals.premium = true

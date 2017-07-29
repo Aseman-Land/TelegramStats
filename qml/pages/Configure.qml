@@ -266,13 +266,6 @@ QtControls.Page {
         color: TgChartsGlobals.backgroundAlternativeColor
         textColor: TgChartsGlobals.foregroundColor
 
-        onVisibleChanged: {
-            if(visible)
-                BackHandler.pushHandler(this, function(){visible = false})
-            else
-                BackHandler.removeHandler(this)
-        }
-
         delegate: QtControls.Label {
             font.pixelSize: 9*Devices.fontDensity
             text: qsTr("Do you realy want to logout?") + TgChartsGlobals.translator.refresher
@@ -309,13 +302,6 @@ QtControls.Page {
         color: TgChartsGlobals.backgroundAlternativeColor
         textColor: TgChartsGlobals.foregroundColor
 
-        onVisibleChanged: {
-            if(visible)
-                BackHandler.pushHandler(this, function(){visible = false})
-            else
-                BackHandler.removeHandler(this)
-        }
-
         buttons: [qsTr("Active") + TgChartsGlobals.translator.refresher, qsTr("Cancel") + TgChartsGlobals.translator.refresher]
 
         onButtonClicked: {
@@ -338,6 +324,8 @@ QtControls.Page {
             }
         }
 
+        property variant codeField
+
         delegate: Column {
             id: premiumDialogColumn
 
@@ -353,6 +341,7 @@ QtControls.Page {
                 width: parent.width
                 placeholderText: qsTr("Active code") + TgChartsGlobals.translator.refresher
                 inputMethodHints: Qt.ImhNoPredictiveText
+                Component.onCompleted: premiumDialog.codeField = codeField
             }
         }
     }

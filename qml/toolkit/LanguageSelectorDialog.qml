@@ -49,13 +49,6 @@ Item {
             color: TgChartsGlobals.backgroundAlternativeColor
             textColor: TgChartsGlobals.foregroundColor
 
-            onVisibleChanged: {
-                if(visible)
-                    BackHandler.pushHandler(this, function(){visible = false})
-                else
-                    BackHandler.removeHandler(this)
-            }
-
             buttons: [qsTr("Cancel")]
 
             onButtonClicked: close()

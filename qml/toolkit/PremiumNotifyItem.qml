@@ -112,15 +112,7 @@ Rectangle {
             z: 100000000
             color: TgChartsGlobals.backgroundAlternativeColor
             textColor: TgChartsGlobals.foregroundColor
-
-            onVisibleChanged: {
-                if(visible)
-                    BackHandler.pushHandler(this, function(){visible = false})
-                else {
-                    BackHandler.removeHandler(this)
-                    Tools.jsDelayCall(400, dialog.destroy)
-                }
-            }
+            autoDestroy: true
 
             buttons: [qsTr("Send") + TgChartsGlobals.translator.refresher, qsTr("Cancel") + TgChartsGlobals.translator.refresher]
 
@@ -139,6 +131,8 @@ Rectangle {
                 }
             }
 
+            property variant label
+
             delegate: QtControls.Label {
                 id: label
                 font.pixelSize: 9*Devices.fontDensity
@@ -155,6 +149,8 @@ Rectangle {
                     z: -10
                     color: Qt.darker(TgChartsGlobals.backgroundColor, 1.1)
                 }
+
+                Component.onCompleted: dialog.label = label
             }
         }
     }
