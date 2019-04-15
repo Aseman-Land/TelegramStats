@@ -19,7 +19,8 @@
 import QtQuick 2.7
 import QtQuick.Window 2.2
 import QtQuick.Controls 2.0 as QtControls
-import AsemanTools 1.1
+import AsemanQml.Base 2.0
+import AsemanQml.Controls 2.0
 import TelegramQml 2.0 as Telegram
 import QtQuick.Controls.Material 2.0
 import "../account" as Account

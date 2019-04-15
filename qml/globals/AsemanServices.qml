@@ -19,9 +19,11 @@
 pragma Singleton
 
 import QtQuick 2.0
-import AsemanServer 1.0 as Server
+import Falcon.Base 1.0 as Client
+import AsemanClient.Services 1.0 as Services
 import QtQuick 2.7
-import AsemanTools 1.0
+import AsemanQml.Base 2.0
+import AsemanQml.Controls 2.0
 
 AsemanObject {
     property alias socket: asemanSocket
@@ -29,14 +31,14 @@ AsemanObject {
 
     property bool sessionActivated: false
 
-    Server.ClientSocket {
+    Client.ClientSocket {
         id: asemanSocket
 //        hostAddress: "127.0.0.1"
         autoTrust: true
         certificate: "../certificates/falcon.crt"
     }
 
-    Server.Tgstats {
+    Services.Tgstats {
         id: asemanTgStats
         socket: asemanSocket
     }

@@ -1,8 +1,10 @@
 TEMPLATE = app
 
-QT += qml quick widgets sql
+QT += qml quick widgets sql telegram asemancore asemangui asemanwidgets falcon network
 CONFIG += c++11
 DEFINES += DISABLE_KEYCHAIN
+
+ios|osx|clang: QMAKE_CXXFLAGS += -Wno-narrowing
 
 translationsFiles.source = translations
 translationsFiles.target = .
@@ -12,11 +14,8 @@ android {
     ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android
 }
 
-LIBS += -lqtelegram-ae
-INCLUDEPATH += $$[QT_INSTALL_HEADERS]/libqtelegram-ae $$PWD/qtquick/
+INCLUDEPATH += $$PWD/qtquick/
 
-include(asemantools/asemantools.pri)
-include(AsemanClientLib/AsemanClientLib.pri)
 include(qmake/qtcAddDeployment.pri)
 qtcAddDeployment()
 

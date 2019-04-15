@@ -17,8 +17,9 @@
 */
 
 import QtQuick 2.0
-import AsemanTools 1.1
-import AsemanTools.Awesome 1.0
+import AsemanQml.Base 2.0
+import AsemanQml.Controls 2.0
+import AsemanQml.Awesome 2.0
 import TelegramQml 2.0 as Telegram
 import TgChart 1.0 as TgChart
 import QtQuick.Controls 2.0 as QtControls

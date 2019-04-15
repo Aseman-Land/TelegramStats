@@ -18,7 +18,8 @@
 
 pragma Singleton
 import QtQuick 2.4
-import AsemanTools 1.1
+import AsemanQml.Base 2.0
+import AsemanQml.Controls 2.0
 import QtQuick.Controls.Material 2.0
 
 AsemanObject {
@@ -39,7 +40,7 @@ AsemanObject {
     property alias languageSelected: settings.languageSelected
     property alias topChats: settings.topChats
     property alias unlockedChats: settings.unlockedChats
-    property alias premium: settings.premium
+    property bool premium: true
     property alias execCount: settings.execCount
 
     property alias translator: translationManager

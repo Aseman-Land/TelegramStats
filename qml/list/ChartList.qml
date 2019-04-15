@@ -16,8 +16,9 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-import AsemanTools 1.1
-import AsemanTools.Awesome 1.0
+import AsemanQml.Base 2.0
+import AsemanQml.Controls 2.0
+import AsemanQml.Awesome 2.0
 import TelegramQml 2.0
 import QtQuick 2.7
 import TgChart 1.0 as TgChart

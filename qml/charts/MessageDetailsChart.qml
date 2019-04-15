@@ -17,8 +17,9 @@
 */
 
 import QtQuick 2.7
-import AsemanTools 1.1
-import AsemanTools.Awesome 1.0
+import AsemanQml.Base 2.0
+import AsemanQml.Controls 2.0
+import AsemanQml.Awesome 2.0
 import TelegramQml 2.0 as Telegram
 import TgChart 1.0 as TgChart
 import QtQuick.Controls 2.1 as QtControls
@@ -236,7 +237,7 @@ AbstractChart {
             font.pixelSize: 16*Devices.fontDensity
             font.family: Awesome.family
             color: TgChartsGlobals.masterColor
-            text: Awesome.fa_pencil
+            text: Awesome.fa_pencil_alt
         }
 
         QtControls.Label {
@@ -255,7 +256,7 @@ AbstractChart {
             font.pixelSize: 16*Devices.fontDensity
             font.family: Awesome.family
             color: "#00000000"
-            text: Awesome.fa_pencil
+            text: Awesome.fa_pencil_alt
         }
 
 
@@ -290,7 +291,7 @@ AbstractChart {
             font.pixelSize: 16*Devices.fontDensity
             font.family: Awesome.family
             color: TgChartsGlobals.masterColor
-            text: Awesome.fa_smile_o
+            text: Awesome.fa_smile
         }
 
         QtControls.Label {
@@ -309,7 +310,7 @@ AbstractChart {
             font.pixelSize: 16*Devices.fontDensity
             font.family: Awesome.family
             color: "#00000000"
-            text: Awesome.fa_smile_o
+            text: Awesome.fa_smile
         }
     }
 

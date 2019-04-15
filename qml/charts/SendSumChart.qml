@@ -17,7 +17,8 @@
 */
 
 import QtQuick 2.0
-import AsemanTools 1.1
+import AsemanQml.Base 2.0
+import AsemanQml.Controls 2.0
 import TgChart 1.0 as TgChart
 import QtCharts 2.1
 import "../globals"

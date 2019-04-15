@@ -16,9 +16,6 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include "asemantools/asemanapplication.h"
-#include "asemantools/asemanqmlengine.h"
-
 #include "components/tgchartengine.h"
 #include "components/tgabstractchartitem.h"
 #include "components/tgtimediarychart.h"
@@ -31,26 +28,17 @@
 #include "components/tgchartusermessagecounter.h"
 #include "components/tgchartssensedailydiary.h"
 
-#ifdef ASEMAN_FALCON_SERVER
-#include "asemanclientsocket.h"
-#else
-#include "asemanabstractclientsocket.h"
-#endif
-
 #include "services/tgstats1.h"
 
 #include <QApplication>
+#include <QFont>
 #include <QQmlApplicationEngine>
 #include <QtQml>
+#include <QNetworkProxy>
 
 int main(int argc, char *argv[])
 {
-#ifdef ASEMANCLIENTSOCKET_H
-    qmlRegisterType<AsemanClientSocket>("AsemanServer", 1, 0, "ClientSocket");
-#else
-    qmlRegisterType<AsemanAbstractClientSocket>("AsemanServer", 1, 0, "ClientSocket");
-#endif
-    qmlRegisterType<Tgstats1>("AsemanServer", 1, 0, "Tgstats");
+    qmlRegisterType<Tgstats1>("AsemanClient.Services", 1, 0, "Tgstats");
 
     qmlRegisterType<TgChartEngine>("TgChart", 1, 0, "Engine");
     qmlRegisterType<TgChartUserMessageCounter>("TgChart", 1, 0, "UserMessageCounter");
@@ -64,14 +52,13 @@ int main(int argc, char *argv[])
     qmlRegisterType<TgChartsSenseDiary>("TgChart", 1, 0, "SenseDiary");
     qmlRegisterType<TgChartsSenseDailyDiary>("TgChart", 1, 0, "SenseDailyDiary");
 
-    AsemanApplication app(argc, argv, AsemanApplication::WidgetApplication);
+    QApplication app(argc, argv);
 
     QFont font = app.font();
     font.setFamily("IRANSans");
     app.setFont(font);
-    app.setGlobalFont(font);
 
-    AsemanQmlEngine engine;
+    QQmlApplicationEngine engine;
     engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
 
     return app.exec();
